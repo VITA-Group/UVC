@@ -1,0 +1,14 @@
+python -m torch.distributed.launch \
+    --nproc_per_node=2 --master_port 6382 post_train.py \
+    --pretrained 0 \
+    --model_type "deit_small_patch16_224" \
+    --model_path https://dl.fbaipublicfiles.com/deit/deit_small_patch16_224-cd65a155.pth \
+    --checkpoint_dir /home/shixing/deit_small_patch16_224_11.pth.tar \
+    --distillation-type soft \
+    --distillation-alpha 0.1 \
+    --train_batch_size 256 \
+    --gpu_num '2,3' \
+    --epochs 120 \
+    --eval_every 1000 \
+    --output_dir exp/deit_small_nasprune_0.58 \
+    --num_workers 64 | tee mc_deit_small_058_timm.log

@@ -1,0 +1,38 @@
+python -W ignore -m torch.distributed.launch \
+--nproc_per_node=2 \
+--master_port 6019 joint_train.py \
+--gpu_num '0,1' \
+--uvc_train \
+--model_type deit_tiny_patch16_224 \
+--model_path https://dl.fbaipublicfiles.com/deit/deit_tiny_patch16_224-a1311bcf.pth \
+--distillation-type soft \
+--distillation-alpha 0.1 \
+--train_batch_size 512 \
+--num_epochs 30 \
+--eval_every 1000 \
+--flops_with_mhsa 1 \
+--zlr_schedule_list "1,5,9,13,17" \
+--learning_rate 1e-4 \
+--enable_deit 0 \
+--budget 0.5 \
+--enable_pruning 1 \
+--enable_block_gating 1 \
+--enable_patch_gating 1 \
+--gating_weight 5e-4 \
+--patch_weight 5 \
+--patch_l1_weight 0.01 \
+--patchloss "l1" \
+--use_gumbel 1 \
+--glr 0.1 \
+--patchlr 0.01 \
+--num_workers 64 \
+--seed 730 \
+--output_dir mc_deit_tiny_patch16_224_with_patch \
+--log_interval 1000 \
+--eps 0.1 \
+--eps_decay 0.92 \
+--enable_warmup 1 \
+--warmup_epochs 5 \
+--warmup_lr 1e-4 \
+--z_grad_clip 0.5 \
+--gating_interval 50
