@@ -4,7 +4,7 @@
 
 Codes for the paper: [ICLR 2022] [Unified Vision Transformer Compression](https://openreview.net/pdf?id=9jsZiUgkCZP).
 
-Shixing Yu, Tianlong Chen, Jiayi Shen, Huan Yuan, Jianchao Tan, Sen Yang, Ji Liu, Zhangyang Wang
+Shixing Yu*, Tianlong Chen*, Jiayi Shen, Huan Yuan, Jianchao Tan, Sen Yang, Ji Liu, Zhangyang Wang
 
 
 
