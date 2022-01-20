@@ -2,7 +2,7 @@
 
 [![License: MIT](https://camo.githubusercontent.com/fd551ba4b042d89480347a0e74e31af63b356b2cac1116c7b80038f41b04a581/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4c6963656e73652d4d49542d677265656e2e737667)](https://opensource.org/licenses/MIT)
 
-Codes for the paper: [Unified Vision Transformer Compression](https://openreview.net/pdf?id=9jsZiUgkCZP).
+Codes for the paper: [ICLR 2022] [Unified Vision Transformer Compression](https://openreview.net/pdf?id=9jsZiUgkCZP).
 
 Shixing Yu, Tianlong Chen, Jiayi Shen, Huan Yuan, Jianchao Tan, Sen Yang, Ji Liu, Zhangyang Wang
 
