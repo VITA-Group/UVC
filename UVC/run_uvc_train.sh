@@ -17,7 +17,7 @@ python -W ignore -m torch.distributed.launch \
 --budget 0.5 \
 --enable_pruning 1 \
 --enable_block_gating 1 \
---enable_patch_gating 1 \
+--enable_patch_gating 0\
 --gating_weight 5e-4 \
 --patch_weight 5 \
 --patch_l1_weight 0.01 \
@@ -26,7 +26,7 @@ python -W ignore -m torch.distributed.launch \
 --glr 0.1 \
 --patchlr 0.01 \
 --num_workers 64 \
---seed 730 \
+--seed 111 \
 --output_dir mc_deit_tiny_patch16_224_with_patch \
 --log_interval 1000 \
 --eps 0.1 \

@@ -91,10 +91,12 @@ class LeastSsum(torch.autograd.Function): ## sum of norm of least s groups
 
 least_s_sum = LeastSsum.apply
 
+# least_s_sum(s[layer_index,i],weight_list_to_scores(uvc_layer,self.uvc_layers_dict,self.head_size))
 
 def flops2(s,r,uvc_layers_dict,uvc_layers,head_size,ub=None,s_ub=None,r_ub=None,layer_names=None,flops_list=None):
 
     res = 0
+    # num_layers = len(uvc_layers['W1'])
     num_heads = uvc_layers['W1'][0].in_features // head_size
 
     for i,uvc_layer in enumerate(uvc_layers['W3']): #MLP pruning
@@ -148,6 +150,10 @@ class UVC_CP_MiniMax(nn.Module):
         self.z = Parameter(torch.tensor(float(z_init)))
         self.resource_fn = resource_fn
 
+        self.enable_patch_gating = args.enable_patch_gating
+        self.patch_gating = Parameter(3*torch.ones(1, model.patch_embed.grid_size[0]*model.patch_embed.grid_size[1], 1)) if self.enable_patch_gating==1 else None
+        self.update_patch()
+
 
         self.enable_part_gating = args.enable_part_gating
         self.enable_block_gating = args.enable_block_gating
@@ -181,6 +187,7 @@ class UVC_CP_MiniMax(nn.Module):
             w_s_norm1 = torch.cat((w_s_norm1, temp))
         w_s_norm1 = w_s_norm1[1:w_s_norm1.shape[0]]
 
+        # print("self.y", self.y)
         result1 = self.y[:,i].data.dot(w_s_norm1)
 
         w_s_norm2 = torch.empty(1).cuda()
@@ -215,11 +222,13 @@ class UVC_CP_MiniMax(nn.Module):
     def run_resource_fn(self, gumbel_hard=False):
         s = self.ceiled_s()
         r = self.ceiled_r()
-        rc = self.resource_fn(s, r, (self.block_skip_gating, [self.attn_skip_gating, self.mlp_skip_gating]), self.model.eps, gumbel_hard = gumbel_hard)
+        rc = self.resource_fn(s, r, (self.block_skip_gating, [self.attn_skip_gating, self.mlp_skip_gating], self.patch_gating), self.model.eps, gumbel_hard = gumbel_hard)
         return rc
 
 
     def srloss2(self, budget):
+
+
         rc = self.run_resource_fn()
         return rc - budget
 
@@ -231,7 +240,6 @@ class UVC_CP_MiniMax(nn.Module):
             scores = weight_list_to_scores(uvc_layer, "W1", self.head_size)[1]
 
             res[layer_index,i] = torch.topk(scores, int(s[layer_index,i].ceil().item()), largest=False, sorted=False)[0].sum().item()
-
         for uvc_layer in self.uvc_layers["W3"]:
             layer_index, i = self.uvc_layers_dict["s_dict"][uvc_layer]
             scores = weight_list_to_scores(uvc_layer,"W3")
@@ -250,6 +258,22 @@ class UVC_CP_MiniMax(nn.Module):
 
     def yloss(self):
         temp = self.get_least_s_norm().cuda()
+        # print("test y gradient, temp", temp)
+        # tensor([[21.1932, 0.3521],
+        #         [21.2093, 0.3543],
+        #         [21.2272, 0.3566],
+        #         [21.2346, 0.3558],
+        #         [21.2183, 0.3581],
+        #         [21.2582, 0.3473],
+        #         [21.1139, 0.3491],
+        #         [21.1891, 0.3518],
+        #         [21.2318, 0.3560],
+        #         [21.2476, 0.3551],
+        #         [21.2536, 0.3592],
+        #         [21.1937, 0.3532]])
+
+        # print("self.s",self.s)
+        # print("temp",temp)
         a = 1
         return self.y[:,0].dot(temp[:,0]) + self.y[:,1].dot(temp[:,1])
 
@@ -262,6 +286,8 @@ class UVC_CP_MiniMax(nn.Module):
 
     def zloss(self, budget):
         return self.z * (self.run_resource_fn() - budget)
+        # return self.z * (self.resource_fn(self.ceiled_s().data, self.ceiled_r().data, flops_list) - budget)
+        # return self.z * (self.flops / self.full_model_flops - budget)
 
 
 
@@ -278,6 +304,9 @@ class UVC_CP_MiniMax(nn.Module):
                 if "mlp_skip_gating" in name:
                         self.mlp_skip_gating.append(p)
 
+    def update_patch(self):
+        if self.enable_patch_gating==1:
+            self.model.patch_gating = self.patch_gating
 
     def update_eps(self):
         if not self.model.enable_warmup:
@@ -338,6 +367,7 @@ def prox_w(minimax_model, optimizer):
 
 
 def prune_w(minimax_model,optimizer=None):
+    # lr = optimizer.param_groups[0]['lr']
     s = minimax_model.ceiled_s()
     r = minimax_model.ceiled_r()
 
@@ -364,10 +394,11 @@ def prune_w(minimax_model,optimizer=None):
 
 
 
-def prune_w_mask(minimax_model):
+def prune_w_mask(minimax_model, optimizer=None):
+    # lr = optimizer.param_groups[0]['lr']
     s = minimax_model.ceiled_s()
     r = minimax_model.ceiled_r()
-
+    # print(s)
     for uvc_layer in minimax_model.uvc_layers["W1"]:
         uvc_layer.mask.data[:] = 1
         layer_index, col = minimax_model.uvc_layers_dict["s_dict"][uvc_layer]
@@ -376,8 +407,10 @@ def prune_w_mask(minimax_model):
             r_cur = r[layer_index,head_index]
             least_r_idx = torch.topk(scores1[head_index,:], int(r_cur.ceil().item()),largest=False, sorted=False)[1]
             uvc_layer.mask.data[:, least_r_idx + head_index * minimax_model.head_size] = 0
+            # print("least_r_idx", least_r_idx)
 
         least_s_idx = torch.topk(scores2, int(s[layer_index,col].ceil().item()), largest=False, sorted=False)[1]
+        # print("least_s_idx", least_s_idx)
         for head_index in least_s_idx:
             uvc_layer.mask.data[:, head_index * minimax_model.head_size : (head_index + 1 ) * minimax_model.head_size] = 0
 
@@ -396,9 +429,13 @@ def proj_dual(minimax_model):
     minimax_model.z.data.clamp_(min=0.0)
 
 
-def calc_flops(s, r, uvc_layers_dict, uvc_layers, head_size, s_ub, r_ub, flops_list, gating, eps, full_model_flops=None, use_gumbel=False, gumbel_hard=True):
+def calc_flops(s, r, uvc_layers_dict, uvc_layers, head_size, s_ub, r_ub, flops_list, gating, eps, full_model_flops=None, use_gumbel=False, gumbel_hard=False, args=None):
     (embed_macs, total_macs)  = flops_list
-
+    # s = s.cuda()
+    # r = r.cuda()
+    # s_ub = s_ub.cuda()
+    # r_ub = r_ub.cuda()
+    # print(embed_macs, total_macs)
 
     if full_model_flops is not None:
         total_macs = torch.Tensor(total_macs)
@@ -429,6 +466,8 @@ def calc_flops(s, r, uvc_layers_dict, uvc_layers, head_size, s_ub, r_ub, flops_l
 
         # Multiply with block gating function
 
+        block_gating, part_gating, patch_gating = gating
+
         distrib1 = 1
         if block_gating is not None:
             if use_gumbel:
@@ -440,13 +479,11 @@ def calc_flops(s, r, uvc_layers_dict, uvc_layers, head_size, s_ub, r_ub, flops_l
         total_macs = total_macs.cuda()
         total_macs = (total_macs.transpose(0, 1)*distrib1).transpose(0,1)
 
-
-
         macs = embed_macs   \
                                 + (total_macs[:, 0] * s_ratio[:, 0]).sum() \
                                 + (total_macs[:, 1] * s_ratio[:, 0]).sum() \
                                 + (total_macs[:, 2] * r_ratio).sum() \
-                                + (total_macs[:, 3] * r_ratio * r_ratio).sum() \
+                                + (total_macs[:, 3] * r_ratio).sum() \
                                 + (total_macs[:, 4] * s_ratio[:, 1]).sum() \
                                 + (total_macs[:, 5] * s_ratio[:, 1]).sum()
 

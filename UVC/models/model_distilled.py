@@ -17,6 +17,51 @@ __all__ = [
     'deit_base_distilled_patch16_384',
 ]
 
+
+def scatter(logits, index, k):
+    bs = logits.shape[0]
+   #print('bs = {}'.format(bs))
+
+    x_index = torch.arange(bs).reshape(-1, 1).expand(bs,k)
+    x_index = x_index.reshape(-1).tolist()
+    y_index = index.reshape(-1).tolist()
+
+    output = torch.zeros_like(logits).cuda()
+    output[x_index, y_index] = 1.0
+   #print(output.sum(dim=1))
+
+    return output
+
+
+def gumbel_softmax(logits, k=0.9, tau=1, hard=False, eps=1e-10, dim=-1):
+    # type: (torch.Tensor, float, bool, float, int) -> torch.Tensor
+
+    def _gen_gumbels():
+        gumbels = -torch.empty_like(logits).cuda().exponential_().log()
+        if torch.isnan(gumbels).sum() or torch.isinf(gumbels).sum():
+            # to avoid zero in exp output
+            gumbels = _gen_gumbels()
+        return gumbels
+
+    gumbels = _gen_gumbels()  # ~Gumbel(0,1)
+    gumbels = (logits + gumbels) / tau  # ~Gumbel(logits,tau)
+    y_soft = gumbels.softmax(dim)
+
+    if hard:
+        # Straight through.
+        index = y_soft.topk(k, dim=dim)[1]
+        y_hard = scatter(logits, index, k)
+        ret = y_hard - y_soft.detach() + y_soft
+    else:
+        # Reparametrization trick.
+        ret = y_soft
+
+    if torch.isnan(ret).sum():
+        import ipdb
+        ipdb.set_trace()
+        raise OverflowError(f'gumbel softmax output: {ret}')
+    return ret
+
 def _init_vit_weights(module: nn.Module, name: str = '', head_bias: float = 0., jax_impl: bool = False):
     """ ViT weight initialization
     * When called without n, head_bias, jax_impl args it will behave exactly the same
@@ -361,6 +406,7 @@ class DistilledVisionTransformer(VisionTransformer):
         # Distribution function, choices = [gumbel, softmax]
         self.use_gumbel = use_gumbel
         self.eps = eps
+        self.gumbel = nn.Linear(self.embed_dim, 1)
 
         self.enable_warmup = enable_warmup
 
@@ -368,7 +414,7 @@ class DistilledVisionTransformer(VisionTransformer):
             print("=====> Block gating enabled <=====")
 
         self.block_skip_gating = nn.Parameter(torch.Tensor([-1, 1]).expand(len(self.blocks),2).contiguous())
-        self.patch_gating      = nn.Parameter(torch.zeros(1, self.patch_embed.grid_size[0]*self.patch_embed.grid_size[1], 1))
+        self.patch_gating      = nn.Parameter(torch.zeros(1, self.patch_embed.grid_size[0]*self.patch_embed.grid_size[1], 1)) if self.enable_patch_gating==1 else None
 
         # Gumbel hard is only set to False when the compressed model is on training
         self.gumbel_hard = gumbel_hard
@@ -380,20 +426,34 @@ class DistilledVisionTransformer(VisionTransformer):
         if self.head_dist is not None:
             self.head_dist.apply(self._init_weights)
 
-    def forward_features(self, x):
+    def forward_features(self, x, tau=-1, ratio=0.9):
         # taken from https://github.com/rwightman/pytorch-image-models/blob/master/timm/models/vision_transformer.py
         # with slight modifications to add the dist_token
         B = x.shape[0]
         x = self.patch_embed(x)
-        if self.enable_patch_gating:
+        if self.enable_patch_gating==1:
             if self.patch_hard:
-                one     = torch.ones_like(self.patch_gating)
-                ge      = torch.ge(x, 0.5)
-                zero    = torch.zeros_like(self.patch_gating)
+                patch_gating_norm = torch.sigmoid(self.patch_gating)
+                one     = torch.ones_like(patch_gating_norm)
+                ge      = torch.ge(patch_gating_norm, 0.5)
+                zero    = torch.zeros_like(patch_gating_norm)
                 mask    = torch.where(ge, one, zero)
+                mask[:,0] = 1
                 x       = x * mask
             else:
                 x       = x * torch.sigmoid(self.patch_gating)
+
+        if tau > 0:
+            emb_dim = x.shape[2]
+            token_number = x.shape[1]
+            number = int(ratio * token_number)
+            token_scores = self.gumbel(x)
+            token_scores = token_scores.reshape(B, -1)
+            token_mask = gumbel_softmax(F.log_softmax(token_scores, dim=-1), k=number, tau=tau, hard=True)
+            token_mask[:,0] = 1.
+            token_mask = token_mask.expand(emb_dim,-1,-1).permute(1,2,0)
+
+            x = x * token_mask
 
         kernel_size = self.patch_embed.proj.kernel_size
         in_channels = self.patch_embed.proj.in_channels
@@ -447,7 +507,7 @@ class DistilledVisionTransformer(VisionTransformer):
         x = self.norm(x)
         return x[:, 0], x[:, 1], (macs_embed, macs_list)
 
-    def forward(self, x):
+    def forward(self, x, tau=-1, number=0.9):
         # x, x_dist, macs_list = self.forward_features(x)
         # x = self.head(x)
         # x_dist = self.head_dist(x_dist)
@@ -458,7 +518,7 @@ class DistilledVisionTransformer(VisionTransformer):
         #     return (x + x_dist) / 2, macs_list
 
 
-        x, x_dist, macs_list = self.forward_features(x)
+        x, x_dist, macs_list = self.forward_features(x, tau, number)
         x = self.head(x)
         if self.head_dist is None:
             x_dist = x

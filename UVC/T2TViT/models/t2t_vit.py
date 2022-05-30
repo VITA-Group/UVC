@@ -19,11 +19,6 @@ from .transformer_block import Block, get_sinusoid_encoding
 # from .transformer_blokc import Block, get_sinusoid_encoding
 
 
-import torch.nn.functional as F
-from functools import partial
-
-
-
 def _cfg(url='', **kwargs):
     return {
         'url': url,
@@ -112,7 +107,7 @@ class T2T_module(nn.Module):
 class T2T_ViT(nn.Module):
     def __init__(self, img_size=224, tokens_type='performer', in_chans=3, num_classes=1000, embed_dim=768, depth=12,
                  num_heads=12, mlp_ratio=4., qkv_bias=False, qk_scale=None, drop_rate=0., attn_drop_rate=0.,
-                 drop_path_rate=0., norm_layer=nn.LayerNorm, token_dim=64, enable_block_gating=False, enable_jumping=False, enable_patch_gating=0, gumbel_hard=True, use_gumbel=False, eps = 0.1, enable_warmup=False, patch_hard=False,):
+                 drop_path_rate=0., norm_layer=nn.LayerNorm, token_dim=64, enable_block_gating=False, enable_jumping=False, enable_patch_gating=0, gumbel_hard=True, use_gumbel=False):
         super().__init__()
         self.num_classes = num_classes
         self.num_features = self.embed_dim = embed_dim  # num_features for consistency with other models
@@ -136,7 +131,6 @@ class T2T_ViT(nn.Module):
         # Classifier head
         self.head = nn.Linear(embed_dim, num_classes) if num_classes > 0 else nn.Identity()
 
-        self.gumbel_hard = gumbel_hard
         # Skip gating for the whole block
         self.enable_block_gating = enable_block_gating
         # Jumping connections that are jumps to the last layer
@@ -145,15 +139,8 @@ class T2T_ViT(nn.Module):
         self.enable_patch_gating = enable_patch_gating
         # Distribution function, choices = [gumbel, softmax]
         self.use_gumbel = use_gumbel
-        self.enable_warmup = enable_warmup
-        # fixed_block = torch.Tensor([-1, 1]).expand(len(self.blocks),2)
-        fixed_block = torch.Tensor([
-            [-20,20], [-20,20], [-20,20], [-20,20],
-            [-20,20], [-20,20], [-20,20], [-20,20],
-            [-20,20], [20,-20], [20,-20], [-20,20],
-            [20,-20], [20,-20],]
-            )
-        self.block_skip_gating = nn.Parameter(fixed_block)
+
+        self.block_skip_gating = nn.Parameter(torch.Tensor([-1, 1]).expand(len(self.blocks),2))
 
         trunc_normal_(self.cls_token, std=.02)
         self.apply(self._init_weights)
@@ -191,22 +178,20 @@ class T2T_ViT(nn.Module):
         accum = 0
         for i, blk in enumerate(self.blocks):
             tmp_macs = []
-            # if self.enable_block_gating:
-            #     if self.use_gumbel:
-            #         distrib = F.gumbel_softmax(self.block_skip_gating[i], tau=0.5, hard=self.gumbel_hard, eps=1e-10, dim=-1)
-            #     else:
-            #         distrib = F.softmax(self.block_skip_gating[i])
-            #     tmp_x, tmp_macs = blk(x)
-            #     x = distrib[1]*tmp_x + distrib[0]*x
-            #     macs_list.append(tmp_macs)
+            if self.enable_block_gating:
+                if self.use_gumbel:
+                    distrib = F.gumbel_softmax(self.block_skip_gating[i], tau=0.5, hard=self.gumbel_hard, eps=1e-10, dim=-1)
+                else:
+                    distrib = F.softmax(self.block_skip_gating[i])
+                tmp_x, tmp_macs = blk(x)
+                x = distrib[1]*tmp_x + distrib[0]*x
+                macs_list.append(tmp_macs)
 
-            # else:
-            # Easily decided only by architecture parameter magnitude
-            if self.block_skip_gating[i][1]> self.block_skip_gating[i][0]:
-                x, tmp_macs = blk(x)
-            if len(tmp_macs)==0:
-                tmp_macs = [0, 0, 0, 0, 0, 0]
-            macs_list.append(tmp_macs)
+            else:
+                # Easily decided only by architecture parameter magnitude
+                if self.block_skip_gating[i][1]> self.block_skip_gating[i][0]:
+                    x, tmp_macs = blk(x)
+                macs_list.append(tmp_macs)
             accum += x
 
         if self.enable_jumping:
@@ -214,7 +199,7 @@ class T2T_ViT(nn.Module):
         x = self.norm(x)
         return x[:, 0], (macs_embed, macs_list)
 
-    def forward(self, x, tau=0, number=None):
+    def forward(self, x):
         x, macs_list = self.forward_features(x)
         x = self.head(x)
         if self.training:

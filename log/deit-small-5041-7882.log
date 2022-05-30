@@ -1,0 +1,5465 @@
+Training parameters %s Namespace(checkpoint_dir='exp/mc_deit_small_patch16_224_nasprune_1120_nonpatch_0.5/debug/deit_small_patch16_224_0.5041.pth.tar', clip_grad=None, cooldown_epochs=10, cutmix=1.0, cutmix_minmax=None, data_dir='/root/CLS-LOC', dataset='imagenet', decay_epochs=30, decay_rate=0.1, decay_type='cosine', device=device(type='cuda'), distillation_alpha=0.0001, distillation_tau=1.0, distillation_type='soft', enable_deit=0, enable_jumping=0, enable_writer=0, eval_batch_size=64, eval_every=1000, fp16=False, fp16_opt_level='O2', gpu_num='0,1,2,3,4,5,6,7', gradient_accumulation_steps=1, head_size=64, img_size=224, learning_rate=5e-05, local_rank=0, loss_scale=0, lr=5e-05, lr_noise=None, lr_noise_pct=0.67, lr_noise_std=1.0, max_grad_norm=1.0, min_lr=1e-05, mixup=0.8, mixup_mode='batch', mixup_prob=0.8, mixup_switch_prob=0.5, model_path='https://dl.fbaipublicfiles.com/deit/deit_small_patch16_224-cd65a155.pth', model_type='deit_small_patch16_224', momentum=0.9, n_gpu=8, name='debug', num_classes=1000, num_epochs=150, num_heads=6, num_steps=10000, num_workers=48, opt='adamw', opt_betas=None, opt_eps=1e-08, output_dir='exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02', patience_epochs=10, pretrained=0, sched='cosine', seed=42, smoothing=0.1, teacher_model='', teacher_path='', train_batch_size=256, use_distribute=0, warmup_epochs=5, warmup_lr=1e-06, warmup_steps=500, weight_decay=0.05)
+Total Parameter: 	21.9M
+mixup active: True
+** Creating teacher model: [deit_small_patch16_224] loading from ==> [https://dl.fbaipublicfiles.com/deit/deit_small_patch16_224-cd65a155.pth]
+Training parameters %s Namespace(checkpoint_dir='exp/mc_deit_small_patch16_224_nasprune_1120_nonpatch_0.5/debug/deit_small_patch16_224_0.5041.pth.tar', clip_grad=None, cooldown_epochs=10, cutmix=1.0, cutmix_minmax=None, data_dir='/root/CLS-LOC', dataset='imagenet', decay_epochs=30, decay_rate=0.1, decay_type='cosine', device=device(type='cuda'), distillation_alpha=0.0001, distillation_tau=1.0, distillation_type='soft', enable_deit=0, enable_jumping=0, enable_writer=0, eval_batch_size=64, eval_every=1000, fp16=False, fp16_opt_level='O2', gpu_num='0,1,2,3,4,5,6,7', gradient_accumulation_steps=1, head_size=64, img_size=224, learning_rate=5e-05, local_rank=5, loss_scale=0, lr=5e-05, lr_noise=None, lr_noise_pct=0.67, lr_noise_std=1.0, max_grad_norm=1.0, min_lr=1e-05, mixup=0.8, mixup_mode='batch', mixup_prob=0.8, mixup_switch_prob=0.5, model_path='https://dl.fbaipublicfiles.com/deit/deit_small_patch16_224-cd65a155.pth', model_type='deit_small_patch16_224', momentum=0.9, n_gpu=8, name='debug', num_classes=1000, num_epochs=150, num_heads=6, num_steps=10000, num_workers=48, opt='adamw', opt_betas=None, opt_eps=1e-08, output_dir='exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02', patience_epochs=10, pretrained=0, sched='cosine', seed=42, smoothing=0.1, teacher_model='', teacher_path='', train_batch_size=256, use_distribute=0, warmup_epochs=5, warmup_lr=1e-06, warmup_steps=500, weight_decay=0.05)
+Total Parameter: 	21.9M
+mixup active: True
+** Creating teacher model: [deit_small_patch16_224] loading from ==> [https://dl.fbaipublicfiles.com/deit/deit_small_patch16_224-cd65a155.pth]
+Training parameters %s Namespace(checkpoint_dir='exp/mc_deit_small_patch16_224_nasprune_1120_nonpatch_0.5/debug/deit_small_patch16_224_0.5041.pth.tar', clip_grad=None, cooldown_epochs=10, cutmix=1.0, cutmix_minmax=None, data_dir='/root/CLS-LOC', dataset='imagenet', decay_epochs=30, decay_rate=0.1, decay_type='cosine', device=device(type='cuda'), distillation_alpha=0.0001, distillation_tau=1.0, distillation_type='soft', enable_deit=0, enable_jumping=0, enable_writer=0, eval_batch_size=64, eval_every=1000, fp16=False, fp16_opt_level='O2', gpu_num='0,1,2,3,4,5,6,7', gradient_accumulation_steps=1, head_size=64, img_size=224, learning_rate=5e-05, local_rank=2, loss_scale=0, lr=5e-05, lr_noise=None, lr_noise_pct=0.67, lr_noise_std=1.0, max_grad_norm=1.0, min_lr=1e-05, mixup=0.8, mixup_mode='batch', mixup_prob=0.8, mixup_switch_prob=0.5, model_path='https://dl.fbaipublicfiles.com/deit/deit_small_patch16_224-cd65a155.pth', model_type='deit_small_patch16_224', momentum=0.9, n_gpu=8, name='debug', num_classes=1000, num_epochs=150, num_heads=6, num_steps=10000, num_workers=48, opt='adamw', opt_betas=None, opt_eps=1e-08, output_dir='exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02', patience_epochs=10, pretrained=0, sched='cosine', seed=42, smoothing=0.1, teacher_model='', teacher_path='', train_batch_size=256, use_distribute=0, warmup_epochs=5, warmup_lr=1e-06, warmup_steps=500, weight_decay=0.05)
+Total Parameter: 	21.9M
+mixup active: True
+** Creating teacher model: [deit_small_patch16_224] loading from ==> [https://dl.fbaipublicfiles.com/deit/deit_small_patch16_224-cd65a155.pth]
+Training parameters %s Namespace(checkpoint_dir='exp/mc_deit_small_patch16_224_nasprune_1120_nonpatch_0.5/debug/deit_small_patch16_224_0.5041.pth.tar', clip_grad=None, cooldown_epochs=10, cutmix=1.0, cutmix_minmax=None, data_dir='/root/CLS-LOC', dataset='imagenet', decay_epochs=30, decay_rate=0.1, decay_type='cosine', device=device(type='cuda'), distillation_alpha=0.0001, distillation_tau=1.0, distillation_type='soft', enable_deit=0, enable_jumping=0, enable_writer=0, eval_batch_size=64, eval_every=1000, fp16=False, fp16_opt_level='O2', gpu_num='0,1,2,3,4,5,6,7', gradient_accumulation_steps=1, head_size=64, img_size=224, learning_rate=5e-05, local_rank=4, loss_scale=0, lr=5e-05, lr_noise=None, lr_noise_pct=0.67, lr_noise_std=1.0, max_grad_norm=1.0, min_lr=1e-05, mixup=0.8, mixup_mode='batch', mixup_prob=0.8, mixup_switch_prob=0.5, model_path='https://dl.fbaipublicfiles.com/deit/deit_small_patch16_224-cd65a155.pth', model_type='deit_small_patch16_224', momentum=0.9, n_gpu=8, name='debug', num_classes=1000, num_epochs=150, num_heads=6, num_steps=10000, num_workers=48, opt='adamw', opt_betas=None, opt_eps=1e-08, output_dir='exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02', patience_epochs=10, pretrained=0, sched='cosine', seed=42, smoothing=0.1, teacher_model='', teacher_path='', train_batch_size=256, use_distribute=0, warmup_epochs=5, warmup_lr=1e-06, warmup_steps=500, weight_decay=0.05)
+Total Parameter: 	21.9M
+mixup active: True
+** Creating teacher model: [deit_small_patch16_224] loading from ==> [https://dl.fbaipublicfiles.com/deit/deit_small_patch16_224-cd65a155.pth]
+Training parameters %s Namespace(checkpoint_dir='exp/mc_deit_small_patch16_224_nasprune_1120_nonpatch_0.5/debug/deit_small_patch16_224_0.5041.pth.tar', clip_grad=None, cooldown_epochs=10, cutmix=1.0, cutmix_minmax=None, data_dir='/root/CLS-LOC', dataset='imagenet', decay_epochs=30, decay_rate=0.1, decay_type='cosine', device=device(type='cuda'), distillation_alpha=0.0001, distillation_tau=1.0, distillation_type='soft', enable_deit=0, enable_jumping=0, enable_writer=0, eval_batch_size=64, eval_every=1000, fp16=False, fp16_opt_level='O2', gpu_num='0,1,2,3,4,5,6,7', gradient_accumulation_steps=1, head_size=64, img_size=224, learning_rate=5e-05, local_rank=6, loss_scale=0, lr=5e-05, lr_noise=None, lr_noise_pct=0.67, lr_noise_std=1.0, max_grad_norm=1.0, min_lr=1e-05, mixup=0.8, mixup_mode='batch', mixup_prob=0.8, mixup_switch_prob=0.5, model_path='https://dl.fbaipublicfiles.com/deit/deit_small_patch16_224-cd65a155.pth', model_type='deit_small_patch16_224', momentum=0.9, n_gpu=8, name='debug', num_classes=1000, num_epochs=150, num_heads=6, num_steps=10000, num_workers=48, opt='adamw', opt_betas=None, opt_eps=1e-08, output_dir='exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02', patience_epochs=10, pretrained=0, sched='cosine', seed=42, smoothing=0.1, teacher_model='', teacher_path='', train_batch_size=256, use_distribute=0, warmup_epochs=5, warmup_lr=1e-06, warmup_steps=500, weight_decay=0.05)
+Total Parameter: 	21.9M
+mixup active: True
+** Creating teacher model: [deit_small_patch16_224] loading from ==> [https://dl.fbaipublicfiles.com/deit/deit_small_patch16_224-cd65a155.pth]
+Training parameters %s Namespace(checkpoint_dir='exp/mc_deit_small_patch16_224_nasprune_1120_nonpatch_0.5/debug/deit_small_patch16_224_0.5041.pth.tar', clip_grad=None, cooldown_epochs=10, cutmix=1.0, cutmix_minmax=None, data_dir='/root/CLS-LOC', dataset='imagenet', decay_epochs=30, decay_rate=0.1, decay_type='cosine', device=device(type='cuda'), distillation_alpha=0.0001, distillation_tau=1.0, distillation_type='soft', enable_deit=0, enable_jumping=0, enable_writer=0, eval_batch_size=64, eval_every=1000, fp16=False, fp16_opt_level='O2', gpu_num='0,1,2,3,4,5,6,7', gradient_accumulation_steps=1, head_size=64, img_size=224, learning_rate=5e-05, local_rank=7, loss_scale=0, lr=5e-05, lr_noise=None, lr_noise_pct=0.67, lr_noise_std=1.0, max_grad_norm=1.0, min_lr=1e-05, mixup=0.8, mixup_mode='batch', mixup_prob=0.8, mixup_switch_prob=0.5, model_path='https://dl.fbaipublicfiles.com/deit/deit_small_patch16_224-cd65a155.pth', model_type='deit_small_patch16_224', momentum=0.9, n_gpu=8, name='debug', num_classes=1000, num_epochs=150, num_heads=6, num_steps=10000, num_workers=48, opt='adamw', opt_betas=None, opt_eps=1e-08, output_dir='exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02', patience_epochs=10, pretrained=0, sched='cosine', seed=42, smoothing=0.1, teacher_model='', teacher_path='', train_batch_size=256, use_distribute=0, warmup_epochs=5, warmup_lr=1e-06, warmup_steps=500, weight_decay=0.05)
+Total Parameter: 	21.9M
+mixup active: True
+** Creating teacher model: [deit_small_patch16_224] loading from ==> [https://dl.fbaipublicfiles.com/deit/deit_small_patch16_224-cd65a155.pth]
+Training parameters %s Namespace(checkpoint_dir='exp/mc_deit_small_patch16_224_nasprune_1120_nonpatch_0.5/debug/deit_small_patch16_224_0.5041.pth.tar', clip_grad=None, cooldown_epochs=10, cutmix=1.0, cutmix_minmax=None, data_dir='/root/CLS-LOC', dataset='imagenet', decay_epochs=30, decay_rate=0.1, decay_type='cosine', device=device(type='cuda'), distillation_alpha=0.0001, distillation_tau=1.0, distillation_type='soft', enable_deit=0, enable_jumping=0, enable_writer=0, eval_batch_size=64, eval_every=1000, fp16=False, fp16_opt_level='O2', gpu_num='0,1,2,3,4,5,6,7', gradient_accumulation_steps=1, head_size=64, img_size=224, learning_rate=5e-05, local_rank=1, loss_scale=0, lr=5e-05, lr_noise=None, lr_noise_pct=0.67, lr_noise_std=1.0, max_grad_norm=1.0, min_lr=1e-05, mixup=0.8, mixup_mode='batch', mixup_prob=0.8, mixup_switch_prob=0.5, model_path='https://dl.fbaipublicfiles.com/deit/deit_small_patch16_224-cd65a155.pth', model_type='deit_small_patch16_224', momentum=0.9, n_gpu=8, name='debug', num_classes=1000, num_epochs=150, num_heads=6, num_steps=10000, num_workers=48, opt='adamw', opt_betas=None, opt_eps=1e-08, output_dir='exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02', patience_epochs=10, pretrained=0, sched='cosine', seed=42, smoothing=0.1, teacher_model='', teacher_path='', train_batch_size=256, use_distribute=0, warmup_epochs=5, warmup_lr=1e-06, warmup_steps=500, weight_decay=0.05)
+Total Parameter: 	21.9M
+mixup active: True
+** Creating teacher model: [deit_small_patch16_224] loading from ==> [https://dl.fbaipublicfiles.com/deit/deit_small_patch16_224-cd65a155.pth]
+Training parameters %s Namespace(checkpoint_dir='exp/mc_deit_small_patch16_224_nasprune_1120_nonpatch_0.5/debug/deit_small_patch16_224_0.5041.pth.tar', clip_grad=None, cooldown_epochs=10, cutmix=1.0, cutmix_minmax=None, data_dir='/root/CLS-LOC', dataset='imagenet', decay_epochs=30, decay_rate=0.1, decay_type='cosine', device=device(type='cuda'), distillation_alpha=0.0001, distillation_tau=1.0, distillation_type='soft', enable_deit=0, enable_jumping=0, enable_writer=0, eval_batch_size=64, eval_every=1000, fp16=False, fp16_opt_level='O2', gpu_num='0,1,2,3,4,5,6,7', gradient_accumulation_steps=1, head_size=64, img_size=224, learning_rate=5e-05, local_rank=3, loss_scale=0, lr=5e-05, lr_noise=None, lr_noise_pct=0.67, lr_noise_std=1.0, max_grad_norm=1.0, min_lr=1e-05, mixup=0.8, mixup_mode='batch', mixup_prob=0.8, mixup_switch_prob=0.5, model_path='https://dl.fbaipublicfiles.com/deit/deit_small_patch16_224-cd65a155.pth', model_type='deit_small_patch16_224', momentum=0.9, n_gpu=8, name='debug', num_classes=1000, num_epochs=150, num_heads=6, num_steps=10000, num_workers=48, opt='adamw', opt_betas=None, opt_eps=1e-08, output_dir='exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02', patience_epochs=10, pretrained=0, sched='cosine', seed=42, smoothing=0.1, teacher_model='', teacher_path='', train_batch_size=256, use_distribute=0, warmup_epochs=5, warmup_lr=1e-06, warmup_steps=500, weight_decay=0.05)
+Total Parameter: 	21.9M
+mixup active: True
+** Creating teacher model: [deit_small_patch16_224] loading from ==> [https://dl.fbaipublicfiles.com/deit/deit_small_patch16_224-cd65a155.pth]
+==> Loading checkpoint from exp/mc_deit_small_patch16_224_nasprune_1120_nonpatch_0.5/debug/deit_small_patch16_224_0.5041.pth.tar.
+==> Loading checkpoint from exp/mc_deit_small_patch16_224_nasprune_1120_nonpatch_0.5/debug/deit_small_patch16_224_0.5041.pth.tar.
+==> Loading checkpoint from exp/mc_deit_small_patch16_224_nasprune_1120_nonpatch_0.5/debug/deit_small_patch16_224_0.5041.pth.tar.
+==> Loading checkpoint from exp/mc_deit_small_patch16_224_nasprune_1120_nonpatch_0.5/debug/deit_small_patch16_224_0.5041.pth.tar.
+==> Loading checkpoint from exp/mc_deit_small_patch16_224_nasprune_1120_nonpatch_0.5/debug/deit_small_patch16_224_0.5041.pth.tar.
+==> Loading checkpoint from exp/mc_deit_small_patch16_224_nasprune_1120_nonpatch_0.5/debug/deit_small_patch16_224_0.5041.pth.tar.
+==> Loading checkpoint from exp/mc_deit_small_patch16_224_nasprune_1120_nonpatch_0.5/debug/deit_small_patch16_224_0.5041.pth.tar.
+==> Loading checkpoint from exp/mc_deit_small_patch16_224_nasprune_1120_nonpatch_0.5/debug/deit_small_patch16_224_0.5041.pth.tar.
+tensor([[-4.5383,  4.5383],
+        [-2.4511,  2.4511],
+        [-1.4795,  1.4795],
+        [-1.1877,  1.1877],
+        [-1.2194,  1.2194],
+        [-1.3300,  1.3300],
+        [-1.2060,  1.2060],
+        [-0.9979,  0.9979],
+        [ 0.1642, -0.1642],
+        [-0.1679,  0.1679],
+        [ 0.6460, -0.6460],
+        [-1.8945,  1.8945]])
+tensor([[-4.5383,  4.5383],
+        [-2.4511,  2.4511],
+        [-1.4795,  1.4795],
+        [-1.1877,  1.1877],
+        [-1.2194,  1.2194],
+        [-1.3300,  1.3300],
+        [-1.2060,  1.2060],
+        [-0.9979,  0.9979],
+        [ 0.1642, -0.1642],
+        [-0.1679,  0.1679],
+        [ 0.6460, -0.6460],
+        [-1.8945,  1.8945]])
+tensor([[-4.5383,  4.5383],
+        [-2.4511,  2.4511],
+        [-1.4795,  1.4795],
+        [-1.1877,  1.1877],
+        [-1.2194,  1.2194],
+        [-1.3300,  1.3300],
+        [-1.2060,  1.2060],
+        [-0.9979,  0.9979],
+        [ 0.1642, -0.1642],
+        [-0.1679,  0.1679],
+        [ 0.6460, -0.6460],
+        [-1.8945,  1.8945]])
+Starting post training
+Starting post training
+Starting post training
+tensor([[-4.5383,  4.5383],
+        [-2.4511,  2.4511],
+        [-1.4795,  1.4795],
+        [-1.1877,  1.1877],
+        [-1.2194,  1.2194],
+        [-1.3300,  1.3300],
+        [-1.2060,  1.2060],
+        [-0.9979,  0.9979],
+        [ 0.1642, -0.1642],
+        [-0.1679,  0.1679],
+        [ 0.6460, -0.6460],
+        [-1.8945,  1.8945]])
+Starting post training
+tensor([[-4.5383,  4.5383],
+        [-2.4511,  2.4511],
+        [-1.4795,  1.4795],
+        [-1.1877,  1.1877],
+        [-1.2194,  1.2194],
+        [-1.3300,  1.3300],
+        [-1.2060,  1.2060],
+        [-0.9979,  0.9979],
+        [ 0.1642, -0.1642],
+        [-0.1679,  0.1679],
+        [ 0.6460, -0.6460],
+        [-1.8945,  1.8945]])
+Starting post training
+tensor([[-4.5383,  4.5383],
+        [-2.4511,  2.4511],
+        [-1.4795,  1.4795],
+        [-1.1877,  1.1877],
+        [-1.2194,  1.2194],
+        [-1.3300,  1.3300],
+        [-1.2060,  1.2060],
+        [-0.9979,  0.9979],
+        [ 0.1642, -0.1642],
+        [-0.1679,  0.1679],
+        [ 0.6460, -0.6460],
+        [-1.8945,  1.8945]])
+Starting post training
+tensor([[-4.5383,  4.5383],
+        [-2.4511,  2.4511],
+        [-1.4795,  1.4795],
+        [-1.1877,  1.1877],
+        [-1.2194,  1.2194],
+        [-1.3300,  1.3300],
+        [-1.2060,  1.2060],
+        [-0.9979,  0.9979],
+        [ 0.1642, -0.1642],
+        [-0.1679,  0.1679],
+        [ 0.6460, -0.6460],
+        [-1.8945,  1.8945]])
+Starting post training
+tensor([[-4.5383,  4.5383],
+        [-2.4511,  2.4511],
+        [-1.4795,  1.4795],
+        [-1.1877,  1.1877],
+        [-1.2194,  1.2194],
+        [-1.3300,  1.3300],
+        [-1.2060,  1.2060],
+        [-0.9979,  0.9979],
+        [ 0.1642, -0.1642],
+        [-0.1679,  0.1679],
+        [ 0.6460, -0.6460],
+        [-1.8945,  1.8945]])
+Starting post training
+linear_scaled_lr 2e-05
+[before DDP]
+***** [Stage 2] Post Training *****
+  Instantaneous batch size per GPU = %d 256
+  Total train batch size (w. parallel, distributed & accumulation) = %d 2048
+  Gradient Accumulation steps = %d 1
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+linear_scaled_lr 2e-05
+[before DDP]
+***** [Stage 2] Post Training *****
+  Instantaneous batch size per GPU = %d 256
+  Total train batch size (w. parallel, distributed & accumulation) = %d 2048
+  Gradient Accumulation steps = %d 1
+============================================================
+Start training [Epoch 0]
+linear_scaled_lr 2e-05
+[before DDP]
+***** [Stage 2] Post Training *****
+  Instantaneous batch size per GPU = %d 256
+  Total train batch size (w. parallel, distributed & accumulation) = %d 2048
+  Gradient Accumulation steps = %d 1
+linear_scaled_lr 2e-05
+============================================================
+Start training [Epoch 0]
+[before DDP]
+***** [Stage 2] Post Training *****
+  Instantaneous batch size per GPU = %d 256
+  Total train batch size (w. parallel, distributed & accumulation) = %d 2048
+  Gradient Accumulation steps = %d 1
+============================================================
+Start training [Epoch 0]
+linear_scaled_lr 2e-05
+[before DDP]
+***** [Stage 2] Post Training *****
+  Instantaneous batch size per GPU = %d 256
+  Total train batch size (w. parallel, distributed & accumulation) = %d 2048
+  Gradient Accumulation steps = %d 1
+============================================================
+Start training [Epoch 0]
+linear_scaled_lr 2e-05
+[before DDP]
+***** [Stage 2] Post Training *****
+  Instantaneous batch size per GPU = %d 256
+  Total train batch size (w. parallel, distributed & accumulation) = %d 2048
+  Gradient Accumulation steps = %d 1
+linear_scaled_lr 2e-05
+============================================================
+Start training [Epoch 0]
+[before DDP]
+***** [Stage 2] Post Training *****
+  Instantaneous batch size per GPU = %d 256
+  Total train batch size (w. parallel, distributed & accumulation) = %d 2048
+  Gradient Accumulation steps = %d 1
+linear_scaled_lr 2e-05
+[before DDP]
+============================================================
+Start training [Epoch 0]
+***** [Stage 2] Post Training *****
+  Instantaneous batch size per GPU = %d 256
+  Total train batch size (w. parallel, distributed & accumulation) = %d 2048
+  Gradient Accumulation steps = %d 1
+============================================================
+Start training [Epoch 0]
+
+
+Validation Results
+Global Steps: 0
+Valid Loss: 1.13609
+Valid Accuracy: 0.74238
+Step 0 Valid Accuracy: 0.74238
+Step 0 Loss 0 LR 1e-06
+Saved model checkpoint to [DIR: %s] exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02
+============================================================
+Start training [Epoch 0]
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 1]
+scheduler step
+============================================================
+Start training [Epoch 1]
+scheduler step
+============================================================
+Start training [Epoch 1]
+scheduler step
+============================================================
+Start training [Epoch 1]
+scheduler step
+============================================================
+Start training [Epoch 1]
+============================================================
+Start training [Epoch 1]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 1]
+scheduler step
+
+
+Validation Results
+Global Steps: 626
+Valid Loss: 1.05838
+Valid Accuracy: 0.75578
+Step 626 Valid Accuracy: 0.75578
+Step 626 Loss 1.9467862844467163 LR 1e-06
+Saved model checkpoint to [DIR: %s] exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02
+============================================================
+Start training [Epoch 1]
+scheduler step
+============================================================
+Start training [Epoch 2]
+scheduler step
+============================================================
+Start training [Epoch 2]
+scheduler step
+============================================================
+Start training [Epoch 2]
+scheduler step
+============================================================
+Start training [Epoch 2]
+scheduler step
+============================================================
+Start training [Epoch 2]
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+scheduler step
+============================================================
+Start training [Epoch 2]
+scheduler step
+============================================================
+Start training [Epoch 2]
+scheduler step
+
+
+Validation Results
+Global Steps: 1252
+Valid Loss: 1.01795
+Valid Accuracy: 0.76330
+Step 1252 Valid Accuracy: 0.76330
+Step 1252 Loss 2.977799654006958 LR 4.8e-06
+Saved model checkpoint to [DIR: %s] exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02
+============================================================
+Start training [Epoch 2]
+scheduler step
+============================================================
+Start training [Epoch 3]
+scheduler step
+============================================================
+Start training [Epoch 3]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 3]
+scheduler step
+============================================================
+Start training [Epoch 3]
+scheduler step
+============================================================
+Start training [Epoch 3]
+scheduler step
+============================================================
+Start training [Epoch 3]
+scheduler step
+============================================================
+Start training [Epoch 3]
+scheduler step
+
+
+Validation Results
+Global Steps: 1878
+Valid Loss: 0.99797
+Valid Accuracy: 0.76782
+Step 1878 Valid Accuracy: 0.76782
+Step 1878 Loss 1.7003118991851807 LR 8.6e-06
+Saved model checkpoint to [DIR: %s] exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02
+============================================================
+Start training [Epoch 3]
+scheduler step
+============================================================
+Start training [Epoch 4]
+scheduler step
+============================================================
+Start training [Epoch 4]
+scheduler step
+============================================================
+Start training [Epoch 4]
+scheduler step
+============================================================
+Start training [Epoch 4]
+scheduler step
+============================================================
+Start training [Epoch 4]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 4]
+scheduler step
+============================================================
+Start training [Epoch 4]
+scheduler step
+
+
+Validation Results
+Global Steps: 2504
+Valid Loss: 0.98904
+Valid Accuracy: 0.77102
+Step 2504 Valid Accuracy: 0.77102
+Step 2504 Loss 3.2908594608306885 LR 1.24e-05
+Saved model checkpoint to [DIR: %s] exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02
+============================================================
+Start training [Epoch 4]
+scheduler step
+============================================================
+Start training [Epoch 5]
+scheduler step
+============================================================
+Start training [Epoch 5]
+scheduler step
+============================================================
+Start training [Epoch 5]
+scheduler step
+============================================================
+Start training [Epoch 5]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 5]
+============================================================
+Start training [Epoch 5]
+scheduler step
+============================================================
+Start training [Epoch 5]
+scheduler step
+scheduler step
+
+
+Validation Results
+Global Steps: 3130
+Valid Loss: 0.96442
+Valid Accuracy: 0.77356
+Step 3130 Valid Accuracy: 0.77356
+Step 3130 Loss 3.3773727416992188 LR 1.62e-05
+Saved model checkpoint to [DIR: %s] exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02
+============================================================
+Start training [Epoch 5]
+scheduler step
+============================================================
+Start training [Epoch 6]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 6]
+============================================================
+Start training [Epoch 6]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 6]
+scheduler step
+============================================================
+Start training [Epoch 6]
+scheduler step
+============================================================
+Start training [Epoch 6]
+scheduler step
+============================================================
+Start training [Epoch 6]
+scheduler step
+
+
+Validation Results
+Global Steps: 3756
+Valid Loss: 0.96655
+Valid Accuracy: 0.77558
+Step 3756 Valid Accuracy: 0.77558
+Step 3756 Loss 2.5724380016326904 LR 1.997260947684137e-05
+Saved model checkpoint to [DIR: %s] exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02
+============================================================
+Start training [Epoch 6]
+scheduler step
+============================================================
+Start training [Epoch 7]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 7]
+scheduler step
+============================================================
+Start training [Epoch 7]
+scheduler step
+============================================================
+Start training [Epoch 7]
+============================================================
+Start training [Epoch 7]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 7]
+scheduler step
+============================================================
+Start training [Epoch 7]
+scheduler step
+
+
+Validation Results
+Global Steps: 4382
+Valid Loss: 0.95662
+Valid Accuracy: 0.77736
+Step 4382 Valid Accuracy: 0.77736
+Step 4382 Loss 1.9608157873153687 LR 1.996057350657239e-05
+Saved model checkpoint to [DIR: %s] exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02
+============================================================
+Start training [Epoch 7]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 8]
+scheduler step
+============================================================
+Start training [Epoch 8]
+scheduler step
+============================================================
+Start training [Epoch 8]
+scheduler step
+============================================================
+Start training [Epoch 8]
+============================================================
+Start training [Epoch 8]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 8]
+scheduler step
+============================================================
+Start training [Epoch 8]
+scheduler step
+
+
+Validation Results
+Global Steps: 5008
+Valid Loss: 0.94847
+Valid Accuracy: 0.77734
+Step 5008 Valid Accuracy: 0.77734
+Step 5008 Loss 3.216708183288574 LR 1.9946361664814943e-05
+============================================================
+Start training [Epoch 8]
+scheduler step
+============================================================
+Start training [Epoch 9]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 9]
+scheduler step
+============================================================
+Start training [Epoch 9]
+============================================================
+Start training [Epoch 9]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 9]
+scheduler step
+============================================================
+Start training [Epoch 9]
+scheduler step
+============================================================
+Start training [Epoch 9]
+scheduler step
+
+
+Validation Results
+Global Steps: 5634
+Valid Loss: 0.95340
+Valid Accuracy: 0.77846
+Step 5634 Valid Accuracy: 0.77846
+Step 5634 Loss 2.4308698177337646 LR 1.9929980185352526e-05
+Saved model checkpoint to [DIR: %s] exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02
+============================================================
+Start training [Epoch 9]
+scheduler step
+============================================================
+Start training [Epoch 10]
+scheduler step
+============================================================
+Start training [Epoch 10]
+scheduler step
+============================================================
+Start training [Epoch 10]
+scheduler step
+============================================================
+Start training [Epoch 10]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 10]
+scheduler step
+============================================================
+Start training [Epoch 10]
+============================================================
+Start training [Epoch 10]
+scheduler step
+scheduler step
+
+
+Validation Results
+Global Steps: 6260
+Valid Loss: 0.95386
+Valid Accuracy: 0.77922
+Step 6260 Valid Accuracy: 0.77922
+Step 6260 Loss 2.8595330715179443 LR 1.9911436253643446e-05
+Saved model checkpoint to [DIR: %s] exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02
+============================================================
+Start training [Epoch 10]
+scheduler step
+============================================================
+Start training [Epoch 11]
+scheduler step
+============================================================
+Start training [Epoch 11]
+scheduler step
+============================================================
+Start training [Epoch 11]
+scheduler step
+============================================================
+Start training [Epoch 11]
+scheduler step
+============================================================
+Start training [Epoch 11]
+============================================================
+Start training [Epoch 11]
+scheduler step
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 11]
+scheduler step
+
+
+Validation Results
+Global Steps: 6886
+Valid Loss: 0.94532
+Valid Accuracy: 0.77976
+Step 6886 Valid Accuracy: 0.77976
+Step 6886 Loss 2.62221360206604 LR 1.9890738003669028e-05
+Saved model checkpoint to [DIR: %s] exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02
+============================================================
+Start training [Epoch 11]
+scheduler step
+============================================================
+Start training [Epoch 12]
+scheduler step
+============================================================
+Start training [Epoch 12]
+scheduler step
+============================================================
+Start training [Epoch 12]
+scheduler step
+============================================================
+Start training [Epoch 12]
+scheduler step
+============================================================
+Start training [Epoch 12]
+scheduler step
+============================================================
+Start training [Epoch 12]
+scheduler step
+============================================================
+Start training [Epoch 12]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 7512
+Valid Loss: 0.93102
+Valid Accuracy: 0.78038
+Step 7512 Valid Accuracy: 0.78038
+Step 7512 Loss 1.8073790073394775 LR 1.9867894514365802e-05
+Saved model checkpoint to [DIR: %s] exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02
+============================================================
+Start training [Epoch 12]
+scheduler step
+============================================================
+Start training [Epoch 13]
+scheduler step
+============================================================
+Start training [Epoch 13]
+scheduler step
+============================================================
+Start training [Epoch 13]
+scheduler step
+============================================================
+Start training [Epoch 13]
+scheduler step
+============================================================
+Start training [Epoch 13]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 13]
+scheduler step
+============================================================
+Start training [Epoch 13]
+scheduler step
+
+
+Validation Results
+Global Steps: 8138
+Valid Loss: 0.93192
+Valid Accuracy: 0.78138
+Step 8138 Valid Accuracy: 0.78138
+Step 8138 Loss 3.0305240154266357 LR 1.9842915805643157e-05
+Saved model checkpoint to [DIR: %s] exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02
+============================================================
+Start training [Epoch 13]
+scheduler step
+============================================================
+Start training [Epoch 14]
+scheduler step
+============================================================
+Start training [Epoch 14]
+scheduler step
+============================================================
+Start training [Epoch 14]
+scheduler step
+============================================================
+Start training [Epoch 14]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 14]
+scheduler step
+============================================================
+Start training [Epoch 14]
+scheduler step
+============================================================
+Start training [Epoch 14]
+scheduler step
+
+
+Validation Results
+Global Steps: 8764
+Valid Loss: 0.93143
+Valid Accuracy: 0.78148
+Step 8764 Valid Accuracy: 0.78148
+Step 8764 Loss 2.7999842166900635 LR 1.9815812833988295e-05
+Saved model checkpoint to [DIR: %s] exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02
+============================================================
+Start training [Epoch 14]
+scheduler step
+============================================================
+Start training [Epoch 15]
+scheduler step
+============================================================
+Start training [Epoch 15]
+scheduler step
+============================================================
+Start training [Epoch 15]
+scheduler step
+============================================================
+Start training [Epoch 15]
+scheduler step
+============================================================
+Start training [Epoch 15]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 15]
+============================================================
+Start training [Epoch 15]
+scheduler step
+scheduler step
+
+
+Validation Results
+Global Steps: 9390
+Valid Loss: 0.92803
+Valid Accuracy: 0.78194
+Step 9390 Valid Accuracy: 0.78194
+Step 9390 Loss 1.6633250713348389 LR 1.9786597487660337e-05
+Saved model checkpoint to [DIR: %s] exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02
+============================================================
+Start training [Epoch 15]
+scheduler step
+============================================================
+Start training [Epoch 16]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 16]
+scheduler step
+============================================================
+Start training [Epoch 16]
+scheduler step
+============================================================
+Start training [Epoch 16]
+============================================================
+Start training [Epoch 16]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 16]
+scheduler step
+============================================================
+Start training [Epoch 16]
+scheduler step
+
+
+Validation Results
+Global Steps: 10016
+Valid Loss: 0.93688
+Valid Accuracy: 0.78192
+Step 10016 Valid Accuracy: 0.78192
+Step 10016 Loss 3.081009864807129 LR 1.975528258147577e-05
+============================================================
+Start training [Epoch 16]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 17]
+scheduler step
+============================================================
+Start training [Epoch 17]
+scheduler step
+============================================================
+Start training [Epoch 17]
+scheduler step
+============================================================
+Start training [Epoch 17]
+scheduler step
+============================================================
+Start training [Epoch 17]
+scheduler step
+============================================================
+Start training [Epoch 17]
+scheduler step
+============================================================
+Start training [Epoch 17]
+scheduler step
+
+
+Validation Results
+Global Steps: 10642
+Valid Loss: 0.93297
+Valid Accuracy: 0.78210
+Step 10642 Valid Accuracy: 0.78210
+Step 10642 Loss 3.007030725479126 LR 1.9721881851187406e-05
+Saved model checkpoint to [DIR: %s] exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02
+============================================================
+Start training [Epoch 17]
+scheduler step
+============================================================
+Start training [Epoch 18]
+scheduler step
+============================================================
+Start training [Epoch 18]
+scheduler step
+============================================================
+Start training [Epoch 18]
+scheduler step
+============================================================
+Start training [Epoch 18]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 18]
+scheduler step
+============================================================
+Start training [Epoch 18]
+scheduler step
+============================================================
+Start training [Epoch 18]
+scheduler step
+
+
+Validation Results
+Global Steps: 11268
+Valid Loss: 0.93092
+Valid Accuracy: 0.78336
+Step 11268 Valid Accuracy: 0.78336
+Step 11268 Loss 1.745342493057251 LR 1.968640994745946e-05
+Saved model checkpoint to [DIR: %s] exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02
+============================================================
+Start training [Epoch 18]
+scheduler step
+============================================================
+Start training [Epoch 19]
+scheduler step
+============================================================
+Start training [Epoch 19]
+scheduler step
+============================================================
+Start training [Epoch 19]
+============================================================
+Start training [Epoch 19]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 19]
+scheduler step
+============================================================
+Start training [Epoch 19]
+scheduler step
+============================================================
+Start training [Epoch 19]
+***** Running Validation *****
+scheduler step
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 11894
+Valid Loss: 0.93069
+Valid Accuracy: 0.78364
+Step 11894 Valid Accuracy: 0.78364
+Step 11894 Loss 2.999464988708496 LR 1.9648882429441257e-05
+Saved model checkpoint to [DIR: %s] exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02
+============================================================
+Start training [Epoch 19]
+scheduler step
+============================================================
+Start training [Epoch 20]
+scheduler step
+============================================================
+Start training [Epoch 20]
+scheduler step
+============================================================
+Start training [Epoch 20]
+scheduler step
+============================================================
+Start training [Epoch 20]
+============================================================
+Start training [Epoch 20]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 20]
+scheduler step
+============================================================
+Start training [Epoch 20]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 12520
+Valid Loss: 0.92511
+Valid Accuracy: 0.78366
+Step 12520 Valid Accuracy: 0.78366
+Step 12520 Loss 2.7988595962524414 LR 1.9609315757942506e-05
+Saved model checkpoint to [DIR: %s] exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02
+============================================================
+Start training [Epoch 20]
+scheduler step
+============================================================
+Start training [Epoch 21]
+scheduler step
+============================================================
+Start training [Epoch 21]
+scheduler step
+============================================================
+Start training [Epoch 21]
+scheduler step
+============================================================
+Start training [Epoch 21]
+scheduler step
+============================================================
+Start training [Epoch 21]
+scheduler step
+============================================================
+Start training [Epoch 21]
+scheduler step
+============================================================
+Start training [Epoch 21]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 13146
+Valid Loss: 0.92692
+Valid Accuracy: 0.78384
+Step 13146 Valid Accuracy: 0.78384
+Step 13146 Loss 1.7386523485183716 LR 1.9567727288213006e-05
+Saved model checkpoint to [DIR: %s] exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02
+============================================================
+Start training [Epoch 21]
+scheduler step
+============================================================
+Start training [Epoch 22]
+scheduler step
+============================================================
+Start training [Epoch 22]
+scheduler step
+============================================================
+Start training [Epoch 22]
+scheduler step
+============================================================
+Start training [Epoch 22]
+scheduler step
+============================================================
+Start training [Epoch 22]
+scheduler step
+============================================================
+Start training [Epoch 22]
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+scheduler step
+============================================================
+Start training [Epoch 22]
+scheduler step
+
+
+Validation Results
+Global Steps: 13772
+Valid Loss: 0.93102
+Valid Accuracy: 0.78378
+Step 13772 Valid Accuracy: 0.78378
+Step 13772 Loss 1.5783838033676147 LR 1.95241352623301e-05
+============================================================
+Start training [Epoch 22]
+scheduler step
+============================================================
+Start training [Epoch 23]
+scheduler step
+============================================================
+Start training [Epoch 23]
+scheduler step
+============================================================
+Start training [Epoch 23]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 23]
+scheduler step
+============================================================
+Start training [Epoch 23]
+scheduler step
+============================================================
+Start training [Epoch 23]
+============================================================
+Start training [Epoch 23]
+scheduler step
+scheduler step
+
+
+Validation Results
+Global Steps: 14398
+Valid Loss: 0.92939
+Valid Accuracy: 0.78370
+Step 14398 Valid Accuracy: 0.78370
+Step 14398 Loss 1.7136250734329224 LR 1.9478558801197066e-05
+============================================================
+Start training [Epoch 23]
+scheduler step
+============================================================
+Start training [Epoch 24]
+scheduler step
+============================================================
+Start training [Epoch 24]
+scheduler step
+============================================================
+Start training [Epoch 24]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 24]
+scheduler step
+============================================================
+Start training [Epoch 24]
+============================================================
+Start training [Epoch 24]
+scheduler step
+============================================================
+Start training [Epoch 24]
+scheduler step
+scheduler step
+
+
+Validation Results
+Global Steps: 15024
+Valid Loss: 0.92046
+Valid Accuracy: 0.78512
+Step 15024 Valid Accuracy: 0.78512
+Step 15024 Loss 1.6315096616744995 LR 1.9431017896156075e-05
+Saved model checkpoint to [DIR: %s] exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02
+============================================================
+Start training [Epoch 24]
+scheduler step
+============================================================
+Start training [Epoch 25]
+scheduler step
+============================================================
+Start training [Epoch 25]
+scheduler step
+============================================================
+Start training [Epoch 25]
+scheduler step
+============================================================
+Start training [Epoch 25]
+scheduler step
+============================================================
+Start training [Epoch 25]
+============================================================
+Start training [Epoch 25]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 25]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 15650
+Valid Loss: 0.92763
+Valid Accuracy: 0.78492
+Step 15650 Valid Accuracy: 0.78492
+Step 15650 Loss 1.731459140777588 LR 1.938153340021932e-05
+============================================================
+Start training [Epoch 25]
+scheduler step
+============================================================
+Start training [Epoch 26]
+scheduler step
+============================================================
+Start training [Epoch 26]
+scheduler step
+============================================================
+Start training [Epoch 26]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 26]
+============================================================
+Start training [Epoch 26]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 26]
+============================================================
+Start training [Epoch 26]
+scheduler step
+scheduler step
+
+
+Validation Results
+Global Steps: 16276
+Valid Loss: 0.92661
+Valid Accuracy: 0.78450
+Step 16276 Valid Accuracy: 0.78450
+Step 16276 Loss 3.0876264572143555 LR 1.9330127018922195e-05
+============================================================
+Start training [Epoch 26]
+scheduler step
+============================================================
+Start training [Epoch 27]
+scheduler step
+============================================================
+Start training [Epoch 27]
+scheduler step============================================================
+
+Start training [Epoch 27]
+scheduler step
+============================================================
+Start training [Epoch 27]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 27]
+scheduler step
+============================================================
+Start training [Epoch 27]
+scheduler step
+============================================================
+Start training [Epoch 27]
+scheduler step
+
+
+Validation Results
+Global Steps: 16902
+Valid Loss: 0.92793
+Valid Accuracy: 0.78374
+Step 16902 Valid Accuracy: 0.78374
+Step 16902 Loss 3.2361295223236084 LR 1.9276821300802537e-05
+============================================================
+Start training [Epoch 27]
+scheduler step
+============================================================
+Start training [Epoch 28]
+scheduler step
+============================================================
+Start training [Epoch 28]
+scheduler step
+============================================================
+Start training [Epoch 28]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 28]
+scheduler step
+============================================================
+Start training [Epoch 28]
+scheduler step
+============================================================
+Start training [Epoch 28]
+scheduler step
+============================================================
+Start training [Epoch 28]
+scheduler step
+
+
+Validation Results
+Global Steps: 17528
+Valid Loss: 0.92037
+Valid Accuracy: 0.78528
+Step 17528 Valid Accuracy: 0.78528
+Step 17528 Loss 1.7728705406188965 LR 1.9221639627510077e-05
+Saved model checkpoint to [DIR: %s] exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02
+============================================================
+Start training [Epoch 28]
+scheduler step
+============================================================
+Start training [Epoch 29]
+scheduler step
+============================================================
+Start training [Epoch 29]
+scheduler step
+============================================================
+Start training [Epoch 29]
+scheduler step
+============================================================
+Start training [Epoch 29]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 29]
+scheduler step
+============================================================
+Start training [Epoch 29]
+scheduler step
+============================================================
+Start training [Epoch 29]
+scheduler step
+
+
+Validation Results
+Global Steps: 18154
+Valid Loss: 0.91905
+Valid Accuracy: 0.78476
+Step 18154 Valid Accuracy: 0.78476
+Step 18154 Loss 3.0894217491149902 LR 1.91646062035505e-05
+============================================================
+Start training [Epoch 29]
+scheduler step
+============================================================
+Start training [Epoch 30]
+scheduler step
+============================================================
+Start training [Epoch 30]
+scheduler step
+============================================================
+Start training [Epoch 30]
+scheduler step
+============================================================
+Start training [Epoch 30]
+scheduler step
+============================================================
+Start training [Epoch 30]
+scheduler step
+============================================================
+Start training [Epoch 30]
+scheduler step
+============================================================
+Start training [Epoch 30]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 18780
+Valid Loss: 0.93085
+Valid Accuracy: 0.78528
+Step 18780 Valid Accuracy: 0.78528
+Step 18780 Loss 2.5563905239105225 LR 1.910574604566852e-05
+============================================================
+Start training [Epoch 30]
+scheduler step
+============================================================
+Start training [Epoch 31]
+scheduler step
+============================================================
+Start training [Epoch 31]
+scheduler step
+============================================================
+Start training [Epoch 31]
+scheduler step
+============================================================
+Start training [Epoch 31]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 31]
+scheduler step
+============================================================
+Start training [Epoch 31]
+scheduler step
+============================================================
+Start training [Epoch 31]
+scheduler step
+
+
+Validation Results
+Global Steps: 19406
+Valid Loss: 0.91774
+Valid Accuracy: 0.78540
+Step 19406 Valid Accuracy: 0.78540
+Step 19406 Loss 2.4011669158935547 LR 1.904508497187474e-05
+Saved model checkpoint to [DIR: %s] exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02
+============================================================
+Start training [Epoch 31]
+scheduler step
+============================================================
+Start training [Epoch 32]
+scheduler step
+============================================================
+Start training [Epoch 32]
+scheduler step
+============================================================
+Start training [Epoch 32]
+scheduler step
+============================================================
+Start training [Epoch 32]
+scheduler step
+============================================================
+Start training [Epoch 32]
+scheduler step============================================================
+
+Start training [Epoch 32]
+scheduler step
+============================================================
+Start training [Epoch 32]
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+scheduler step
+
+
+Validation Results
+Global Steps: 20032
+Valid Loss: 0.91903
+Valid Accuracy: 0.78524
+Step 20032 Valid Accuracy: 0.78524
+Step 20032 Loss 1.7677595615386963 LR 1.898264959012098e-05
+============================================================
+Start training [Epoch 32]
+scheduler step
+============================================================
+Start training [Epoch 33]
+scheduler step
+============================================================
+Start training [Epoch 33]
+scheduler step
+============================================================
+Start training [Epoch 33]
+scheduler step
+============================================================
+Start training [Epoch 33]
+scheduler step
+============================================================
+Start training [Epoch 33]
+scheduler step
+============================================================
+Start training [Epoch 33]
+============================================================
+Start training [Epoch 33]
+scheduler step
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 20658
+Valid Loss: 0.91358
+Valid Accuracy: 0.78666
+Step 20658 Valid Accuracy: 0.78666
+Step 20658 Loss 1.7372337579727173 LR 1.8918467286629202e-05
+Saved model checkpoint to [DIR: %s] exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02
+============================================================
+Start training [Epoch 33]
+scheduler step
+============================================================
+Start training [Epoch 34]
+scheduler step
+============================================================
+Start training [Epoch 34]
+scheduler step
+============================================================
+Start training [Epoch 34]
+scheduler step
+============================================================
+Start training [Epoch 34]
+scheduler step
+============================================================
+Start training [Epoch 34]
+scheduler step
+============================================================
+Start training [Epoch 34]
+scheduler step
+============================================================
+Start training [Epoch 34]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 21284
+Valid Loss: 0.92451
+Valid Accuracy: 0.78614
+Step 21284 Valid Accuracy: 0.78614
+Step 21284 Loss 1.724652647972107 LR 1.8852566213878946e-05
+============================================================
+Start training [Epoch 34]
+scheduler step
+============================================================
+Start training [Epoch 35]
+scheduler step
+============================================================
+Start training [Epoch 35]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 35]
+scheduler step
+============================================================
+Start training [Epoch 35]
+scheduler step
+============================================================
+Start training [Epoch 35]
+scheduler step
+============================================================
+Start training [Epoch 35]
+scheduler step
+============================================================
+Start training [Epoch 35]
+scheduler step
+
+
+Validation Results
+Global Steps: 21910
+Valid Loss: 0.91930
+Valid Accuracy: 0.78592
+Step 21910 Valid Accuracy: 0.78592
+Step 21910 Loss 1.5403928756713867 LR 1.8784975278258782e-05
+============================================================
+Start training [Epoch 35]
+scheduler step
+============================================================
+Start training [Epoch 36]
+scheduler step
+============================================================
+Start training [Epoch 36]
+scheduler step
+============================================================
+Start training [Epoch 36]
+scheduler step
+============================================================
+Start training [Epoch 36]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 36]
+scheduler step
+============================================================
+Start training [Epoch 36]
+scheduler step
+============================================================
+Start training [Epoch 36]
+scheduler step
+
+
+Validation Results
+Global Steps: 22536
+Valid Loss: 0.92091
+Valid Accuracy: 0.78556
+Step 22536 Valid Accuracy: 0.78556
+Step 22536 Loss 2.970409870147705 LR 1.8715724127386972e-05
+============================================================
+Start training [Epoch 36]
+scheduler step
+============================================================
+Start training [Epoch 37]
+============================================================
+Start training [Epoch 37]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 37]
+scheduler step
+============================================================
+Start training [Epoch 37]
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+scheduler step
+============================================================
+Start training [Epoch 37]
+scheduler step
+============================================================
+Start training [Epoch 37]
+scheduler step
+============================================================
+Start training [Epoch 37]
+scheduler step
+
+
+Validation Results
+Global Steps: 23162
+Valid Loss: 0.92400
+Valid Accuracy: 0.78500
+Step 23162 Valid Accuracy: 0.78500
+Step 23162 Loss 2.162039041519165 LR 1.864484313710706e-05
+============================================================
+Start training [Epoch 37]
+scheduler step
+============================================================
+Start training [Epoch 38]
+scheduler step
+============================================================
+Start training [Epoch 38]
+scheduler step
+============================================================
+Start training [Epoch 38]
+scheduler step
+============================================================
+Start training [Epoch 38]
+scheduler step
+============================================================
+Start training [Epoch 38]
+scheduler step
+============================================================
+Start training [Epoch 38]
+scheduler step
+============================================================
+Start training [Epoch 38]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 23788
+Valid Loss: 0.91715
+Valid Accuracy: 0.78714
+Step 23788 Valid Accuracy: 0.78714
+Step 23788 Loss 1.7678042650222778 LR 1.8572363398164016e-05
+Saved model checkpoint to [DIR: %s] exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02
+============================================================
+Start training [Epoch 38]
+scheduler step
+============================================================
+Start training [Epoch 39]
+scheduler step
+============================================================
+Start training [Epoch 39]
+scheduler step
+============================================================
+Start training [Epoch 39]
+scheduler step
+============================================================
+Start training [Epoch 39]
+scheduler step
+============================================================
+Start training [Epoch 39]
+============================================================
+Start training [Epoch 39]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 39]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 24414
+Valid Loss: 0.91741
+Valid Accuracy: 0.78544
+Step 24414 Valid Accuracy: 0.78544
+Step 24414 Loss 2.231513261795044 LR 1.8498316702566832e-05
+============================================================
+Start training [Epoch 39]
+scheduler step
+============================================================
+Start training [Epoch 40]
+scheduler step
+============================================================
+Start training [Epoch 40]
+scheduler step
+============================================================
+Start training [Epoch 40]
+scheduler step
+============================================================
+Start training [Epoch 40]
+scheduler step
+============================================================
+Start training [Epoch 40]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 40]
+scheduler step
+============================================================
+Start training [Epoch 40]
+scheduler step
+
+
+Validation Results
+Global Steps: 25040
+Valid Loss: 0.92310
+Valid Accuracy: 0.78634
+Step 25040 Valid Accuracy: 0.78634
+Step 25040 Loss 2.578585386276245 LR 1.8422735529643445e-05
+============================================================
+Start training [Epoch 40]
+scheduler step
+============================================================
+Start training [Epoch 41]
+scheduler step
+============================================================
+Start training [Epoch 41]
+scheduler step
+============================================================
+Start training [Epoch 41]
+scheduler step
+============================================================
+Start training [Epoch 41]
+scheduler step
+============================================================
+Start training [Epoch 41]
+============================================================
+Start training [Epoch 41]
+scheduler step
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 41]
+scheduler step
+
+
+Validation Results
+Global Steps: 25666
+Valid Loss: 0.91578
+Valid Accuracy: 0.78642
+Step 25666 Valid Accuracy: 0.78642
+Step 25666 Loss 3.1552858352661133 LR 1.834565303179429e-05
+============================================================
+Start training [Epoch 41]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 42]
+scheduler step
+============================================================
+Start training [Epoch 42]
+scheduler step
+============================================================
+Start training [Epoch 42]
+scheduler step
+============================================================
+Start training [Epoch 42]
+scheduler step
+============================================================
+Start training [Epoch 42]
+============================================================
+Start training [Epoch 42]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 42]
+scheduler step
+
+
+Validation Results
+Global Steps: 26292
+Valid Loss: 0.91714
+Valid Accuracy: 0.78628
+Step 26292 Valid Accuracy: 0.78628
+Step 26292 Loss 2.08793044090271 LR 1.8267103019950528e-05
+============================================================
+Start training [Epoch 42]
+scheduler step
+============================================================
+Start training [Epoch 43]
+scheduler step
+============================================================
+Start training [Epoch 43]
+scheduler step
+============================================================
+Start training [Epoch 43]
+============================================================
+Start training [Epoch 43]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 43]
+============================================================
+Start training [Epoch 43]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 43]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 26918
+Valid Loss: 0.91948
+Valid Accuracy: 0.78606
+Step 26918 Valid Accuracy: 0.78606
+Step 26918 Loss 2.7562150955200195 LR 1.818711994874345e-05
+============================================================
+Start training [Epoch 43]
+scheduler step
+============================================================
+Start training [Epoch 44]
+scheduler step
+============================================================
+Start training [Epoch 44]
+scheduler step
+============================================================
+Start training [Epoch 44]
+scheduler step
+============================================================
+Start training [Epoch 44]
+============================================================
+Start training [Epoch 44]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 44]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 44]
+scheduler step
+
+
+Validation Results
+Global Steps: 27544
+Valid Loss: 0.91779
+Valid Accuracy: 0.78648
+Step 27544 Valid Accuracy: 0.78648
+Step 27544 Loss 2.3068768978118896 LR 1.8105738901391553e-05
+============================================================
+Start training [Epoch 44]
+scheduler step
+============================================================
+Start training [Epoch 45]
+scheduler step
+============================================================
+Start training [Epoch 45]
+scheduler step
+============================================================
+Start training [Epoch 45]
+scheduler step
+============================================================
+Start training [Epoch 45]
+scheduler step
+============================================================
+Start training [Epoch 45]
+scheduler step
+============================================================
+Start training [Epoch 45]
+scheduler step
+============================================================
+Start training [Epoch 45]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 28170
+Valid Loss: 0.91691
+Valid Accuracy: 0.78614
+Step 28170 Valid Accuracy: 0.78614
+Step 28170 Loss 1.817766785621643 LR 1.802299557431188e-05
+============================================================
+Start training [Epoch 45]
+scheduler step
+============================================================
+Start training [Epoch 46]
+scheduler step
+============================================================
+Start training [Epoch 46]
+scheduler step
+============================================================
+Start training [Epoch 46]
+scheduler step
+============================================================
+Start training [Epoch 46]
+scheduler step
+***** Running Validation *****============================================================
+
+Start training [Epoch 46]
+  Num steps = %d 782
+  Batch size = %d 64
+scheduler step
+============================================================
+Start training [Epoch 46]
+============================================================
+Start training [Epoch 46]
+scheduler step
+scheduler step
+
+
+Validation Results
+Global Steps: 28796
+Valid Loss: 0.92111
+Valid Accuracy: 0.78608
+Step 28796 Valid Accuracy: 0.78608
+Step 28796 Loss 1.5297553539276123 LR 1.7938926261462367e-05
+============================================================
+Start training [Epoch 46]
+scheduler step
+============================================================
+Start training [Epoch 47]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 47]
+scheduler step
+============================================================
+Start training [Epoch 47]
+scheduler step
+============================================================
+Start training [Epoch 47]
+scheduler step
+============================================================
+Start training [Epoch 47]
+scheduler step
+============================================================
+Start training [Epoch 47]
+============================================================
+Start training [Epoch 47]
+scheduler step
+scheduler step
+
+
+Validation Results
+Global Steps: 29422
+Valid Loss: 0.91926
+Valid Accuracy: 0.78598
+Step 29422 Valid Accuracy: 0.78598
+Step 29422 Loss 2.9885787963867188 LR 1.785356783842216e-05
+============================================================
+Start training [Epoch 47]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 48]
+scheduler step
+============================================================
+Start training [Epoch 48]
+scheduler step
+============================================================
+Start training [Epoch 48]
+scheduler step
+============================================================
+Start training [Epoch 48]
+============================================================
+Start training [Epoch 48]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 48]
+scheduler step
+============================================================
+Start training [Epoch 48]
+scheduler step
+
+
+Validation Results
+Global Steps: 30048
+Valid Loss: 0.92029
+Valid Accuracy: 0.78598
+Step 30048 Valid Accuracy: 0.78598
+Step 30048 Loss 1.6677223443984985 LR 1.776695774621672e-05
+============================================================
+Start training [Epoch 48]
+scheduler step
+============================================================
+Start training [Epoch 49]
+scheduler step
+============================================================
+Start training [Epoch 49]
+scheduler step
+============================================================
+Start training [Epoch 49]
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+scheduler step
+============================================================
+Start training [Epoch 49]
+scheduler step
+============================================================
+Start training [Epoch 49]
+scheduler step
+============================================================
+Start training [Epoch 49]
+scheduler step
+============================================================
+Start training [Epoch 49]
+scheduler step
+
+
+Validation Results
+Global Steps: 30674
+Valid Loss: 0.91941
+Valid Accuracy: 0.78718
+Step 30674 Valid Accuracy: 0.78718
+Step 30674 Loss 3.0830798149108887 LR 1.7679133974894985e-05
+Saved model checkpoint to [DIR: %s] exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02
+============================================================
+Start training [Epoch 49]
+scheduler step
+============================================================
+Start training [Epoch 50]
+scheduler step
+============================================================
+Start training [Epoch 50]
+scheduler step
+============================================================
+Start training [Epoch 50]
+scheduler step
+============================================================
+Start training [Epoch 50]
+scheduler step
+============================================================
+Start training [Epoch 50]
+scheduler step
+============================================================
+Start training [Epoch 50]
+scheduler step
+============================================================
+Start training [Epoch 50]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 31300
+Valid Loss: 0.92136
+Valid Accuracy: 0.78690
+Step 31300 Valid Accuracy: 0.78690
+Step 31300 Loss 3.036146402359009 LR 1.7590135046865654e-05
+============================================================
+Start training [Epoch 50]
+scheduler step
+============================================================
+Start training [Epoch 51]
+scheduler step
+============================================================
+Start training [Epoch 51]
+scheduler step
+============================================================
+Start training [Epoch 51]
+scheduler step
+============================================================
+Start training [Epoch 51]
+============================================================
+Start training [Epoch 51]
+============================================================
+Start training [Epoch 51]
+scheduler step
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 51]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 31926
+Valid Loss: 0.91909
+Valid Accuracy: 0.78674
+Step 31926 Valid Accuracy: 0.78674
+Step 31926 Loss 2.5946860313415527 LR 1.7500000000000002e-05
+============================================================
+Start training [Epoch 51]
+scheduler step
+============================================================
+Start training [Epoch 52]
+scheduler step
+============================================================
+Start training [Epoch 52]
+scheduler step
+============================================================
+Start training [Epoch 52]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 52]
+scheduler step
+============================================================
+Start training [Epoch 52]
+============================================================
+Start training [Epoch 52]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 52]
+scheduler step
+
+
+Validation Results
+Global Steps: 32552
+Valid Loss: 0.91626
+Valid Accuracy: 0.78752
+Step 32552 Valid Accuracy: 0.78752
+Step 32552 Loss 1.9038985967636108 LR 1.7408768370508577e-05
+Saved model checkpoint to [DIR: %s] exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02
+============================================================
+Start training [Epoch 52]
+scheduler step
+============================================================
+Start training [Epoch 53]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 53]
+scheduler step
+============================================================
+Start training [Epoch 53]
+============================================================
+Start training [Epoch 53]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 53]
+============================================================
+Start training [Epoch 53]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 53]
+scheduler step
+
+
+Validation Results
+Global Steps: 33178
+Valid Loss: 0.91860
+Valid Accuracy: 0.78712
+Step 33178 Valid Accuracy: 0.78712
+Step 33178 Loss 2.8854663372039795 LR 1.731648017559931e-05
+============================================================
+Start training [Epoch 53]
+scheduler step
+============================================================
+Start training [Epoch 54]
+scheduler step
+============================================================
+Start training [Epoch 54]
+scheduler step
+============================================================
+Start training [Epoch 54]
+scheduler step
+============================================================
+Start training [Epoch 54]
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+scheduler step
+============================================================
+Start training [Epoch 54]
+scheduler step
+============================================================
+Start training [Epoch 54]
+scheduler step
+============================================================
+Start training [Epoch 54]
+scheduler step
+
+
+Validation Results
+Global Steps: 33804
+Valid Loss: 0.91161
+Valid Accuracy: 0.78736
+Step 33804 Valid Accuracy: 0.78736
+Step 33804 Loss 2.924023389816284 LR 1.7223175895924637e-05
+============================================================
+Start training [Epoch 54]
+scheduler step
+============================================================
+Start training [Epoch 55]
+scheduler step
+============================================================
+Start training [Epoch 55]
+scheduler step
+============================================================
+Start training [Epoch 55]
+scheduler step
+============================================================
+Start training [Epoch 55]
+scheduler step
+============================================================
+Start training [Epoch 55]
+scheduler step
+============================================================
+Start training [Epoch 55]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 55]
+scheduler step
+
+
+Validation Results
+Global Steps: 34430
+Valid Loss: 0.92161
+Valid Accuracy: 0.78654
+Step 34430 Valid Accuracy: 0.78654
+Step 34430 Loss 2.4055521488189697 LR 1.7128896457825364e-05
+============================================================
+Start training [Epoch 55]
+scheduler step
+============================================================
+Start training [Epoch 56]
+scheduler step
+============================================================
+Start training [Epoch 56]
+============================================================
+Start training [Epoch 56]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 56]
+scheduler step
+============================================================
+Start training [Epoch 56]
+scheduler step
+============================================================
+Start training [Epoch 56]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 56]
+scheduler step
+
+
+Validation Results
+Global Steps: 35056
+Valid Loss: 0.91262
+Valid Accuracy: 0.78822
+Step 35056 Valid Accuracy: 0.78822
+Step 35056 Loss 2.3505935668945312 LR 1.7033683215379004e-05
+Saved model checkpoint to [DIR: %s] exp/ft_deit_small_patch16_224_nasprune_1122_50_5e5_22_02
+============================================================
+Start training [Epoch 56]
+scheduler step
+============================================================
+Start training [Epoch 57]
+scheduler step
+============================================================
+Start training [Epoch 57]
+scheduler step
+============================================================
+Start training [Epoch 57]
+scheduler step
+============================================================
+Start training [Epoch 57]
+scheduler step
+============================================================
+Start training [Epoch 57]
+scheduler step
+============================================================
+Start training [Epoch 57]
+============================================================
+Start training [Epoch 57]
+scheduler step
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 35682
+Valid Loss: 0.91691
+Valid Accuracy: 0.78690
+Step 35682 Valid Accuracy: 0.78690
+Step 35682 Loss 2.444215774536133 LR 1.6937577932260517e-05
+============================================================
+Start training [Epoch 57]
+scheduler step
+============================================================
+Start training [Epoch 58]
+scheduler step
+============================================================
+Start training [Epoch 58]
+scheduler step
+============================================================
+Start training [Epoch 58]
+scheduler step
+============================================================
+Start training [Epoch 58]
+scheduler step
+============================================================
+Start training [Epoch 58]
+scheduler step
+============================================================
+Start training [Epoch 58]
+scheduler step
+============================================================
+Start training [Epoch 58]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 36308
+Valid Loss: 0.91925
+Valid Accuracy: 0.78654
+Step 36308 Valid Accuracy: 0.78654
+Step 36308 Loss 2.1471290588378906 LR 1.6840622763423392e-05
+============================================================
+Start training [Epoch 58]
+scheduler step
+============================================================
+Start training [Epoch 59]
+scheduler step
+============================================================
+Start training [Epoch 59]
+scheduler step
+============================================================
+Start training [Epoch 59]
+scheduler step
+============================================================
+Start training [Epoch 59]
+scheduler step
+============================================================
+Start training [Epoch 59]
+scheduler step
+============================================================
+Start training [Epoch 59]
+scheduler step
+============================================================
+Start training [Epoch 59]
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+scheduler step
+
+
+Validation Results
+Global Steps: 36934
+Valid Loss: 0.91874
+Valid Accuracy: 0.78740
+Step 36934 Valid Accuracy: 0.78740
+Step 36934 Loss 1.611891746520996 LR 1.6742860236609078e-05
+============================================================
+Start training [Epoch 59]
+scheduler step
+============================================================
+Start training [Epoch 60]
+scheduler step
+============================================================
+Start training [Epoch 60]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 60]
+============================================================
+Start training [Epoch 60]
+scheduler step
+============================================================
+Start training [Epoch 60]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 60]
+scheduler step
+============================================================
+Start training [Epoch 60]
+scheduler step
+
+
+Validation Results
+Global Steps: 37560
+Valid Loss: 0.92168
+Valid Accuracy: 0.78756
+Step 37560 Valid Accuracy: 0.78756
+Step 37560 Loss 2.9371001720428467 LR 1.6644333233692917e-05
+============================================================
+Start training [Epoch 60]
+scheduler step
+============================================================
+Start training [Epoch 61]
+scheduler step
+============================================================
+Start training [Epoch 61]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 61]
+scheduler step
+============================================================
+Start training [Epoch 61]
+============================================================
+Start training [Epoch 61]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 61]
+scheduler step
+============================================================
+Start training [Epoch 61]
+scheduler step
+
+
+Validation Results
+Global Steps: 38186
+Valid Loss: 0.92044
+Valid Accuracy: 0.78768
+Step 38186 Valid Accuracy: 0.78768
+Step 38186 Loss 2.63773512840271 LR 1.654508497187474e-05
+============================================================
+Start training [Epoch 61]
+scheduler step
+============================================================
+Start training [Epoch 62]
+scheduler step
+============================================================
+Start training [Epoch 62]
+scheduler step
+============================================================
+Start training [Epoch 62]
+scheduler step
+============================================================
+Start training [Epoch 62]
+scheduler step
+============================================================
+Start training [Epoch 62]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 62]
+scheduler step
+============================================================
+Start training [Epoch 62]
+scheduler step
+
+
+Validation Results
+Global Steps: 38812
+Valid Loss: 0.92542
+Valid Accuracy: 0.78680
+Step 38812 Valid Accuracy: 0.78680
+Step 38812 Loss 3.0883641242980957 LR 1.644515898472236e-05
+============================================================
+Start training [Epoch 62]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 63]
+scheduler step
+============================================================
+Start training [Epoch 63]
+scheduler step
+============================================================
+Start training [Epoch 63]
+scheduler step
+============================================================
+Start training [Epoch 63]
+scheduler step
+============================================================
+Start training [Epoch 63]
+scheduler step
+============================================================
+Start training [Epoch 63]
+scheduler step
+============================================================
+Start training [Epoch 63]
+scheduler step
+
+
+Validation Results
+Global Steps: 39438
+Valid Loss: 0.92142
+Valid Accuracy: 0.78704
+Step 39438 Valid Accuracy: 0.78704
+Step 39438 Loss 2.1561903953552246 LR 1.634459910307633e-05
+============================================================
+Start training [Epoch 63]
+scheduler step
+============================================================
+Start training [Epoch 64]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 64]
+scheduler step
+============================================================
+Start training [Epoch 64]
+scheduler step
+============================================================
+Start training [Epoch 64]
+scheduler step
+============================================================
+Start training [Epoch 64]
+scheduler step
+============================================================
+Start training [Epoch 64]
+scheduler step
+============================================================
+Start training [Epoch 64]
+scheduler step
+
+
+Validation Results
+Global Steps: 40064
+Valid Loss: 0.92409
+Valid Accuracy: 0.78698
+Step 40064 Valid Accuracy: 0.78698
+Step 40064 Loss 3.1325972080230713 LR 1.6243449435824274e-05
+============================================================
+Start training [Epoch 64]
+scheduler step
+============================================================
+Start training [Epoch 65]
+scheduler step
+============================================================
+Start training [Epoch 65]
+scheduler step
+============================================================
+Start training [Epoch 65]
+scheduler step
+============================================================
+Start training [Epoch 65]
+scheduler step
+============================================================
+Start training [Epoch 65]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 65]
+scheduler step
+============================================================
+Start training [Epoch 65]
+scheduler step
+
+
+Validation Results
+Global Steps: 40690
+Valid Loss: 0.91833
+Valid Accuracy: 0.78800
+Step 40690 Valid Accuracy: 0.78800
+Step 40690 Loss 1.6024278402328491 LR 1.6141754350553282e-05
+============================================================
+Start training [Epoch 65]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 66]
+============================================================
+Start training [Epoch 66]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 66]
+============================================================
+Start training [Epoch 66]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 66]
+============================================================
+Start training [Epoch 66]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 66]
+scheduler step
+
+
+Validation Results
+Global Steps: 41316
+Valid Loss: 0.91976
+Valid Accuracy: 0.78612
+Step 41316 Valid Accuracy: 0.78612
+Step 41316 Loss 3.1161956787109375 LR 1.60395584540888e-05
+============================================================
+Start training [Epoch 66]
+scheduler step
+============================================================
+Start training [Epoch 67]
+scheduler step
+============================================================
+Start training [Epoch 67]
+scheduler step
+============================================================
+Start training [Epoch 67]
+scheduler step
+============================================================
+Start training [Epoch 67]
+scheduler step
+============================================================
+Start training [Epoch 67]
+scheduler step
+============================================================
+Start training [Epoch 67]
+============================================================
+Start training [Epoch 67]
+scheduler step
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 41942
+Valid Loss: 0.92196
+Valid Accuracy: 0.78612
+Step 41942 Valid Accuracy: 0.78612
+Step 41942 Loss 1.6861298084259033 LR 1.5936906572928626e-05
+============================================================
+Start training [Epoch 67]
+scheduler step
+============================================================
+Start training [Epoch 68]
+scheduler step
+============================================================
+Start training [Epoch 68]
+scheduler step
+============================================================
+Start training [Epoch 68]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 68]
+scheduler step
+============================================================
+Start training [Epoch 68]
+============================================================
+Start training [Epoch 68]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 68]
+scheduler step
+
+
+Validation Results
+Global Steps: 42568
+Valid Loss: 0.91726
+Valid Accuracy: 0.78664
+Step 42568 Valid Accuracy: 0.78664
+Step 42568 Loss 2.72589373588562 LR 1.5833843733580512e-05
+============================================================
+Start training [Epoch 68]
+scheduler step
+============================================================
+Start training [Epoch 69]
+scheduler step
+============================================================
+Start training [Epoch 69]
+scheduler step
+============================================================
+Start training [Epoch 69]
+scheduler step
+============================================================
+Start training [Epoch 69]
+scheduler step
+============================================================
+Start training [Epoch 69]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 69]
+scheduler step
+============================================================
+Start training [Epoch 69]
+scheduler step
+
+
+Validation Results
+Global Steps: 43194
+Valid Loss: 0.92213
+Valid Accuracy: 0.78594
+Step 43194 Valid Accuracy: 0.78594
+Step 43194 Loss 1.8020384311676025 LR 1.573041514281206e-05
+============================================================
+Start training [Epoch 69]
+scheduler step
+============================================================
+Start training [Epoch 70]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 70]
+============================================================
+Start training [Epoch 70]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 70]
+scheduler step
+============================================================
+Start training [Epoch 70]
+scheduler step
+============================================================
+Start training [Epoch 70]
+scheduler step
+============================================================
+Start training [Epoch 70]
+scheduler step
+
+
+Validation Results
+Global Steps: 43820
+Valid Loss: 0.92376
+Valid Accuracy: 0.78650
+Step 43820 Valid Accuracy: 0.78650
+Step 43820 Loss 3.0152981281280518 LR 1.5626666167821524e-05
+============================================================
+Start training [Epoch 70]
+scheduler step
+============================================================
+Start training [Epoch 71]
+scheduler step
+============================================================
+Start training [Epoch 71]
+============================================================
+Start training [Epoch 71]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 71]
+scheduler step
+============================================================
+Start training [Epoch 71]
+scheduler step
+============================================================
+Start training [Epoch 71]
+scheduler step
+============================================================
+Start training [Epoch 71]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 44446
+Valid Loss: 0.91581
+Valid Accuracy: 0.78654
+Step 44446 Valid Accuracy: 0.78654
+Step 44446 Loss 2.931948184967041 LR 1.5522642316338272e-05
+============================================================
+Start training [Epoch 71]
+scheduler step
+============================================================
+Start training [Epoch 72]
+scheduler step
+============================================================
+Start training [Epoch 72]
+scheduler step
+============================================================
+Start training [Epoch 72]
+scheduler step
+============================================================
+Start training [Epoch 72]
+scheduler step
+============================================================
+Start training [Epoch 72]
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 72]
+scheduler step
+============================================================
+Start training [Epoch 72]
+scheduler step
+scheduler step
+
+
+Validation Results
+Global Steps: 45072
+Valid Loss: 0.92478
+Valid Accuracy: 0.78678
+Step 45072 Valid Accuracy: 0.78678
+Step 45072 Loss 2.8671000003814697 LR 1.541838921666158e-05
+============================================================
+Start training [Epoch 72]
+scheduler step
+============================================================
+Start training [Epoch 73]
+scheduler step
+============================================================
+Start training [Epoch 73]
+scheduler step
+============================================================
+Start training [Epoch 73]
+scheduler step
+============================================================
+Start training [Epoch 73]
+============================================================
+Start training [Epoch 73]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 73]
+============================================================
+Start training [Epoch 73]
+scheduler step
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 45698
+Valid Loss: 0.91868
+Valid Accuracy: 0.78688
+Step 45698 Valid Accuracy: 0.78688
+Step 45698 Loss 2.9690167903900146 LR 1.5313952597646567e-05
+============================================================
+Start training [Epoch 73]
+scheduler step
+============================================================
+Start training [Epoch 74]
+scheduler step
+============================================================
+Start training [Epoch 74]
+scheduler step
+============================================================
+Start training [Epoch 74]
+scheduler step
+============================================================
+Start training [Epoch 74]
+scheduler step
+============================================================
+Start training [Epoch 74]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 74]
+scheduler step
+============================================================
+Start training [Epoch 74]
+scheduler step
+
+
+Validation Results
+Global Steps: 46324
+Valid Loss: 0.91752
+Valid Accuracy: 0.78688
+Step 46324 Valid Accuracy: 0.78688
+Step 46324 Loss 2.9258029460906982 LR 1.5209378268646e-05
+============================================================
+Start training [Epoch 74]
+scheduler step
+============================================================
+Start training [Epoch 75]
+scheduler step
+============================================================
+Start training [Epoch 75]
+scheduler step
+============================================================
+Start training [Epoch 75]
+============================================================
+Start training [Epoch 75]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 75]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 75]
+scheduler step
+============================================================
+Start training [Epoch 75]
+scheduler step
+
+
+Validation Results
+Global Steps: 46950
+Valid Loss: 0.91963
+Valid Accuracy: 0.78768
+Step 46950 Valid Accuracy: 0.78768
+Step 46950 Loss 1.6967357397079468 LR 1.5104712099416786e-05
+============================================================
+Start training [Epoch 75]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 76]
+scheduler step
+============================================================
+Start training [Epoch 76]
+scheduler step
+============================================================
+Start training [Epoch 76]
+scheduler step
+============================================================
+Start training [Epoch 76]
+============================================================
+Start training [Epoch 76]
+scheduler step
+============================================================
+Start training [Epoch 76]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 76]
+scheduler step
+
+
+Validation Results
+Global Steps: 47576
+Valid Loss: 0.91666
+Valid Accuracy: 0.78692
+Step 47576 Valid Accuracy: 0.78692
+Step 47576 Loss 2.822456121444702 LR 1.5000000000000002e-05
+============================================================
+Start training [Epoch 76]
+scheduler step
+============================================================
+Start training [Epoch 77]
+scheduler step
+============================================================
+Start training [Epoch 77]
+scheduler step
+============================================================
+Start training [Epoch 77]
+scheduler step
+============================================================
+Start training [Epoch 77]
+scheduler step
+============================================================
+Start training [Epoch 77]
+============================================================
+Start training [Epoch 77]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 77]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 48202
+Valid Loss: 0.92444
+Valid Accuracy: 0.78648
+Step 48202 Valid Accuracy: 0.78648
+Step 48202 Loss 2.8139185905456543 LR 1.4895287900583218e-05
+============================================================
+Start training [Epoch 77]
+scheduler step
+============================================================
+Start training [Epoch 78]
+scheduler step
+============================================================
+Start training [Epoch 78]
+scheduler step
+============================================================
+Start training [Epoch 78]
+scheduler step
+============================================================
+Start training [Epoch 78]
+scheduler step
+============================================================
+Start training [Epoch 78]
+scheduler step
+============================================================
+Start training [Epoch 78]
+scheduler step
+============================================================
+Start training [Epoch 78]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 48828
+Valid Loss: 0.91868
+Valid Accuracy: 0.78724
+Step 48828 Valid Accuracy: 0.78724
+Step 48828 Loss 2.6345245838165283 LR 1.4790621731354003e-05
+============================================================
+Start training [Epoch 78]
+scheduler step
+============================================================
+Start training [Epoch 79]
+scheduler step
+============================================================
+Start training [Epoch 79]
+scheduler step
+============================================================
+Start training [Epoch 79]
+scheduler step
+============================================================
+Start training [Epoch 79]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 79]
+scheduler step
+============================================================
+Start training [Epoch 79]
+scheduler step
+============================================================
+Start training [Epoch 79]
+scheduler step
+
+
+Validation Results
+Global Steps: 49454
+Valid Loss: 0.92088
+Valid Accuracy: 0.78732
+Step 49454 Valid Accuracy: 0.78732
+Step 49454 Loss 2.719470500946045 LR 1.4686047402353437e-05
+============================================================
+Start training [Epoch 79]
+scheduler step
+============================================================
+Start training [Epoch 80]
+scheduler step
+============================================================
+Start training [Epoch 80]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 80]
+scheduler step
+============================================================
+Start training [Epoch 80]
+scheduler step
+============================================================
+Start training [Epoch 80]
+============================================================
+Start training [Epoch 80]
+scheduler step
+============================================================
+Start training [Epoch 80]
+scheduler step
+scheduler step
+
+
+Validation Results
+Global Steps: 50080
+Valid Loss: 0.92464
+Valid Accuracy: 0.78692
+Step 50080 Valid Accuracy: 0.78692
+Step 50080 Loss 1.74116051197052 LR 1.4581610783338425e-05
+============================================================
+Start training [Epoch 80]
+scheduler step
+============================================================
+Start training [Epoch 81]
+scheduler step
+============================================================
+Start training [Epoch 81]
+scheduler step
+============================================================
+Start training [Epoch 81]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 81]
+scheduler step
+============================================================
+Start training [Epoch 81]
+============================================================
+Start training [Epoch 81]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 81]
+scheduler step
+
+
+Validation Results
+Global Steps: 50706
+Valid Loss: 0.91866
+Valid Accuracy: 0.78680
+Step 50706 Valid Accuracy: 0.78680
+Step 50706 Loss 2.9971776008605957 LR 1.4477357683661736e-05
+============================================================
+Start training [Epoch 81]
+scheduler step
+============================================================
+Start training [Epoch 82]
+scheduler step
+============================================================
+Start training [Epoch 82]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 82]
+scheduler step
+============================================================
+Start training [Epoch 82]
+scheduler step
+============================================================
+Start training [Epoch 82]
+scheduler step
+============================================================
+Start training [Epoch 82]
+scheduler step
+============================================================
+Start training [Epoch 82]
+scheduler step
+
+
+Validation Results
+Global Steps: 51332
+Valid Loss: 0.92195
+Valid Accuracy: 0.78730
+Step 51332 Valid Accuracy: 0.78730
+Step 51332 Loss 2.8118557929992676 LR 1.437333383217848e-05
+============================================================
+Start training [Epoch 82]
+scheduler step
+============================================================
+Start training [Epoch 83]
+scheduler step
+============================================================
+Start training [Epoch 83]
+scheduler step
+============================================================
+Start training [Epoch 83]
+============================================================
+Start training [Epoch 83]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 83]
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+scheduler step
+============================================================
+Start training [Epoch 83]
+============================================================
+Start training [Epoch 83]
+scheduler step
+scheduler step
+
+
+Validation Results
+Global Steps: 51958
+Valid Loss: 0.92407
+Valid Accuracy: 0.78642
+Step 51958 Valid Accuracy: 0.78642
+Step 51958 Loss 2.896243095397949 LR 1.4269584857187945e-05
+============================================================
+Start training [Epoch 83]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 84]
+scheduler step
+============================================================
+Start training [Epoch 84]
+scheduler step
+============================================================
+Start training [Epoch 84]
+============================================================
+Start training [Epoch 84]
+scheduler step
+============================================================
+Start training [Epoch 84]
+============================================================
+Start training [Epoch 84]
+scheduler step
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 84]
+scheduler step
+
+
+Validation Results
+Global Steps: 52584
+Valid Loss: 0.91844
+Valid Accuracy: 0.78704
+Step 52584 Valid Accuracy: 0.78704
+Step 52584 Loss 1.5461668968200684 LR 1.4166156266419488e-05
+============================================================
+Start training [Epoch 84]
+scheduler step
+============================================================
+Start training [Epoch 85]
+scheduler step
+============================================================
+Start training [Epoch 85]
+scheduler step
+============================================================
+Start training [Epoch 85]
+scheduler step
+============================================================
+Start training [Epoch 85]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 85]
+scheduler step
+============================================================
+Start training [Epoch 85]
+scheduler step
+============================================================
+Start training [Epoch 85]
+scheduler step
+
+
+Validation Results
+Global Steps: 53210
+Valid Loss: 0.92304
+Valid Accuracy: 0.78650
+Step 53210 Valid Accuracy: 0.78650
+Step 53210 Loss 2.1925549507141113 LR 1.4063093427071378e-05
+============================================================
+Start training [Epoch 85]
+scheduler step
+============================================================
+Start training [Epoch 86]
+scheduler step
+============================================================
+Start training [Epoch 86]
+scheduler step
+============================================================
+Start training [Epoch 86]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 86]
+scheduler step
+============================================================
+Start training [Epoch 86]
+============================================================
+Start training [Epoch 86]
+============================================================
+Start training [Epoch 86]
+scheduler step
+scheduler step
+scheduler step
+
+
+Validation Results
+Global Steps: 53836
+Valid Loss: 0.91967
+Valid Accuracy: 0.78654
+Step 53836 Valid Accuracy: 0.78654
+Step 53836 Loss 1.5643171072006226 LR 1.3960441545911205e-05
+============================================================
+Start training [Epoch 86]
+scheduler step
+============================================================
+Start training [Epoch 87]
+scheduler step
+============================================================
+Start training [Epoch 87]
+scheduler step
+============================================================
+Start training [Epoch 87]
+scheduler step
+============================================================
+Start training [Epoch 87]
+scheduler step
+============================================================
+Start training [Epoch 87]
+scheduler step
+============================================================
+Start training [Epoch 87]
+scheduler step
+============================================================
+Start training [Epoch 87]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 54462
+Valid Loss: 0.92250
+Valid Accuracy: 0.78660
+Step 54462 Valid Accuracy: 0.78660
+Step 54462 Loss 3.001138210296631 LR 1.3858245649446722e-05
+============================================================
+Start training [Epoch 87]
+scheduler step
+============================================================
+Start training [Epoch 88]
+scheduler step
+============================================================
+Start training [Epoch 88]
+scheduler step
+============================================================
+Start training [Epoch 88]
+scheduler step
+============================================================
+Start training [Epoch 88]
+scheduler step
+============================================================
+Start training [Epoch 88]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 88]
+scheduler step
+============================================================
+Start training [Epoch 88]
+scheduler step
+
+
+Validation Results
+Global Steps: 55088
+Valid Loss: 0.92688
+Valid Accuracy: 0.78650
+Step 55088 Valid Accuracy: 0.78650
+Step 55088 Loss 2.312220573425293 LR 1.3756550564175728e-05
+============================================================
+Start training [Epoch 88]
+scheduler step
+============================================================
+Start training [Epoch 89]
+scheduler step
+============================================================
+Start training [Epoch 89]
+scheduler step
+============================================================
+Start training [Epoch 89]
+scheduler step
+============================================================
+Start training [Epoch 89]
+============================================================
+Start training [Epoch 89]
+scheduler step
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 89]
+============================================================
+Start training [Epoch 89]
+scheduler step
+scheduler step
+
+
+Validation Results
+Global Steps: 55714
+Valid Loss: 0.92498
+Valid Accuracy: 0.78766
+Step 55714 Valid Accuracy: 0.78766
+Step 55714 Loss 2.389301300048828 LR 1.3655400896923674e-05
+============================================================
+Start training [Epoch 89]
+scheduler step
+============================================================
+Start training [Epoch 90]
+scheduler step
+============================================================
+Start training [Epoch 90]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 90]
+scheduler step
+============================================================
+Start training [Epoch 90]
+scheduler step
+============================================================
+Start training [Epoch 90]
+scheduler step
+============================================================
+Start training [Epoch 90]
+scheduler step
+============================================================
+Start training [Epoch 90]
+scheduler step
+
+
+Validation Results
+Global Steps: 56340
+Valid Loss: 0.92325
+Valid Accuracy: 0.78772
+Step 56340 Valid Accuracy: 0.78772
+Step 56340 Loss 2.7145864963531494 LR 1.3554841015277642e-05
+============================================================
+Start training [Epoch 90]
+scheduler step
+============================================================
+Start training [Epoch 91]
+============================================================
+Start training [Epoch 91]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 91]
+scheduler step
+============================================================
+Start training [Epoch 91]
+scheduler step
+============================================================
+Start training [Epoch 91]
+scheduler step
+============================================================
+Start training [Epoch 91]
+scheduler step
+============================================================
+Start training [Epoch 91]
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+scheduler step
+
+
+Validation Results
+Global Steps: 56966
+Valid Loss: 0.91635
+Valid Accuracy: 0.78702
+Step 56966 Valid Accuracy: 0.78702
+Step 56966 Loss 3.0045206546783447 LR 1.3454915028125265e-05
+============================================================
+Start training [Epoch 91]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 92]
+scheduler step
+============================================================
+Start training [Epoch 92]
+scheduler step
+============================================================
+Start training [Epoch 92]
+scheduler step
+============================================================
+Start training [Epoch 92]
+scheduler step
+============================================================
+Start training [Epoch 92]
+scheduler step
+============================================================
+Start training [Epoch 92]
+scheduler step
+============================================================
+Start training [Epoch 92]
+scheduler step
+
+
+Validation Results
+Global Steps: 57592
+Valid Loss: 0.92378
+Valid Accuracy: 0.78734
+Step 57592 Valid Accuracy: 0.78734
+Step 57592 Loss 2.701707601547241 LR 1.3355666766307084e-05
+============================================================
+Start training [Epoch 92]
+scheduler step
+============================================================
+Start training [Epoch 93]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 93]
+scheduler step
+============================================================
+Start training [Epoch 93]
+scheduler step
+============================================================
+Start training [Epoch 93]
+scheduler step
+============================================================
+Start training [Epoch 93]
+scheduler step
+============================================================
+Start training [Epoch 93]
+============================================================
+Start training [Epoch 93]
+scheduler step
+scheduler step
+
+
+Validation Results
+Global Steps: 58218
+Valid Loss: 0.92192
+Valid Accuracy: 0.78686
+Step 58218 Valid Accuracy: 0.78686
+Step 58218 Loss 1.6204042434692383 LR 1.3257139763390926e-05
+============================================================
+Start training [Epoch 93]
+scheduler step
+============================================================
+Start training [Epoch 94]
+scheduler step
+============================================================
+Start training [Epoch 94]
+scheduler step
+============================================================
+Start training [Epoch 94]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 94]
+scheduler step
+============================================================
+Start training [Epoch 94]
+scheduler step
+============================================================
+Start training [Epoch 94]
+============================================================
+Start training [Epoch 94]
+scheduler step
+scheduler step
+
+
+Validation Results
+Global Steps: 58844
+Valid Loss: 0.91794
+Valid Accuracy: 0.78744
+Step 58844 Valid Accuracy: 0.78744
+Step 58844 Loss 2.672346353530884 LR 1.3159377236576612e-05
+============================================================
+Start training [Epoch 94]
+scheduler step
+============================================================
+Start training [Epoch 95]
+scheduler step
+============================================================
+Start training [Epoch 95]
+============================================================
+Start training [Epoch 95]
+scheduler step
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 95]
+scheduler step
+============================================================
+Start training [Epoch 95]
+scheduler step
+============================================================
+Start training [Epoch 95]
+============================================================
+Start training [Epoch 95]
+scheduler step
+scheduler step
+
+
+Validation Results
+Global Steps: 59470
+Valid Loss: 0.92224
+Valid Accuracy: 0.78708
+Step 59470 Valid Accuracy: 0.78708
+Step 59470 Loss 2.4982175827026367 LR 1.3062422067739487e-05
+============================================================
+Start training [Epoch 95]
+scheduler step
+============================================================
+Start training [Epoch 96]
+scheduler step
+============================================================
+Start training [Epoch 96]
+scheduler step
+============================================================
+Start training [Epoch 96]
+scheduler step
+============================================================
+Start training [Epoch 96]
+scheduler step
+============================================================
+Start training [Epoch 96]
+scheduler step
+============================================================
+Start training [Epoch 96]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 96]
+scheduler step
+
+
+Validation Results
+Global Steps: 60096
+Valid Loss: 0.93054
+Valid Accuracy: 0.78680
+Step 60096 Valid Accuracy: 0.78680
+Step 60096 Loss 2.8166561126708984 LR 1.2966316784621e-05
+============================================================
+Start training [Epoch 96]
+scheduler step
+============================================================
+Start training [Epoch 97]
+scheduler step
+============================================================
+Start training [Epoch 97]
+scheduler step
+============================================================
+Start training [Epoch 97]
+============================================================
+Start training [Epoch 97]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 97]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 97]
+scheduler step
+============================================================
+Start training [Epoch 97]
+scheduler step
+
+
+Validation Results
+Global Steps: 60722
+Valid Loss: 0.92516
+Valid Accuracy: 0.78648
+Step 60722 Valid Accuracy: 0.78648
+Step 60722 Loss 3.0956687927246094 LR 1.2871103542174637e-05
+============================================================
+Start training [Epoch 97]
+scheduler step
+============================================================
+Start training [Epoch 98]
+scheduler step
+============================================================
+Start training [Epoch 98]
+scheduler step
+============================================================
+Start training [Epoch 98]
+scheduler step
+============================================================
+Start training [Epoch 98]
+scheduler step
+============================================================
+Start training [Epoch 98]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 98]
+scheduler step
+============================================================
+Start training [Epoch 98]
+scheduler step
+
+
+Validation Results
+Global Steps: 61348
+Valid Loss: 0.92565
+Valid Accuracy: 0.78632
+Step 61348 Valid Accuracy: 0.78632
+Step 61348 Loss 2.859412670135498 LR 1.2776824104075365e-05
+============================================================
+Start training [Epoch 98]
+scheduler step
+============================================================
+Start training [Epoch 99]
+scheduler step
+============================================================
+Start training [Epoch 99]
+============================================================
+Start training [Epoch 99]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 99]
+============================================================
+Start training [Epoch 99]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 99]
+============================================================
+Start training [Epoch 99]
+scheduler step
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 61974
+Valid Loss: 0.92232
+Valid Accuracy: 0.78706
+Step 61974 Valid Accuracy: 0.78706
+Step 61974 Loss 2.902437210083008 LR 1.2683519824400695e-05
+============================================================
+Start training [Epoch 99]
+scheduler step
+============================================================
+Start training [Epoch 100]
+scheduler step
+============================================================
+Start training [Epoch 100]
+scheduler step
+============================================================
+Start training [Epoch 100]
+scheduler step
+============================================================
+Start training [Epoch 100]
+scheduler step
+============================================================
+Start training [Epoch 100]
+scheduler step
+============================================================
+Start training [Epoch 100]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 100]
+scheduler step
+
+
+Validation Results
+Global Steps: 62600
+Valid Loss: 0.92813
+Valid Accuracy: 0.78700
+Step 62600 Valid Accuracy: 0.78700
+Step 62600 Loss 1.7089455127716064 LR 1.2591231629491424e-05
+============================================================
+Start training [Epoch 100]
+scheduler step
+============================================================
+Start training [Epoch 101]
+scheduler step
+============================================================
+Start training [Epoch 101]
+scheduler step
+============================================================
+Start training [Epoch 101]
+scheduler step
+============================================================
+Start training [Epoch 101]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 101]
+scheduler step
+============================================================
+Start training [Epoch 101]
+scheduler step
+============================================================
+Start training [Epoch 101]
+scheduler step
+
+
+Validation Results
+Global Steps: 63226
+Valid Loss: 0.92105
+Valid Accuracy: 0.78676
+Step 63226 Valid Accuracy: 0.78676
+Step 63226 Loss 3.001230239868164 LR 1.2499999999999999e-05
+============================================================
+Start training [Epoch 101]
+scheduler step
+============================================================
+Start training [Epoch 102]
+scheduler step
+============================================================
+Start training [Epoch 102]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 102]
+scheduler step
+============================================================
+Start training [Epoch 102]
+scheduler step
+============================================================
+Start training [Epoch 102]
+scheduler step
+============================================================
+Start training [Epoch 102]
+scheduler step
+============================================================
+Start training [Epoch 102]
+scheduler step
+
+
+Validation Results
+Global Steps: 63852
+Valid Loss: 0.92332
+Valid Accuracy: 0.78740
+Step 63852 Valid Accuracy: 0.78740
+Step 63852 Loss 2.2251808643341064 LR 1.240986495313435e-05
+============================================================
+Start training [Epoch 102]
+scheduler step
+============================================================
+Start training [Epoch 103]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 103]
+scheduler step
+============================================================
+Start training [Epoch 103]
+scheduler step
+============================================================
+Start training [Epoch 103]
+============================================================
+Start training [Epoch 103]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 103]
+============================================================
+Start training [Epoch 103]
+scheduler step
+scheduler step
+
+
+Validation Results
+Global Steps: 64478
+Valid Loss: 0.92161
+Valid Accuracy: 0.78692
+Step 64478 Valid Accuracy: 0.78692
+Step 64478 Loss 1.511642575263977 LR 1.232086602510502e-05
+============================================================
+Start training [Epoch 103]
+scheduler step
+============================================================
+Start training [Epoch 104]
+scheduler step
+============================================================
+Start training [Epoch 104]
+scheduler step
+============================================================
+Start training [Epoch 104]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 104]
+scheduler step
+============================================================
+Start training [Epoch 104]
+scheduler step
+============================================================
+Start training [Epoch 104]
+scheduler step
+============================================================
+Start training [Epoch 104]
+scheduler step
+
+
+Validation Results
+Global Steps: 65104
+Valid Loss: 0.92564
+Valid Accuracy: 0.78648
+Step 65104 Valid Accuracy: 0.78648
+Step 65104 Loss 2.817101001739502 LR 1.2233042253783281e-05
+============================================================
+Start training [Epoch 104]
+scheduler step
+============================================================
+Start training [Epoch 105]
+scheduler step
+============================================================
+Start training [Epoch 105]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 105]
+scheduler step
+============================================================
+Start training [Epoch 105]
+scheduler step
+============================================================
+Start training [Epoch 105]
+scheduler step
+============================================================
+Start training [Epoch 105]
+scheduler step
+============================================================
+Start training [Epoch 105]
+scheduler step
+
+
+Validation Results
+Global Steps: 65730
+Valid Loss: 0.92766
+Valid Accuracy: 0.78614
+Step 65730 Valid Accuracy: 0.78614
+Step 65730 Loss 1.9184812307357788 LR 1.2146432161577844e-05
+============================================================
+Start training [Epoch 105]
+scheduler step
+============================================================
+Start training [Epoch 106]
+scheduler step
+============================================================
+Start training [Epoch 106]
+scheduler step
+============================================================
+Start training [Epoch 106]
+scheduler step
+============================================================
+Start training [Epoch 106]
+scheduler step
+============================================================***** Running Validation *****
+
+Start training [Epoch 106]
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 106]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 106]
+scheduler step
+
+
+Validation Results
+Global Steps: 66356
+Valid Loss: 0.91822
+Valid Accuracy: 0.78692
+Step 66356 Valid Accuracy: 0.78692
+Step 66356 Loss 1.569353461265564 LR 1.2061073738537635e-05
+============================================================
+Start training [Epoch 106]
+scheduler step
+============================================================
+Start training [Epoch 107]
+scheduler step
+============================================================
+Start training [Epoch 107]
+scheduler step
+============================================================
+Start training [Epoch 107]
+scheduler step
+============================================================
+Start training [Epoch 107]
+scheduler step
+============================================================
+Start training [Epoch 107]
+scheduler step
+============================================================
+Start training [Epoch 107]
+scheduler step
+============================================================
+Start training [Epoch 107]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 66982
+Valid Loss: 0.92344
+Valid Accuracy: 0.78760
+Step 66982 Valid Accuracy: 0.78760
+Step 66982 Loss 2.9583518505096436 LR 1.1977004425688127e-05
+============================================================
+Start training [Epoch 107]
+scheduler step
+============================================================
+Start training [Epoch 108]
+scheduler step
+============================================================
+Start training [Epoch 108]
+scheduler step
+============================================================
+Start training [Epoch 108]
+============================================================
+Start training [Epoch 108]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 108]
+scheduler step
+============================================================
+Start training [Epoch 108]
+scheduler step
+============================================================
+Start training [Epoch 108]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 67608
+Valid Loss: 0.93215
+Valid Accuracy: 0.78668
+Step 67608 Valid Accuracy: 0.78668
+Step 67608 Loss 1.6634520292282104 LR 1.1894261098608449e-05
+============================================================
+Start training [Epoch 108]
+scheduler step
+============================================================
+Start training [Epoch 109]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 109]
+scheduler step
+============================================================
+Start training [Epoch 109]
+============================================================
+Start training [Epoch 109]
+scheduler step
+============================================================
+Start training [Epoch 109]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 109]
+============================================================
+Start training [Epoch 109]
+scheduler step
+scheduler step
+
+
+Validation Results
+Global Steps: 68234
+Valid Loss: 0.92294
+Valid Accuracy: 0.78774
+Step 68234 Valid Accuracy: 0.78774
+Step 68234 Loss 2.951876640319824 LR 1.1812880051256552e-05
+============================================================
+Start training [Epoch 109]
+scheduler step
+============================================================
+Start training [Epoch 110]
+scheduler step
+============================================================
+Start training [Epoch 110]
+scheduler step
+============================================================
+Start training [Epoch 110]
+scheduler step
+============================================================
+Start training [Epoch 110]
+scheduler step
+============================================================
+Start training [Epoch 110]
+scheduler step
+============================================================
+Start training [Epoch 110]
+============================================================
+Start training [Epoch 110]
+scheduler step
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 68860
+Valid Loss: 0.93192
+Valid Accuracy: 0.78672
+Step 68860 Valid Accuracy: 0.78672
+Step 68860 Loss 2.6504080295562744 LR 1.1732896980049475e-05
+============================================================
+Start training [Epoch 110]
+scheduler step
+============================================================
+Start training [Epoch 111]
+scheduler step
+============================================================
+Start training [Epoch 111]
+scheduler step
+============================================================
+Start training [Epoch 111]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 111]
+scheduler step
+============================================================
+Start training [Epoch 111]
+scheduler step
+============================================================
+Start training [Epoch 111]
+scheduler step
+============================================================
+Start training [Epoch 111]
+scheduler step
+
+
+Validation Results
+Global Steps: 69486
+Valid Loss: 0.92060
+Valid Accuracy: 0.78738
+Step 69486 Valid Accuracy: 0.78738
+Step 69486 Loss 2.0331709384918213 LR 1.165434696820571e-05
+============================================================
+Start training [Epoch 111]
+scheduler step
+============================================================
+Start training [Epoch 112]
+scheduler step
+============================================================
+Start training [Epoch 112]
+scheduler step
+============================================================
+Start training [Epoch 112]
+scheduler step
+============================================================
+Start training [Epoch 112]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 112]
+============================================================
+Start training [Epoch 112]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 112]
+scheduler step
+
+
+Validation Results
+Global Steps: 70112
+Valid Loss: 0.92893
+Valid Accuracy: 0.78772
+Step 70112 Valid Accuracy: 0.78772
+Step 70112 Loss 1.7342594861984253 LR 1.1577264470356557e-05
+============================================================
+Start training [Epoch 112]
+scheduler step
+============================================================
+Start training [Epoch 113]
+scheduler step
+============================================================
+Start training [Epoch 113]
+scheduler step
+============================================================
+Start training [Epoch 113]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 113]
+scheduler step
+============================================================
+Start training [Epoch 113]
+============================================================
+Start training [Epoch 113]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 113]
+scheduler step
+
+
+Validation Results
+Global Steps: 70738
+Valid Loss: 0.93209
+Valid Accuracy: 0.78644
+Step 70738 Valid Accuracy: 0.78644
+Step 70738 Loss 2.490398406982422 LR 1.1501683297433174e-05
+============================================================
+Start training [Epoch 113]
+scheduler step
+============================================================
+Start training [Epoch 114]
+scheduler step
+============================================================
+Start training [Epoch 114]
+scheduler step
+============================================================
+Start training [Epoch 114]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 114]
+scheduler step
+============================================================
+Start training [Epoch 114]
+scheduler step
+============================================================
+Start training [Epoch 114]
+============================================================
+Start training [Epoch 114]
+scheduler step
+scheduler step
+
+
+Validation Results
+Global Steps: 71364
+Valid Loss: 0.92260
+Valid Accuracy: 0.78676
+Step 71364 Valid Accuracy: 0.78676
+Step 71364 Loss 2.5151114463806152 LR 1.1427636601835985e-05
+============================================================
+Start training [Epoch 114]
+scheduler step
+============================================================
+Start training [Epoch 115]
+scheduler step
+============================================================
+Start training [Epoch 115]
+scheduler step
+============================================================
+Start training [Epoch 115]
+scheduler step
+============================================================
+Start training [Epoch 115]
+scheduler step
+============================================================
+Start training [Epoch 115]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 115]
+============================================================
+Start training [Epoch 115]
+scheduler step
+scheduler step
+
+
+Validation Results
+Global Steps: 71990
+Valid Loss: 0.91933
+Valid Accuracy: 0.78748
+Step 71990 Valid Accuracy: 0.78748
+Step 71990 Loss 1.5745940208435059 LR 1.1355156862892944e-05
+============================================================
+Start training [Epoch 115]
+scheduler step
+============================================================
+Start training [Epoch 116]
+scheduler step
+============================================================
+Start training [Epoch 116]
+scheduler step
+============================================================
+Start training [Epoch 116]
+scheduler step
+============================================================
+Start training [Epoch 116]
+============================================================
+Start training [Epoch 116]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 116]
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 116]
+scheduler step
+scheduler step
+
+
+Validation Results
+Global Steps: 72616
+Valid Loss: 0.92544
+Valid Accuracy: 0.78726
+Step 72616 Valid Accuracy: 0.78726
+Step 72616 Loss 2.189100503921509 LR 1.1284275872613028e-05
+============================================================
+Start training [Epoch 116]
+scheduler step
+============================================================
+Start training [Epoch 117]
+scheduler step
+============================================================
+Start training [Epoch 117]
+scheduler step
+============================================================
+Start training [Epoch 117]
+scheduler step
+============================================================
+Start training [Epoch 117]
+scheduler step
+============================================================
+Start training [Epoch 117]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 117]
+scheduler step
+============================================================
+Start training [Epoch 117]
+scheduler step
+
+
+Validation Results
+Global Steps: 73242
+Valid Loss: 0.92169
+Valid Accuracy: 0.78666
+Step 73242 Valid Accuracy: 0.78666
+Step 73242 Loss 2.3361470699310303 LR 1.1215024721741219e-05
+============================================================
+Start training [Epoch 117]
+scheduler step
+============================================================
+Start training [Epoch 118]
+scheduler step
+============================================================
+Start training [Epoch 118]
+scheduler step
+============================================================
+Start training [Epoch 118]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 118]
+scheduler step
+============================================================
+Start training [Epoch 118]
+scheduler step
+============================================================
+Start training [Epoch 118]
+scheduler step
+============================================================
+Start training [Epoch 118]
+scheduler step
+
+
+Validation Results
+Global Steps: 73868
+Valid Loss: 0.92661
+Valid Accuracy: 0.78576
+Step 73868 Valid Accuracy: 0.78576
+Step 73868 Loss 2.133472442626953 LR 1.1147433786121054e-05
+============================================================
+Start training [Epoch 118]
+scheduler step
+============================================================
+Start training [Epoch 119]
+scheduler step
+============================================================
+Start training [Epoch 119]
+scheduler step
+============================================================
+Start training [Epoch 119]
+scheduler step
+============================================================
+Start training [Epoch 119]
+scheduler step
+============================================================
+Start training [Epoch 119]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 119]
+scheduler step
+============================================================
+Start training [Epoch 119]
+scheduler step
+
+
+Validation Results
+Global Steps: 74494
+Valid Loss: 0.92953
+Valid Accuracy: 0.78720
+Step 74494 Valid Accuracy: 0.78720
+Step 74494 Loss 2.7323524951934814 LR 1.1081532713370802e-05
+============================================================
+Start training [Epoch 119]
+scheduler step
+============================================================
+Start training [Epoch 120]
+scheduler step
+============================================================
+Start training [Epoch 120]
+scheduler step
+============================================================
+Start training [Epoch 120]
+scheduler step
+============================================================
+Start training [Epoch 120]
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+scheduler step
+============================================================
+Start training [Epoch 120]
+scheduler step
+============================================================
+Start training [Epoch 120]
+scheduler step
+============================================================
+Start training [Epoch 120]
+scheduler step
+
+
+Validation Results
+Global Steps: 75120
+Valid Loss: 0.92982
+Valid Accuracy: 0.78684
+Step 75120 Valid Accuracy: 0.78684
+Step 75120 Loss 3.063865900039673 LR 1.101735040987902e-05
+============================================================
+Start training [Epoch 120]
+scheduler step
+============================================================
+Start training [Epoch 121]
+scheduler step
+============================================================
+Start training [Epoch 121]
+scheduler step
+============================================================
+Start training [Epoch 121]
+scheduler step
+============================================================
+Start training [Epoch 121]
+scheduler step
+============================================================
+Start training [Epoch 121]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 121]
+scheduler step
+============================================================
+Start training [Epoch 121]
+scheduler step
+
+
+Validation Results
+Global Steps: 75746
+Valid Loss: 0.92606
+Valid Accuracy: 0.78688
+Step 75746 Valid Accuracy: 0.78688
+Step 75746 Loss 2.9734294414520264 LR 1.0954915028125265e-05
+============================================================
+Start training [Epoch 121]
+scheduler step
+============================================================
+Start training [Epoch 122]
+scheduler step
+============================================================
+Start training [Epoch 122]
+scheduler step
+============================================================
+Start training [Epoch 122]
+scheduler step
+============================================================
+Start training [Epoch 122]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 122]
+scheduler step
+============================================================
+Start training [Epoch 122]
+scheduler step
+============================================================
+Start training [Epoch 122]
+scheduler step
+
+
+Validation Results
+Global Steps: 76372
+Valid Loss: 0.92532
+Valid Accuracy: 0.78700
+Step 76372 Valid Accuracy: 0.78700
+Step 76372 Loss 2.880133628845215 LR 1.0894253954331481e-05
+============================================================
+Start training [Epoch 122]
+scheduler step
+============================================================
+Start training [Epoch 123]
+scheduler step
+============================================================
+Start training [Epoch 123]
+scheduler step
+============================================================
+Start training [Epoch 123]
+scheduler step
+============================================================
+Start training [Epoch 123]
+scheduler step
+============================================================
+Start training [Epoch 123]
+scheduler step
+============================================================
+Start training [Epoch 123]
+scheduler step
+============================================================
+Start training [Epoch 123]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 76998
+Valid Loss: 0.92254
+Valid Accuracy: 0.78728
+Step 76998 Valid Accuracy: 0.78728
+Step 76998 Loss 2.3656435012817383 LR 1.0835393796449504e-05
+============================================================
+Start training [Epoch 123]
+scheduler step
+============================================================
+Start training [Epoch 124]
+scheduler step
+============================================================
+Start training [Epoch 124]
+scheduler step
+============================================================
+Start training [Epoch 124]
+scheduler step
+============================================================
+Start training [Epoch 124]
+scheduler step
+============================================================
+Start training [Epoch 124]
+============================================================
+Start training [Epoch 124]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 124]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 77624
+Valid Loss: 0.93525
+Valid Accuracy: 0.78640
+Step 77624 Valid Accuracy: 0.78640
+Step 77624 Loss 1.5759568214416504 LR 1.0778360372489925e-05
+============================================================
+Start training [Epoch 124]
+scheduler step
+============================================================
+Start training [Epoch 125]
+scheduler step
+============================================================
+Start training [Epoch 125]
+scheduler step
+============================================================
+Start training [Epoch 125]
+scheduler step
+============================================================
+Start training [Epoch 125]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 125]
+scheduler step
+============================================================
+Start training [Epoch 125]
+scheduler step
+============================================================
+Start training [Epoch 125]
+scheduler step
+
+
+Validation Results
+Global Steps: 78250
+Valid Loss: 0.92822
+Valid Accuracy: 0.78620
+Step 78250 Valid Accuracy: 0.78620
+Step 78250 Loss 1.4687895774841309 LR 1.0723178699197467e-05
+============================================================
+Start training [Epoch 125]
+scheduler step
+============================================================
+Start training [Epoch 126]
+scheduler step
+============================================================
+Start training [Epoch 126]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 126]
+scheduler step
+============================================================
+Start training [Epoch 126]
+scheduler step
+============================================================
+Start training [Epoch 126]
+scheduler step
+============================================================
+Start training [Epoch 126]
+scheduler step
+============================================================
+Start training [Epoch 126]
+scheduler step
+
+
+Validation Results
+Global Steps: 78876
+Valid Loss: 0.93129
+Valid Accuracy: 0.78586
+Step 78876 Valid Accuracy: 0.78586
+Step 78876 Loss 2.7848126888275146 LR 1.0669872981077808e-05
+============================================================
+Start training [Epoch 126]
+scheduler step
+============================================================
+Start training [Epoch 127]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 127]
+scheduler step
+============================================================
+Start training [Epoch 127]
+scheduler step
+============================================================
+Start training [Epoch 127]
+scheduler step
+============================================================
+Start training [Epoch 127]
+scheduler step
+============================================================
+Start training [Epoch 127]
+scheduler step
+============================================================
+Start training [Epoch 127]
+scheduler step
+
+
+Validation Results
+Global Steps: 79502
+Valid Loss: 0.92690
+Valid Accuracy: 0.78660
+Step 79502 Valid Accuracy: 0.78660
+Step 79502 Loss 1.518405556678772 LR 1.0618466599780683e-05
+============================================================
+Start training [Epoch 127]
+scheduler step
+============================================================
+Start training [Epoch 128]
+scheduler step
+============================================================
+Start training [Epoch 128]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 128]
+============================================================
+Start training [Epoch 128]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 128]
+scheduler step
+============================================================
+Start training [Epoch 128]
+scheduler step
+============================================================
+Start training [Epoch 128]
+scheduler step
+
+
+Validation Results
+Global Steps: 80128
+Valid Loss: 0.92363
+Valid Accuracy: 0.78636
+Step 80128 Valid Accuracy: 0.78636
+Step 80128 Loss 2.4249866008758545 LR 1.0568982103843928e-05
+============================================================
+Start training [Epoch 128]
+scheduler step
+============================================================
+Start training [Epoch 129]
+scheduler step
+============================================================
+Start training [Epoch 129]
+scheduler step
+============================================================
+Start training [Epoch 129]
+scheduler step
+============================================================
+Start training [Epoch 129]
+scheduler step
+============================================================
+Start training [Epoch 129]
+scheduler step
+============================================================
+Start training [Epoch 129]
+============================================================
+Start training [Epoch 129]
+scheduler step
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 80754
+Valid Loss: 0.93113
+Valid Accuracy: 0.78676
+Step 80754 Valid Accuracy: 0.78676
+Step 80754 Loss 1.5357050895690918 LR 1.0521441198802937e-05
+============================================================
+Start training [Epoch 129]
+scheduler step
+============================================================
+Start training [Epoch 130]
+scheduler step
+============================================================
+Start training [Epoch 130]
+scheduler step
+============================================================
+Start training [Epoch 130]
+scheduler step
+============================================================
+Start training [Epoch 130]
+scheduler step
+============================================================
+Start training [Epoch 130]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 130]
+scheduler step
+============================================================
+Start training [Epoch 130]
+scheduler step
+
+
+Validation Results
+Global Steps: 81380
+Valid Loss: 0.93171
+Valid Accuracy: 0.78642
+Step 81380 Valid Accuracy: 0.78642
+Step 81380 Loss 2.401402473449707 LR 1.0475864737669903e-05
+============================================================
+Start training [Epoch 130]
+scheduler step
+============================================================
+Start training [Epoch 131]
+scheduler step
+============================================================
+Start training [Epoch 131]
+scheduler step
+============================================================
+Start training [Epoch 131]
+scheduler step
+============================================================
+Start training [Epoch 131]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 131]
+scheduler step
+============================================================
+Start training [Epoch 131]
+scheduler step
+============================================================
+Start training [Epoch 131]
+scheduler step
+
+
+Validation Results
+Global Steps: 82006
+Valid Loss: 0.93373
+Valid Accuracy: 0.78646
+Step 82006 Valid Accuracy: 0.78646
+Step 82006 Loss 1.5373107194900513 LR 1.0432272711786997e-05
+============================================================
+Start training [Epoch 131]
+scheduler step
+============================================================
+Start training [Epoch 132]
+scheduler step
+============================================================
+Start training [Epoch 132]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 132]
+scheduler step
+============================================================
+Start training [Epoch 132]
+scheduler step
+============================================================
+Start training [Epoch 132]
+scheduler step
+============================================================
+Start training [Epoch 132]
+scheduler step
+============================================================
+Start training [Epoch 132]
+scheduler step
+
+
+Validation Results
+Global Steps: 82632
+Valid Loss: 0.92903
+Valid Accuracy: 0.78652
+Step 82632 Valid Accuracy: 0.78652
+Step 82632 Loss 2.852227210998535 LR 1.0390684242057498e-05
+============================================================
+Start training [Epoch 132]
+scheduler step
+============================================================
+Start training [Epoch 133]
+scheduler step
+============================================================
+Start training [Epoch 133]
+scheduler step
+============================================================
+Start training [Epoch 133]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 133]
+scheduler step
+============================================================
+Start training [Epoch 133]
+scheduler step
+============================================================
+Start training [Epoch 133]
+scheduler step
+============================================================
+Start training [Epoch 133]
+scheduler step
+
+
+Validation Results
+Global Steps: 83258
+Valid Loss: 0.92728
+Valid Accuracy: 0.78702
+Step 83258 Valid Accuracy: 0.78702
+Step 83258 Loss 2.8070499897003174 LR 1.0351117570558743e-05
+============================================================
+Start training [Epoch 133]
+scheduler step
+============================================================
+Start training [Epoch 134]
+scheduler step
+============================================================
+Start training [Epoch 134]
+scheduler step
+============================================================
+Start training [Epoch 134]
+scheduler step
+============================================================
+Start training [Epoch 134]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 134]
+scheduler step
+============================================================
+Start training [Epoch 134]
+scheduler step
+============================================================
+Start training [Epoch 134]
+scheduler step
+
+
+Validation Results
+Global Steps: 83884
+Valid Loss: 0.92997
+Valid Accuracy: 0.78644
+Step 83884 Valid Accuracy: 0.78644
+Step 83884 Loss 2.6105709075927734 LR 1.0313590052540544e-05
+============================================================
+Start training [Epoch 134]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 135]
+============================================================
+Start training [Epoch 135]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 135]
+scheduler step
+============================================================
+Start training [Epoch 135]
+scheduler step
+============================================================
+Start training [Epoch 135]
+scheduler step
+============================================================
+Start training [Epoch 135]
+scheduler step
+============================================================
+Start training [Epoch 135]
+scheduler step
+
+
+Validation Results
+Global Steps: 84510
+Valid Loss: 0.93680
+Valid Accuracy: 0.78722
+Step 84510 Valid Accuracy: 0.78722
+Step 84510 Loss 2.8326492309570312 LR 1.0278118148812596e-05
+============================================================
+Start training [Epoch 135]
+scheduler step
+============================================================
+Start training [Epoch 136]
+scheduler step
+============================================================
+Start training [Epoch 136]
+scheduler step
+============================================================
+Start training [Epoch 136]
+scheduler step
+============================================================
+Start training [Epoch 136]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 136]
+scheduler step
+============================================================
+Start training [Epoch 136]
+============================================================
+Start training [Epoch 136]
+scheduler step
+scheduler step
+
+
+Validation Results
+Global Steps: 85136
+Valid Loss: 0.92647
+Valid Accuracy: 0.78658
+Step 85136 Valid Accuracy: 0.78658
+Step 85136 Loss 2.6975910663604736 LR 1.0244717418524233e-05
+============================================================
+Start training [Epoch 136]
+scheduler step
+============================================================
+Start training [Epoch 137]
+scheduler step
+============================================================
+Start training [Epoch 137]
+scheduler step
+============================================================
+Start training [Epoch 137]
+scheduler step
+============================================================
+Start training [Epoch 137]
+============================================================
+Start training [Epoch 137]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 137]
+scheduler step
+============================================================
+Start training [Epoch 137]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 85762
+Valid Loss: 0.93089
+Valid Accuracy: 0.78662
+Step 85762 Valid Accuracy: 0.78662
+Step 85762 Loss 2.7931365966796875 LR 1.0213402512339665e-05
+============================================================
+Start training [Epoch 137]
+scheduler step
+============================================================
+Start training [Epoch 138]
+scheduler step
+============================================================
+Start training [Epoch 138]
+scheduler step
+============================================================
+Start training [Epoch 138]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 138]
+scheduler step
+============================================================
+Start training [Epoch 138]
+scheduler step
+============================================================
+Start training [Epoch 138]
+============================================================
+Start training [Epoch 138]
+scheduler step
+scheduler step
+
+
+Validation Results
+Global Steps: 86388
+Valid Loss: 0.93485
+Valid Accuracy: 0.78616
+Step 86388 Valid Accuracy: 0.78616
+Step 86388 Loss 1.5389153957366943 LR 1.018418716601171e-05
+============================================================
+Start training [Epoch 138]
+scheduler step
+============================================================
+Start training [Epoch 139]
+scheduler step
+============================================================
+Start training [Epoch 139]
+scheduler step
+============================================================
+Start training [Epoch 139]
+scheduler step
+============================================================
+Start training [Epoch 139]
+============================================================
+Start training [Epoch 139]
+scheduler step
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 139]
+scheduler step
+============================================================
+Start training [Epoch 139]
+scheduler step
+
+
+Validation Results
+Global Steps: 87014
+Valid Loss: 0.92955
+Valid Accuracy: 0.78664
+Step 87014 Valid Accuracy: 0.78664
+Step 87014 Loss 2.9054715633392334 LR 1.0157084194356845e-05
+============================================================
+Start training [Epoch 139]
+scheduler step
+============================================================
+Start training [Epoch 140]
+scheduler step
+============================================================
+Start training [Epoch 140]
+scheduler step
+============================================================
+Start training [Epoch 140]
+scheduler step
+============================================================
+Start training [Epoch 140]
+scheduler step
+============================================================
+Start training [Epoch 140]
+scheduler step
+============================================================
+Start training [Epoch 140]
+scheduler step
+============================================================
+Start training [Epoch 140]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 87640
+Valid Loss: 0.93040
+Valid Accuracy: 0.78608
+Step 87640 Valid Accuracy: 0.78608
+Step 87640 Loss 2.478456735610962 LR 1.01321054856342e-05
+============================================================
+Start training [Epoch 140]
+scheduler step
+============================================================
+Start training [Epoch 141]
+scheduler step
+============================================================
+Start training [Epoch 141]
+scheduler step
+============================================================
+Start training [Epoch 141]
+scheduler step
+============================================================
+Start training [Epoch 141]
+scheduler step
+============================================================
+Start training [Epoch 141]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 141]
+scheduler step
+============================================================
+Start training [Epoch 141]
+scheduler step
+
+
+Validation Results
+Global Steps: 88266
+Valid Loss: 0.93133
+Valid Accuracy: 0.78608
+Step 88266 Valid Accuracy: 0.78608
+Step 88266 Loss 2.23708176612854 LR 1.0109261996330973e-05
+============================================================
+Start training [Epoch 141]
+scheduler step
+============================================================
+Start training [Epoch 142]
+scheduler step
+============================================================
+Start training [Epoch 142]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 142]
+============================================================
+Start training [Epoch 142]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 142]
+scheduler step
+============================================================
+Start training [Epoch 142]
+scheduler step
+============================================================
+Start training [Epoch 142]
+scheduler step
+
+
+Validation Results
+Global Steps: 88892
+Valid Loss: 0.92365
+Valid Accuracy: 0.78624
+Step 88892 Valid Accuracy: 0.78624
+Step 88892 Loss 2.7035586833953857 LR 1.0088563746356558e-05
+============================================================
+Start training [Epoch 142]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 143]
+scheduler step
+============================================================
+Start training [Epoch 143]
+scheduler step
+============================================================
+Start training [Epoch 143]
+scheduler step
+============================================================
+Start training [Epoch 143]
+============================================================
+Start training [Epoch 143]
+scheduler step
+============================================================
+Start training [Epoch 143]
+============================================================
+Start training [Epoch 143]
+scheduler step
+scheduler step
+scheduler step
+
+
+Validation Results
+Global Steps: 89518
+Valid Loss: 0.93083
+Valid Accuracy: 0.78530
+Step 89518 Valid Accuracy: 0.78530
+Step 89518 Loss 2.3473799228668213 LR 1.0070019814647476e-05
+============================================================
+Start training [Epoch 143]
+scheduler step
+============================================================
+Start training [Epoch 144]
+scheduler step
+============================================================
+Start training [Epoch 144]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 144]
+============================================================
+Start training [Epoch 144]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 144]
+scheduler step
+============================================================
+Start training [Epoch 144]
+============================================================
+Start training [Epoch 144]
+scheduler step
+scheduler step
+
+
+Validation Results
+Global Steps: 90144
+Valid Loss: 0.93503
+Valid Accuracy: 0.78630
+Step 90144 Valid Accuracy: 0.78630
+Step 90144 Loss 1.7138986587524414 LR 1.005363833518506e-05
+============================================================
+Start training [Epoch 144]
+scheduler step
+============================================================
+Start training [Epoch 145]
+scheduler step
+============================================================
+Start training [Epoch 145]
+============================================================
+Start training [Epoch 145]
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 145]
+scheduler step
+============================================================
+Start training [Epoch 145]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 145]
+scheduler step
+============================================================
+Start training [Epoch 145]
+scheduler step
+
+
+Validation Results
+Global Steps: 90770
+Valid Loss: 0.93184
+Valid Accuracy: 0.78554
+Step 90770 Valid Accuracy: 0.78554
+Step 90770 Loss 1.6961536407470703 LR 1.0039426493427612e-05
+============================================================
+Start training [Epoch 145]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 146]
+scheduler step
+============================================================
+Start training [Epoch 146]
+scheduler step
+============================================================
+Start training [Epoch 146]
+scheduler step
+============================================================
+Start training [Epoch 146]
+scheduler step
+============================================================
+Start training [Epoch 146]
+scheduler step
+============================================================
+Start training [Epoch 146]
+scheduler step
+============================================================
+Start training [Epoch 146]
+scheduler step
+
+
+Validation Results
+Global Steps: 91396
+Valid Loss: 0.93008
+Valid Accuracy: 0.78510
+Step 91396 Valid Accuracy: 0.78510
+Step 91396 Loss 1.5218948125839233 LR 1.0027390523158634e-05
+============================================================
+Start training [Epoch 146]
+scheduler step
+============================================================
+Start training [Epoch 147]
+scheduler step
+============================================================
+Start training [Epoch 147]
+scheduler step
+============================================================
+Start training [Epoch 147]
+scheduler step
+============================================================
+Start training [Epoch 147]
+scheduler step
+============================================================
+Start training [Epoch 147]
+============================================================
+Start training [Epoch 147]
+scheduler step
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 147]
+scheduler step
+
+
+Validation Results
+Global Steps: 92022
+Valid Loss: 0.93546
+Valid Accuracy: 0.78564
+Step 92022 Valid Accuracy: 0.78564
+Step 92022 Loss 2.680084466934204 LR 1.0017535703752478e-05
+============================================================
+Start training [Epoch 147]
+scheduler step
+============================================================
+Start training [Epoch 148]
+scheduler step
+============================================================
+Start training [Epoch 148]
+scheduler step
+============================================================
+Start training [Epoch 148]
+scheduler step
+============================================================
+Start training [Epoch 148]
+============================================================
+Start training [Epoch 148]
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+scheduler step
+scheduler step
+============================================================
+Start training [Epoch 148]
+scheduler step
+============================================================
+Start training [Epoch 148]
+scheduler step
+
+
+Validation Results
+Global Steps: 92648
+Valid Loss: 0.93303
+Valid Accuracy: 0.78630
+Step 92648 Valid Accuracy: 0.78630
+Step 92648 Loss 1.8006987571716309 LR 1.0009866357858643e-05
+============================================================
+Start training [Epoch 148]
+scheduler step
+============================================================
+Start training [Epoch 149]
+scheduler step
+============================================================
+Start training [Epoch 149]
+scheduler step
+============================================================
+Start training [Epoch 149]
+scheduler step
+============================================================
+Start training [Epoch 149]
+scheduler step
+============================================================
+Start training [Epoch 149]
+scheduler step
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+============================================================
+Start training [Epoch 149]
+scheduler step
+============================================================
+Start training [Epoch 149]
+scheduler step
+
+
+Validation Results
+Global Steps: 93274
+Valid Loss: 0.92846
+Valid Accuracy: 0.78696
+Step 93274 Valid Accuracy: 0.78696
+Step 93274 Loss 2.6722848415374756 LR 1.0004385849505708e-05
+============================================================
+Start training [Epoch 149]
+scheduler step
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************

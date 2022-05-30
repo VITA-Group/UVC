@@ -113,6 +113,8 @@ def get_uvc_layers(model, args=None):
                     m.uvc_s = 0
 
             if "mlp.fc1" in name:
+                # print('name',name)
+                # print("m",m)
                 layer_names[m] = name
                 uvc_layers["W2"].append(m)
 
@@ -143,6 +145,8 @@ def setup(args):
         args.num_classes = 1000
 
     if "deit" in args.model_type:
+        # model = DistilledVisionTransformer(config.embed_dim, config, args.img_size, zero_head=True, num_classes=args.num_classes)
+        # model.default_cfg = _cfg()
 
         model = DistilledVisionTransformer(
             enable_dist=args.enable_deit,
@@ -170,13 +174,16 @@ def setup(args):
         load_for_transfer_learning(model, args.model_path, use_ema=True, strict=False, num_classes=1000)
     else:
         model = VisionTransformer(config, args.img_size, zero_head=True, num_classes=args.num_classes)
+    # model.load_from(np.load(args.pretrained_dir))
 
 
     model.to(args.device)
     num_params = count_mask(model)
 
+    # print("{}".format(config))
     print("Training parameters %s", args)
     print("Total Parameter: \t%2.1fM" % num_params)
+    # print(num_params)
     return args, model
 
 
@@ -273,6 +280,19 @@ def post_training(args, model, mixup_fn=None, criterion=None):
     train_loader, test_loader = get_loader(args)
 
 
+
+
+    # # Prepare optimizer and scheduler
+    # optimizer = torch.optim.AdamW(model.parameters(), lr=args.learning_rate, weight_decay=args.weight_decay)
+
+    # # t_total = args.num_steps
+
+    # if args.decay_type == "cosine":
+    #     scheduler = WarmupCosineSchedule(optimizer, warmup_steps=args.warmup_steps, t_total=t_total)
+    # else:
+    #     scheduler = WarmupLinearSchedule(optimizer, warmup_steps=args.warmup_steps, t_total=t_total)
+
+
     t_total = len(train_loader) * args.epochs # modify
     if args.fp16:
         model, optimizer = amp.initialize(models=model,
@@ -308,17 +328,25 @@ def post_training(args, model, mixup_fn=None, criterion=None):
     model.zero_grad()
     set_seed(args)  # Added here for reproducibility (even between python 2 and 3)
     losses = AverageMeter()
+    # global_step, best_acc = 0, 0
     global_step = 0
     best_acc = 0
 
     epoch_iterator = tqdm(train_loader,
                   desc="Training [X / X Steps] [LR: X | Loss: X.XXX]",
+                  # desc="Training [X / X Steps] [loss = X.X]",
                   bar_format="{l_bar}{r_bar}",
                   dynamic_ncols=True)
 
+    # accuracy = valid(args, model, SummaryWriter(log_dir=os.path.join("logs_debug", args.name)), test_loader, 0)
 
     delta1_log = []
     delta2_log = []
+
+
+
+
+
 
 
 
@@ -328,10 +356,12 @@ def post_training(args, model, mixup_fn=None, criterion=None):
         print(f"Start training [Epoch {epoch}]")
 
         model.module.block_skip_gating.requires_grad = False
-
+        # model.module.patch_gating.requires_grad = False
+        # model.module.patch_hard = True
 
         epoch_iterator = tqdm(train_loader,
                       desc="Training [X / X Steps] [LR: X | Loss: X.XXX]",
+                      # desc="Training [X / X Steps] [loss = X.X]",
                       bar_format="{l_bar}{r_bar}",
                       dynamic_ncols=True)
         start_time = time.time()
@@ -344,13 +374,14 @@ def post_training(args, model, mixup_fn=None, criterion=None):
                 y = y[:-1]
             for name, m in model.named_modules():
                 if hasattr(m, "mask"):
+                    # print(name, m)
                     m.weight.data *= m.mask
 
-
+            # print(f"Data time: {time.time() - start_time}")
             x, y = mixup_fn(x, y)
             outputs, flops_list = model(x)
             loss = criterion(x, outputs, y)
-
+            # print(f"Forward time: {time.time() - start_time}")
             if args.gradient_accumulation_steps > 1:
                 loss = loss / args.gradient_accumulation_steps
             if args.fp16:
@@ -358,6 +389,7 @@ def post_training(args, model, mixup_fn=None, criterion=None):
                     scaled_loss.backward()
             else:
                 loss.backward()
+            # print(f"Backward time: {time.time() - start_time}")
             if (step + 1) % args.gradient_accumulation_steps == 0:
                 losses.update(loss.item()*args.gradient_accumulation_steps)
                 if args.fp16:
@@ -373,12 +405,12 @@ def post_training(args, model, mixup_fn=None, criterion=None):
 
 
                 epoch_iterator.set_description(
-                    "Training [%d / %d Steps] [LR: %.6f | Loss: %.3f]" % (global_step, t_total, scheduler.get_epoch_values()[0], losses.val)
+                    "Training [%d / %d Steps] [LR: %.6f | Loss: %.3f]" % (global_step, t_total, scheduler.get_epoch_values(epoch)[0], losses.val)
                 )
 
                 if args.local_rank in [-1, 0] and args.enable_writer:
                     writer.add_scalar("train/loss", scalar_value=losses.val, global_step=global_step)
-                    writer.add_scalar("train/lr", scalar_value=scheduler.get_epoch_values()[0], global_step=global_step)
+                    writer.add_scalar("train/lr", scalar_value=scheduler.get_epoch_values(epoch)[0], global_step=global_step)
 
 
         if args.local_rank in [-1, 0]:
@@ -388,6 +420,7 @@ def post_training(args, model, mixup_fn=None, criterion=None):
                 save_model(args, model, None, global_step)
                 best_acc = accuracy
             model.train()
+        # print(f"step time: {time.time() - start_time}")
         start_time = time.time()
 
 
@@ -399,7 +432,7 @@ def main():
                         help="Name of this run. Used for monitoring.")
     parser.add_argument("--dataset", choices=["cifar10","cifar100","imagenet"], default="imagenet",
                         help="Which downstream task.")
-
+    # parser.add_argument("--data_dir", default="/home/shixing/dataset")
     parser.add_argument("--data_dir", default="/ssd1/xinyu/dataset/imagenet2012",
                         help="directory of data")
 
@@ -429,6 +462,8 @@ def main():
 
     parser.add_argument("--learning_rate", default=1e-5, type=float,
                         help="The initial learning rate for SGD.")
+    # parser.add_argument("--weight_decay", default=0.05, type=float,
+    #                     help="Weight deay if we apply some.")
     parser.add_argument("--num_steps", default=10000, type=int,
                         help="Total number of training steps to perform.")
     parser.add_argument("--epochs", default=100, type=int,
@@ -539,9 +574,9 @@ def main():
 
 
     # Distillation parameters
-    parser.add_argument('--teacher-model', default=None, type=str, metavar='MODEL',
+    parser.add_argument('--teacher-model', default='', type=str, metavar='MODEL',
                         help='Name of teacher model to train (default: "regnety_160"')
-    parser.add_argument('--teacher-path', type=str, default=None)
+    parser.add_argument('--teacher-path', type=str, default='')
     parser.add_argument('--distillation-type', default='none', choices=['none', 'soft', 'hard'], type=str, help="")
     parser.add_argument('--distillation-alpha', default=0.5, type=float, help="")
     parser.add_argument('--distillation-tau', default=1.0, type=float, help="")
@@ -622,12 +657,11 @@ def main():
 
     # Set up teacher model
     if args.distillation_type!='none':
-        if args.teacher_model == None:
+        if args.teacher_model == "":
             args.teacher_model = args.model_type
-        if args.teacher_path == None:
+        if args.teacher_path == "":
             args.teacher_path  = args.model_path
         print(f"** Creating teacher model: [{args.teacher_model}] loading from ==> [{args.teacher_path}]")
-
         if 'deit' in args.teacher_model:
             teacher_model = DistilledVisionTransformer(
                 enable_dist=args.enable_deit,

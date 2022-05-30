@@ -22,11 +22,13 @@ from torch.utils.tensorboard import SummaryWriter
 from apex import amp
 from apex.parallel import DistributedDataParallel as DDP
 
-
 from models.modeling import VisionTransformer, CONFIGS
 from models.model_distilled import DistilledVisionTransformer
+
+
 from T2TViT.models.t2t_vit import *
 from T2TViT.utils import load_for_transfer_learning
+
 
 
 from functools import partial
@@ -79,6 +81,11 @@ class AverageMeter(object):
         self.avg = self.sum / self.count
 
 
+def get_tau(max_tau, min_tau, ite, total):
+    tau = min_tau + (max_tau - min_tau) * ite / total
+    return tau
+
+
 def simple_accuracy(preds, labels):
     return (preds == labels).mean()
 
@@ -125,8 +132,7 @@ def setup(args):
         args.num_classes = 1000
 
     if "deit" in args.model_type:
-        # Set enable_gating to 0 first to calculate flops list
-        # Then set it back
+
         model = DistilledVisionTransformer(
             enable_dist=args.enable_deit,
             patch_size=config.patch_size, embed_dim=config.embed_dim, depth=config.depth, num_heads=config.num_heads, mlp_ratio=4, qkv_bias=True,
@@ -144,7 +150,7 @@ def setup(args):
 
     else:
         model = VisionTransformer(config, args.img_size, zero_head=True, num_classes=args.num_classes)
-
+    # model.load_from(np.load(args.pretrained_dir))
     if args.pretrained == True:
         if args.model_path is not None: # 'need to specify teacher-path when using distillation'
             if args.local_rank in [-1, 0]:
@@ -158,9 +164,9 @@ def setup(args):
             try:
                 model.load_state_dict(checkpoint["model"], strict=False)
             except Exception as e:
+                # print(checkpoint["state_dict_ema"].keys())
                 model.load_state_dict(checkpoint["state_dict_ema"], strict=False)
 
-    # Register mask for weights
     model.to(args.device)
     for name, p in model.named_modules():
         if hasattr(p, "weight"):
@@ -168,9 +174,11 @@ def setup(args):
 
     args.total_param = count_mask(model)
 
+    # print("{}".format(config))
     if args.local_rank in [-1, 0]:
         print("Training parameters %s", args)
         print("Total Parameter: \t%2.1fM" % args.total_param)
+    # print(num_params)
     return args, model
 
 
@@ -212,6 +220,10 @@ def valid(args, model, writer, test_loader, global_step):
                           dynamic_ncols=True, disable=args.local_rank not in [-1, 0])
     loss_fct = torch.nn.CrossEntropyLoss()
     for step, batch in enumerate(epoch_iterator):
+        if args.enable_patch_gating==2:
+            tau = 1
+        else:
+            tau = -1
 
         batch = tuple(t.to(args.device) for t in batch)
         x, y = batch
@@ -219,14 +231,17 @@ def valid(args, model, writer, test_loader, global_step):
             if args.distillation_type == None:
                 logits = model(x)[0]
             else:
-                logits, flops_list = model(x)
+                logits, flops_list = model(x ,tau, args.patch_ratio)
+                # logits = model(x)
 
             eval_loss = loss_fct(logits, y)
             prec1 = complex_accuracy(logits.data, y)[0]
             top1.update(prec1.item(), x.size(0))
             eval_losses.update(eval_loss.item())
+
         epoch_iterator.set_description("Validating... [loss=%2.5f] | [Acc=%2.5f]" %
             (eval_losses.val, top1.val) )
+        # break
 
     if args.local_rank in [-1, 0]:
         print("\n")
@@ -234,7 +249,7 @@ def valid(args, model, writer, test_loader, global_step):
         print("Global Steps: %d" % global_step)
         print("Valid Loss: %2.5f" % eval_losses.avg)
         print("Valid Accuracy: %2.5f" % top1.avg)
-
+    # print("Valid Flops: %2.5f" % )
     if args.enable_writer :
         writer.add_scalar("test/accuracy", scalar_value=top1.avg, global_step=global_step)
     return top1.avg
@@ -261,12 +276,15 @@ def train(args, model, uvc_args=None, mixup_fn=None, criterion=None):
     # Prepare dataset
     train_loader, test_loader = get_loader(args)
 
-    linear_scaled_lr = args.learning_rate * args.train_batch_size * get_world_size() / 512.0
-    args.lr = linear_scaled_lr
-    optimizer = create_optimizer(args, model_without_ddp)
-    loss_scaler = NativeScaler()
+    # Prepare optimizer and scheduler
+    optimizer = torch.optim.AdamW(model.parameters(), lr=args.learning_rate, weight_decay=args.weight_decay)
 
-    scheduler, _ = create_scheduler(args, optimizer)
+    # t_total = args.num_steps
+    t_total = len(train_loader) * args.num_epochs # modify
+    if args.decay_type == "cosine":
+        scheduler = WarmupCosineSchedule(optimizer, warmup_steps=args.warmup_steps, t_total=t_total)
+    else:
+        scheduler = WarmupLinearSchedule(optimizer, warmup_steps=args.warmup_steps, t_total=t_total)
 
 
     zlr_scheduler = PresetLRScheduler(args.zlr_schedule)
@@ -295,9 +313,10 @@ def train(args, model, uvc_args=None, mixup_fn=None, criterion=None):
     model.zero_grad()
     set_seed(args)  # Added here for reproducibility (even between python 2 and 3)
     losses = AverageMeter()
+    # global_step, best_acc = 0, 0
     global_step = 0
     best_acc = 0
-
+    # import json
 
     if not os.path.exists(os.path.join(args.output_dir, args.name)):
         os.makedirs(os.path.join(args.output_dir, args.name))
@@ -308,6 +327,13 @@ def train(args, model, uvc_args=None, mixup_fn=None, criterion=None):
     f = open(os.path.join(args.output_dir, args.name, f"r_{running_time}.json"), "w")
     f.write(init)
     f.close()
+    f = open(os.path.join(args.output_dir, args.name, f"gating_{running_time}.json"), "w")
+    f.write(init)
+    f.close()
+
+
+    # print("Validation before UVC training")
+    # accuracy = valid(args, teacher, writer, test_loader, global_step)
 
     delta1_log = []
     delta2_log = []
@@ -326,27 +352,25 @@ def train(args, model, uvc_args=None, mixup_fn=None, criterion=None):
 
 
             # Warmup for fixed skip gating
-            if args.enable_warmup and epoch == 1:
+            if epoch<=args.warmup_epochs:
                 stage = "Warm Up"
                 total_epochs = args.warmup_epochs
-                if args.local_rank in [-1, 0]:
-                    print(f"...............Starting [WarmUp]...............\n ...............For [{args.warmup_epochs} epochs] in total with Learning rate[{args.warmup_lr}]...............")
+                args.gumbel_hard   = 1
                 minimax_model.model.enable_warmup = 1
                 minimax_model.model.block_skip_gating.requires_grad = False
                 for params in optimizer.param_groups:
                     params['lr'] = args.warmup_lr
 
-            # Set up for UVC Training
-            elif args.enable_warmup and epoch == args.warmup_epochs:
+
+            if epoch>args.warmup_epochs:
                 total_epochs = args.num_epochs
                 stage = "UVC Train"
-                if args.local_rank in [-1, 0]:
-                    print(f"Ending [WarmUp]............... for [{args.warmup_epochs} epochs] in total")
                 minimax_model.model.enable_warmup = 0
                 args.enable_warmup = 0
-                minimax_model.model.block_skip_gating.requires_grad = False
+                args.gumbel_hard   = 0
+                minimax_model.model.block_skip_gating.requires_grad = True
 
-                if args.warmup_reset:
+                if epoch == args.warmup_epochs+1 and args.warmup_reset:
                     if args.local_rank in [-1, 0]:
                         print(" Reset the Optimizer and Learning rate scheduler")
                     optimizer = torch.optim.AdamW(model.parameters(), lr=args.learning_rate, weight_decay=args.weight_decay)
@@ -361,7 +385,7 @@ def train(args, model, uvc_args=None, mixup_fn=None, criterion=None):
 
 
 
-            prune_w_mask(minimax_model)
+            prune_w_mask(minimax_model, optimizer)
             remained_param = count_mask(minimax_model.model)
             if args.local_rank in [-1, 0]:
                 print("="*60)
@@ -388,9 +412,13 @@ def train(args, model, uvc_args=None, mixup_fn=None, criterion=None):
                     y = y[:-1]
 
 
+                if args.enable_patch_gating == 2:
+                    tau = get_tau(10, 0.1, global_step, args.num_epochs*len(train_loader))
+                else:
+                    tau = -1
 
                 x, y = mixup_fn(x, y)
-                outputs, flops_list = model(x)
+                outputs, flops_list = model(x, tau, args.patch_ratio)
                 loss = criterion(x, outputs, y)
 
 
@@ -442,11 +470,10 @@ def train(args, model, uvc_args=None, mixup_fn=None, criterion=None):
                                 writer.add_scalar("resource",scalar_value=cur_resource,global_step=global_step)
                                 writer.add_scalar("s_sample", scalar_value=s_data[0][0], global_step=global_step)
                                 writer.add_scalar("r_sample", scalar_value=r_data[0][0], global_step=global_step)
-                            if global_step % args.log_interval == 0:
+                            if global_step % args.log_interval == 0 and epoch>args.warmup_epochs:
 
                                 s_dict = {global_step: s_data.tolist()}
                                 r_dict = {global_step: r_data.tolist()}
-
                                 with open(os.path.join(args.output_dir,args.name,f"s_{running_time}.json"),"r+") as file:
                                     data = json.load(file)
                                     data.update(s_dict)
@@ -458,32 +485,52 @@ def train(args, model, uvc_args=None, mixup_fn=None, criterion=None):
                                     file.seek(0)
                                     json.dump(data,file)
 
+
+                                if args.enable_block_gating:
+                                    gating_dict = {global_step: gating_data.tolist()}
+                                    with open(os.path.join(args.output_dir,args.name,f"gating_{running_time}.json"),"r+") as file:
+                                        data = json.load(file)
+                                        data.update(gating_dict)
+                                        file.seek(0)
+                                        json.dump(data,file)
+
                     start_time = time.time()
+
+
+
 
             if args.local_rank in [-1, 0]:
                 print()
+
                 print("*"*60)
                 print("Epoch finished, begin validating ...")
             accuracy = valid(args, model, writer, test_loader, global_step)
 
-            prune_w_mask(minimax_model)
+            prune_w_mask(minimax_model, optimizer)
             remained_param = count_mask(minimax_model.model)
             save_model(args, minimax_model.model, minimax_model, epoch)
 
+            # print(minimax_model.s)
+            # print(minimax_model.r)
+            # print(minimax_model.block_skip_gating)
             if args.local_rank in [-1, 0]:
                 print()
                 print(f"[Validation Sparsity|Step {global_step}|Epoch {epoch}]")
                 print(f"Parameter size: {(remained_param):.2f}M / {args.total_param:.2f}M = {(remained_param)/args.total_param*100:.2f}%")
-                print(f"Expectation FLOPs: {minimax_model.run_resource_fn()*100}%", f"Real FLOPs: {minimax_model.run_resource_fn(gumbel_hard=True)*100}%")
+                print(f"Expectation FLOPs: {minimax_model.run_resource_fn(args.gumbel_hard)*100}%", f"Real FLOPs: {minimax_model.run_resource_fn(gumbel_hard=True)*100}%")
+
+
             if args.enable_writer and args.local_rank in [-1, 0]:
                 writer.add_scalar("train/param_size", scalar_value=(remained_param)/args.total_param, global_step=global_step)
-                writer.add_scalar("train/flops_size", scalar_value=minimax_model.run_resource_fn()*100, global_step=global_step)
+                writer.add_scalar("train/flops_size", scalar_value=minimax_model.run_resource_fn(args.gumbel_hard)*100, global_step=global_step)
             if args.local_rank in [-1, 0]:
                 print("*"*60)
                 print()
 
             model.train()
             losses.reset()
+            # if global_step % t_total == 0:
+            #     break
 
 
     if args.local_rank in [-1, 0] and args.enable_writer:
@@ -510,10 +557,14 @@ def get_uvc_layers(model, args=None):
                     m.uvc_s = 0
 
             if "mlp.fc1" in name:
+                # print('name',name)
+                # print("m",m)
                 layer_names[m] = name
                 uvc_layers["W2"].append(m)
 
                 m.uvc_s = 0
+
+
 
     uvc_layers_dict = {"s_dict":{},"r_dict":{}}
 
@@ -527,95 +578,82 @@ def get_uvc_layers(model, args=None):
 
 
 def post_training(args, model, mixup_fn=None, criterion=None):
-    writer=None
-    if args.local_rank in [-1, 0]:
-        os.makedirs(os.path.join(args.output_dir,args.name), exist_ok=True)
-        if args.enable_writer:
-            writer = SummaryWriter(log_dir=os.path.join("post_train", args.name))
-    args.train_batch_size = args.train_batch_size // args.gradient_accumulation_steps
 
     print("Starting post training")
     train_loader, test_loader = get_loader(args)
+    # Prepare optimizer and scheduler
+    optimizer = torch.optim.AdamW(model.parameters(), lr=args.post_learning_rate, weight_decay=args.post_weight_decay)
 
+    # t_total = args.num_steps
+    t_total = len(train_loader) * args.num_epochs # modify
+    if args.decay_type == "cosine":
+        scheduler = WarmupCosineSchedule(optimizer, warmup_steps=args.warmup_steps, t_total=t_total)
+    else:
+        scheduler = WarmupLinearSchedule(optimizer, warmup_steps=args.warmup_steps, t_total=t_total)
 
-    t_total = len(train_loader) * args.epochs # modify
     if args.fp16:
         model, optimizer = amp.initialize(models=model,
                                           optimizers=optimizer,
                                           opt_level=args.fp16_opt_level)
         amp._amp_state.loss_scalers[0]._loss_scale = 2**20
 
-    print("[before DDP]")
-    model_without_ddp = model
+
+
+
     if args.local_rank!=-1:
-        model = DDP(model, message_size=250000000, gradient_predivide_factor=get_world_size(), delay_allreduce=True)
-        model_without_ddp = model.module
+        model = DDP(model, message_size=250000000, gradient_predivide_factor=get_world_size())
     else:
         model = nn.DataParallel(model)
 
 
-    linear_scaled_lr = args.learning_rate * args.train_batch_size * get_world_size() / 512.0
-    args.lr = linear_scaled_lr
-    optimizer = create_optimizer(args, model_without_ddp)
-    loss_scaler = NativeScaler()
-
-    scheduler, _ = create_scheduler(args, optimizer)
 
     # Train!
-    print("***** [Stage 2] Post Training *****")
-    print("  Instantaneous batch size per GPU = %d", args.train_batch_size)
-    print("  Total train batch size (w. parallel, distributed & accumulation) = %d",
-                args.train_batch_size * args.gradient_accumulation_steps * (
-                    torch.distributed.get_world_size() if args.local_rank != -1 else 1))
-    print("  Gradient Accumulation steps = %d", args.gradient_accumulation_steps)
+    if args.local_rank in [-1, 0]:
+        print("***** [Stage 2] Post Training *****")
+        print("  Instantaneous batch size per GPU = %d", args.train_batch_size)
 
-    model.module.block_skip_gating.requires_grad = False
+
     model.zero_grad()
     set_seed(args)  # Added here for reproducibility (even between python 2 and 3)
     losses = AverageMeter()
+    # global_step, best_acc = 0, 0
     global_step = 0
     best_acc = 0
 
-    epoch_iterator = tqdm(train_loader,
-                  desc="Training [X / X Steps] [LR: X | Loss: X.XXX]",
-                  bar_format="{l_bar}{r_bar}",
-                  dynamic_ncols=True)
-
-
     delta1_log = []
     delta2_log = []
+    model.train()
 
 
-
-    for epoch in range(args.epochs):
-        model.train()
-        print("="*60)
-        print(f"Start training [Epoch {epoch}]")
-
-        model.module.block_skip_gating.requires_grad = False
+    for epoch in range(args.num_epochs):
+        if args.local_rank in [-1, 0]:
+            print("="*60)
+            print(f"Start training [Epoch {epoch}]")
 
 
         epoch_iterator = tqdm(train_loader,
                       desc="Training [X / X Steps] [LR: X | Loss: X.XXX]",
+                      # desc="Training [X / X Steps] [loss = X.X]",
                       bar_format="{l_bar}{r_bar}",
-                      dynamic_ncols=True)
+                      dynamic_ncols=True,
+                      disable=args.local_rank not in [-1, 0])
         start_time = time.time()
-        scheduler.step(epoch)
         for step, batch in enumerate(epoch_iterator):
-            batch = tuple(t.cuda() for t in batch)
+            batch = tuple(t.to(args.device) for t in batch)
             x, y = batch
             if len(x) % 2 != 0:
                 x = x[:-1]
                 y = y[:-1]
             for name, m in model.named_modules():
                 if hasattr(m, "mask"):
+                    # print(name, m)
                     m.weight.data *= m.mask
 
-
+            # print(f"Data time: {time.time() - start_time}")
             x, y = mixup_fn(x, y)
             outputs, flops_list = model(x)
             loss = criterion(x, outputs, y)
-
+            # print(f"Forward time: {time.time() - start_time}")
             if args.gradient_accumulation_steps > 1:
                 loss = loss / args.gradient_accumulation_steps
             if args.fp16:
@@ -623,6 +661,7 @@ def post_training(args, model, mixup_fn=None, criterion=None):
                     scaled_loss.backward()
             else:
                 loss.backward()
+            # print(f"Backward time: {time.time() - start_time}")
             if (step + 1) % args.gradient_accumulation_steps == 0:
                 losses.update(loss.item()*args.gradient_accumulation_steps)
                 if args.fp16:
@@ -631,30 +670,29 @@ def post_training(args, model, mixup_fn=None, criterion=None):
                     torch.nn.utils.clip_grad_norm_(model.parameters(), args.max_grad_norm)
 
                 optimizer.step()
-
+                scheduler.step()
 
                 global_step += 1
                 optimizer.zero_grad()
 
 
                 epoch_iterator.set_description(
-                    "Training [%d / %d Steps] [LR: %.6f | Loss: %.3f]" % (global_step, t_total, scheduler.get_epoch_values()[0], losses.val)
+                    "Training [%d / %d Steps] [LR: %.6f | Loss: %.3f]" % (global_step, t_total, scheduler.get_last_lr()[0], losses.val)
                 )
 
-                if args.local_rank in [-1, 0] and args.enable_writer:
+                if args.local_rank in [-1, 0]:
                     writer.add_scalar("train/loss", scalar_value=losses.val, global_step=global_step)
-                    writer.add_scalar("train/lr", scalar_value=scheduler.get_epoch_values()[0], global_step=global_step)
+                    writer.add_scalar("train/lr", scalar_value=scheduler.get_last_lr()[0], global_step=global_step)
 
 
-        if args.local_rank in [-1, 0]:
-            accuracy = valid(args, model, writer, test_loader, global_step)
+                if global_step % args.eval_every == 0 and args.local_rank in [-1, 0]:
+                    accuracy = valid(args, model, writer, test_loader, global_step)
 
-            if best_acc < accuracy:
-                save_model(args, model, None, global_step)
-                best_acc = accuracy
-            model.train()
-        start_time = time.time()
-
+                    if best_acc < accuracy:
+                        save_model(args, model, None, global_step)
+                        best_acc = accuracy
+                    model.train()
+            start_time = time.time()
 
 
 
@@ -666,7 +704,8 @@ def main():
                         help="Name of this run. Used for monitoring.")
     parser.add_argument("--dataset", choices=["cifar10","cifar100","imagenet"], default="imagenet",
                         help="Which downstream task.")
-    parser.add_argument("--data_dir", default="/ssd1/xinyu/dataset/imagenet2012",
+    # parser.add_argument("--data_dir", default="/home/shixing/dataset")
+    parser.add_argument("--data_dir", default="/ssd1/shixing/imagenet2012",
                         help="directory of data")
 
     parser.add_argument("--num_workers", default=4, type = int)
@@ -750,7 +789,7 @@ def main():
                         default='0.6, 0.5, 0.4',
                         help='budgets to save checkpoints')
     parser.add_argument('--budget',
-                        default=0.5, type=float,
+                        default=0.5,
                         help='budget of model compression')
     parser.add_argument('--sl2wd', default=0.0, type=float,
                         help='l2 weight decay for s')
@@ -802,7 +841,7 @@ def main():
                         help="Using or not using tensorboard writer")
     parser.add_argument("--flops_with_mhsa", type=int, default=1,
                         help="Whether calculate flops with Multi-Head Self Attention")
-    parser.add_argument("--enable_block_gating", type=int, default=0,
+    parser.add_argument("--enable_block_gating", type=int, default=1,
                         help="Whether pass through block")
     parser.add_argument("--enable_part_gating", type=int, default=0,
                         help="Whether pass through attention and mlp")
@@ -812,6 +851,11 @@ def main():
                         help="whether use deit structure")
     parser.add_argument("--enable_pruning", type=int, default=1,
                         help="whether use pruning within a block")
+    parser.add_argument("--enable_patch_gating", type=int, default=0,
+                        help="whether use patch slimming to reduce the dimension of patch length")
+    parser.add_argument("--patch_ratio", type=float, default=0.9,
+                        help="The ratio of patch chosen")
+
 
     parser.add_argument('--z_grad_clip', default=0.5, type=float,
                         help='Gradident clipping parameter of z')
@@ -819,9 +863,16 @@ def main():
                         help='The update interval of gating variable')
     parser.add_argument('--gating_weight', default=5, type=float,
                         help='block gating gradient weight of resource function')
-
+    parser.add_argument('--patch_weight', default=5, type=float,
+                        help='Patch Gating gradient weight of resource function')
+    parser.add_argument('--patch_l1_weight', default=0.01, type=float,
+                        help='The l1 loss weight of patch gating')
+    parser.add_argument('--patchlr', default=0.01, type=float,
+                        help='Learning rate of patch gating')
+    parser.add_argument('--patchloss', default="l1", type=str,
+                        help='Learning rate of patch gating')
     parser.add_argument('--use_gumbel', default=1, type=int,
-                        help='Whether using gumbel softmax')
+                        help='Learning rate of patch gating')
     parser.add_argument('--eps', default=0.1, type=float,
                         help='The epsilon if we use softl0 as the function to select gating path')
     parser.add_argument('--eps_decay', default=0.92, type=float,
@@ -844,6 +895,8 @@ def main():
                         help="Used gpu number")
 
     args = parser.parse_args()
+
+    args.budget = float(args.budget)
 
     config = CONFIGS[args.model_type]
     args.head_size = config.hidden_size // config.transformer["num_heads"]
@@ -883,6 +936,7 @@ def main():
 
 
     teacher_model = None
+
     # Set up mix-up function
 
     mixup_fn = None
@@ -924,28 +978,27 @@ def main():
                 norm_layer=partial(nn.LayerNorm, eps=1e-6), drop_rate=0,
             )
 
-            if args.teacher_path is not None: # 'need to specify teacher-path when using distillation'
-                if args.teacher_path.startswith('https'):
-                    checkpoint = torch.hub.load_state_dict_from_url(
-                        args.teacher_path, map_location='cpu', check_hash=True)
-                else:
-                    checkpoint = torch.load(args.teacher_path, map_location='cpu')
-                try:
-                    teacher_model.load_state_dict(checkpoint["model"], strict=False)
-                except Exception as e:
-                    teacher_model.load_state_dict(checkpoint["state_dict_ema"], strict=False)
-
         elif "t2t" in args.teacher_model:
             teacher_model = t2t_vit_14(pretrained=True)
-            load_for_transfer_learning(teacher_model, args.model_path, use_ema=True, strict=False, num_classes=1000)
             if args.local_rank in [-1, 0]:
                 print(f"-----Has teacher_model [{args.teacher_model}]-----")
 
 
-
+        if args.teacher_path is not None: # 'need to specify teacher-path when using distillation'
+            if args.teacher_path.startswith('https'):
+                checkpoint = torch.hub.load_state_dict_from_url(
+                    args.teacher_path, map_location='cpu', check_hash=True)
+            else:
+                checkpoint = torch.load(args.teacher_path, map_location='cpu')
+            try:
+                teacher_model.load_state_dict(checkpoint["model"], strict=False)
+            except Exception as e:
+                teacher_model.load_state_dict(checkpoint["state_dict_ema"], strict=False)
 
         teacher_model.to(device)
         teacher_model.eval()
+
+    train_loader, test_loader = get_loader(args)
 
     # Construct distillation loss
     criterion = DistillationLoss(
@@ -954,7 +1007,13 @@ def main():
     if args.distillation_type == 'none':
         args.distillation_type = None
 
+
+
+
+
     if args.uvc_train:
+
+
         args.zlr_schedule_list = args.zlr_schedule_list.split(",")
         zlr_epoch_gap = args.num_epochs // len(args.zlr_schedule_list)
         zlr_schedule = {}
@@ -968,28 +1027,34 @@ def main():
 
         with torch.no_grad():
             model.eval()
-            y, flops_list = model(torch.ones(1, 3, 224, 224).cuda())
+            y, flops_list = model(torch.ones(1, 3, 224, 224).cuda(), number=args.patch_ratio)
 
-        minimax_model, dual_optimizer, s_optimizer,r_optimizer, gating_optimizer = build_minimax_model(model, layer_names, uvc_layers, uvc_layers_dict, args, flops_list) # modify 2
+        minimax_model, dual_optimizer, s_optimizer,r_optimizer, gating_optimizer = build_minimax_model(model, layer_names, uvc_layers,
+                                                                         uvc_layers_dict, args, flops_list) # modify 2
         minimax_model = minimax_model.cuda()
         uvc_args = [minimax_model, dual_optimizer, s_optimizer, r_optimizer, gating_optimizer]
 
+        optimizer = torch.optim.SGD(model.parameters(),
+                                    lr=args.learning_rate,
+                                    momentum=0.9,
+                                    weight_decay=args.weight_decay)
 
         infos = {"step", 0}
         save_budgets = sorted([float(i) for i in args.save_budgets.split(',')])
-        prune_w_mask(minimax_model)
+        prune_w_mask(minimax_model,optimizer)
 
         minimax_model = train(args, model, uvc_args=uvc_args, mixup_fn = mixup_fn, criterion=criterion)
 
 
 
-        prune_w_mask(minimax_model)
+        prune_w_mask(minimax_model,optimizer)
         post_training(args, minimax_model.model, mixup_fn, criterion)
 
 
     else:
         train(args, model)
 
+    # Training
 
 
 
