@@ -130,7 +130,12 @@ python -m torch.distributed.launch \
 ## Citation
 
 ```
-TBD
+@inproceedings{yu2022unified,
+  author = {Yu, Shixing and Chen, Tianlong and Shen, Jiayi and Yuan, Huan and Tan, Jianchao and Yang, Sen and Liu, Ji and Wang, Zhangyang},
+  title = {Unified Visual Transformer Compression},
+  booktitle = {ICLR},
+  year = {2022},
+}
 ```
 
 ## Results
