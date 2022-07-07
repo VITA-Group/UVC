@@ -133,6 +133,10 @@ python -m torch.distributed.launch \
 TBD
 ```
 
+## Results
+
+Our full compression log for reported results are under file log/.
+
 
 
 ## Acknowledgement
