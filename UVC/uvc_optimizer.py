@@ -105,7 +105,6 @@ def uvc_optimizer(optimizer, minimax_model, s_optimizer, r_optimizer, gating_opt
     minimax_model.s.grad.data[underflow_idx] = minimax_model.s.grad.data[underflow_idx].clamp(max=0.0)
 
     clip_grad_norm_(minimax_model.s, 1.0, float('inf'))
-    # print("minimax_model.s.grad_final",minimax_model.s.grad)
     s_optimizer.step()
     minimax_model.s.data.clamp_(min=0.0)
     minimax_model.s.data[overflow_idx] = s_max[overflow_idx]
@@ -129,11 +128,11 @@ def uvc_optimizer(optimizer, minimax_model, s_optimizer, r_optimizer, gating_opt
     dual_loss.backward()
 
 
+
+
     a = 1
     dual_optimizer.step()
-
     proj_dual(minimax_model)
-
 
 
     if minimax_model.block_skip_gating is not None:
@@ -175,7 +174,6 @@ def build_minimax_model(model, layer_names, uvc_layers, uvc_layers_dict, args, f
 
     if args.flops_with_mhsa:
 
-
         cost_func = lambda s_,r_,ub_,gating,eps,gumbel_hard : calc_flops(s_, r_, uvc_layers_dict, uvc_layers, args.head_size, s_ub=minimax_model.s_ub, r_ub=minimax_model.r_ub, flops_list=flops_list, gating=gating, full_model_flops=ub_, eps=eps, use_gumbel=args.use_gumbel, gumbel_hard=gumbel_hard, args=args)
         resource_ub = float(
             cost_func(
@@ -193,16 +191,15 @@ def build_minimax_model(model, layer_names, uvc_layers, uvc_layers_dict, args, f
 
     else:
         cost_func = lambda s_,r_,ub_,flops_list : flops2(s_, r_, uvc_layers_dict, uvc_layers, args.head_size, ub=ub_, s_ub=minimax_model.s_ub, r_ub=minimax_model.r_ub, layer_names=layer_names, flops_list=flops_list)
+
+
         # resource rough overview
         resource_ub = float(cost_func(torch.zeros_like(minimax_model.s.data), torch.zeros_like(minimax_model.r.data),None,flops_list))
-        # print()
         width_mult = [1, 0.75, 0.5, 0.25,0]
         for wm in width_mult:
             r_cost = float(cost_func(torch.round((1 - wm) * minimax_model.s_ub),torch.round((1 - wm) * minimax_model.r_ub),None, flops_list))
-            # print('resource cost for {} model={:.8e}'.format(wm, r_cost))
         resource_fn = lambda s_,r_,flops_list: cost_func(s_, r_, resource_ub, flops_list)
         minimax_model.resource_fn = resource_fn
-        # print(resource_fn(minimax_model.s_ub,minimax_model.r_ub))  # max remaining ratio after pruning
 
     minimax_model.model.enable_block_gating = args.enable_block_gating
     minimax_model.model.enable_part_gating  = args.enable_part_gating

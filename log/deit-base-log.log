@@ -1,0 +1,706 @@
+Warm Up [3 / 5 Epochs] [7509 / 75090 Steps] [LR: 0.000098 | Loss: 2.361]: 100%|| 2503/2503 [1:37:19<00:00,  2.33s/it]
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+
+Validation Results
+Global Steps: 7509
+Valid Loss: 0.91537
+Valid Accuracy: 79.56800
+Saved model checkpoint to [DIR: %s] mc_deit_base_patch16_224
+
+[Validation Sparsity|Step 7509|Epoch 3]
+Parameter size: 86.31M / 86.31M = 100.00%
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s]Expectation FLOPs: 91.72151947021484% Real FLOPs: 83.44303894042969%
+************************************************************
+
+============================================================
+Start [Epoch 4] at Stage Warm Up
+[Initial Sparsity|Epoch 4] Parameter size: 86.31M / 86.31M = 100.00%
+
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+
+Validation Results
+Global Steps: 10012
+Valid Loss: 0.93557
+Valid Accuracy: 79.40000
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s]Saved model checkpoint to [DIR: %s] mc_deit_base_patch16_224
+
+[Validation Sparsity|Step 10012|Epoch 4]
+Parameter size: 86.31M / 86.31M = 100.00%
+Expectation FLOPs: 100.0% Real FLOPs: 91.72151947021484%
+************************************************************
+
+============================================================
+Start [Epoch 5] at Stage Warm Up
+[Initial Sparsity|Epoch 5] Parameter size: 86.31M / 86.31M = 100.00%
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+Validating... [loss=2.55138] | [Acc=50.00000]: 100%|| 782/782 [01:49<00:00,  7.17it/s]
+
+
+Validation Results
+Global Steps: 12515
+Valid Loss: 0.92988
+Valid Accuracy: 79.35400
+Saved model checkpoint to [DIR: %s] mc_deit_base_patch16_224
+
+[Validation Sparsity|Step 12515|Epoch 5]
+Parameter size: 86.31M / 86.31M = 100.00%
+[EPS update] 0.1 =====> 0.09200000000000001
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s][EPS update] 0.1 =====> 0.09200000000000001
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s][EPS update] 0.1 =====> 0.09200000000000001
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s]Expectation FLOPs: 75.16456604003906% Real FLOPs: 91.72151947021484%
+************************************************************
+
+============================================================
+Start [Epoch 6] at Stage UVC Train
+[Initial Sparsity|Epoch 6] Parameter size: 86.31M / 86.31M = 100.00%
+[EPS update] 0.1 =====> 0.09200000000000001
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 15018
+Valid Loss: 1.18424
+Valid Accuracy: 74.17000
+Saved model checkpoint to [DIR: %s] mc_deit_base_patch16_224
+
+[Validation Sparsity|Step 15018|Epoch 6]
+Parameter size: 86.27M / 86.31M = 99.95%
+[EPS update] 0.09200000000000001 =====> 0.08464000000000002
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s]Expectation FLOPs: 59.11945724487305% Real FLOPs: 66.84415435791016%
+************************************************************
+
+============================================================
+Start [Epoch 7] at Stage UVC Train
+[Initial Sparsity|Epoch 7] Parameter size: 86.27M / 86.31M = 99.95%
+[EPS update] 0.09200000000000001 =====> 0.08464000000000002
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s][EPS update] 0.09200000000000001 =====> 0.08464000000000002
+UVC Train [7 / 30 Epochs] [17521 / 75090 Steps] [LR: 0.000088 | Loss: 5.616]: 100%|| 2503/2503 [2:32:38<00:00,  3.66s/it]
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+
+Validation Results
+Global Steps: 17521
+Valid Loss: 5.88686
+Valid Accuracy: 6.80800
+[EPS update] 0.08464000000000002 =====> 0.07786880000000002
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s][EPS update] 0.08464000000000002 =====> 0.07786880000000002
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s]Saved model checkpoint to [DIR: %s] mc_deit_base_patch16_224
+
+[Validation Sparsity|Step 17521|Epoch 7]
+Parameter size: 86.30M / 86.31M = 99.99%
+Expectation FLOPs: 9.828352928161621% Real FLOPs: 8.929576873779297%
+************************************************************
+
+============================================================
+Start [Epoch 8] at Stage UVC Train
+[Initial Sparsity|Epoch 8] Parameter size: 86.30M / 86.31M = 99.99%
+[EPS update] 0.08464000000000002 =====> 0.07786880000000002
+
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+
+Validation Results
+Global Steps: 20024
+Valid Loss: 5.95133
+Valid Accuracy: 3.95000
+[EPS update] 0.07786880000000002 =====> 0.07163929600000002
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s]Saved model checkpoint to [DIR: %s] mc_deit_base_patch16_224
+
+[Validation Sparsity|Step 20024|Epoch 8]
+Parameter size: 86.30M / 86.31M = 99.99%
+Expectation FLOPs: 8.939764976501465% Real FLOPs: 8.936712265014648%
+************************************************************
+
+============================================================
+Start [Epoch 9] at Stage UVC Train
+[Initial Sparsity|Epoch 9] Parameter size: 86.30M / 86.31M = 99.99%
+[EPS update] 0.07786880000000002 =====> 0.07163929600000002
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s][EPS update] 0.07786880000000002 =====> 0.07163929600000002
+UVC Train [9 / 30 Epochs] [22527 / 75090 Steps] [LR: 0.000080 | Loss: 5.653]: 100%|| 2503/2503 [2:26:27<00:00,  3.51s/it]
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+
+Validation Results
+Global Steps: 22527
+Valid Loss: 5.64336
+Valid Accuracy: 6.17600
+[EPS update] 0.07163929600000002 =====> 0.06590815232000002
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s]Saved model checkpoint to [DIR: %s] mc_deit_base_patch16_224
+
+[Validation Sparsity|Step 22527|Epoch 9]
+Parameter size: 86.30M / 86.31M = 99.99%
+[EPS update] 0.07163929600000002 =====> 0.06590815232000002
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s]Expectation FLOPs: 8.93673324584961% Real FLOPs: 8.936712265014648%
+************************************************************
+
+============================================================
+Start [Epoch 10] at Stage UVC Train
+[Initial Sparsity|Epoch 10] Parameter size: 86.30M / 86.31M = 99.99%
+[EPS update] 0.07163929600000002 =====> 0.06590815232000002
+
+
+Validation Results
+Global Steps: 25030
+Valid Loss: 5.44540
+Valid Accuracy: 7.59600
+[EPS update] 0.06590815232000002 =====> 0.06063550013440003
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s]Saved model checkpoint to [DIR: %s] mc_deit_base_patch16_224
+
+[Validation Sparsity|Step 25030|Epoch 10]
+Parameter size: 86.30M / 86.31M = 99.99%
+Expectation FLOPs: 8.944294929504395% Real FLOPs: 8.936712265014648%
+************************************************************
+
+============================================================
+Start [Epoch 11] at Stage UVC Train
+[Initial Sparsity|Epoch 11] Parameter size: 86.30M / 86.31M = 99.99%
+[EPS update] 0.06590815232000002 =====> 0.06063550013440003
+
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+
+Validation Results
+Global Steps: 27533
+Valid Loss: 5.34764
+Valid Accuracy: 8.80400
+Saved model checkpoint to [DIR: %s] mc_deit_base_patch16_224
+
+[Validation Sparsity|Step 27533|Epoch 11]
+Parameter size: 86.30M / 86.31M = 99.99%
+[EPS update] 0.06063550013440003 =====> 0.05578466012364803
+Expectation FLOPs: 8.93723201751709% Real FLOPs: 8.936712265014648%
+************************************************************
+
+============================================================
+Start [Epoch 12] at Stage UVC Train
+[Initial Sparsity|Epoch 12] Parameter size: 86.30M / 86.31M = 99.99%
+[EPS update] 0.06063550013440003 =====> 0.05578466012364803
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 30036
+Valid Loss: 5.01569
+Valid Accuracy: 11.97000
+Saved model checkpoint to [DIR: %s] mc_deit_base_patch16_224
+
+[Validation Sparsity|Step 30036|Epoch 12]
+Parameter size: 86.30M / 86.31M = 99.99%
+[EPS update] 0.05578466012364803 =====> 0.05132188731375619
+Expectation FLOPs: 16.063983917236328% Real FLOPs: 17.215192794799805%
+************************************************************
+
+============================================================
+Start [Epoch 13] at Stage UVC Train
+[Initial Sparsity|Epoch 13] Parameter size: 86.30M / 86.31M = 99.99%
+[EPS update] 0.05578466012364803 =====> 0.05132188731375619
+UVC Train [13 / 30 Epochs] [32539 / 75090 Steps] [LR: 0.000061 | Loss: 5.073]: 100%|| 2503/2503 [2:28:32<00:00,  3.56s/it]
+UVC Train [13 / 30 Epochs] [32539 / 75090 Steps] [LR: 0.000061 | Loss: 4.661]: 100%|| 2503/2503 [2:28:31<00:00,  3.56s/it]
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+UVC Train [13 / 30 Epochs] [32539 / 75090 Steps] [LR: 0.000061 | Loss: 4.692]: 100%|| 2503/2503 [2:28:32<00:00,  3.56s/it]
+UVC Train [13 / 30 Epochs] [32539 / 75090 Steps] [LR: 0.000061 | Loss: 4.935]: 100%|| 2503/2503 [2:28:32<00:00,  3.56s/it]
+Validating... [loss=1.95309] | [Acc=73.43750]:  99%|| 776/782 [01:49<00:00,  8.27it/s][EPS update] 0.05132188731375619 =====> 0.0472161363286557
+Validating... [loss=6.51846] | [Acc=0.00000]: 100%|| 782/782 [01:51<00:00,  7.04it/s] s]
+
+
+Validation Results
+Global Steps: 32539
+Valid Loss: 4.38903
+Valid Accuracy: 18.93000
+[EPS update] 0.05132188731375619 =====> 0.0472161363286557
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s]Saved model checkpoint to [DIR: %s] mc_deit_base_patch16_224
+
+[Validation Sparsity|Step 32539|Epoch 13]
+Parameter size: 86.30M / 86.31M = 99.99%
+Expectation FLOPs: 17.213165283203125% Real FLOPs: 17.215192794799805%
+************************************************************
+
+============================================================
+Start [Epoch 14] at Stage UVC Train
+[Initial Sparsity|Epoch 14] Parameter size: 86.30M / 86.31M = 99.99%
+[EPS update] 0.05132188731375619 =====> 0.0472161363286557
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+UVC Train [14 / 30 Epochs] [35042 / 75090 Steps] [LR: 0.000056 | Loss: 5.128]: 100%|| 2503/2503 [2:27:15<00:00,  3.53s/it]
+Validating... [loss=1.84141] | [Acc=68.75000]:  99%|| 777/782 [01:50<00:00,  8.28it/s][EPS update] 0.0472161363286557 =====> 0.043438845422363245
+Validating... [loss=5.71706] | [Acc=6.25000]: 100%|| 782/782 [01:51<00:00,  7.03it/s] s]
+
+
+Validation Results
+Global Steps: 35042
+Valid Loss: 3.33193
+Valid Accuracy: 34.27600
+Saved model checkpoint to [DIR: %s] mc_deit_base_patch16_224
+
+[Validation Sparsity|Step 35042|Epoch 14]
+Parameter size: 86.30M / 86.31M = 99.99%
+[EPS update] 0.0472161363286557 =====> 0.043438845422363245
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s][EPS update] 0.0472161363286557 =====> 0.043438845422363245
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s]Expectation FLOPs: 26.22934913635254% Real FLOPs: 25.493675231933594%
+************************************************************
+
+============================================================
+Start [Epoch 15] at Stage UVC Train
+[Initial Sparsity|Epoch 15] Parameter size: 86.30M / 86.31M = 99.99%
+[EPS update] 0.0472161363286557 =====> 0.043438845422363245
+
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+
+Validation Results
+Global Steps: 37545
+Valid Loss: 2.09027
+Valid Accuracy: 54.85800
+[EPS update] 0.043438845422363245 =====> 0.039963737788574184
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s]Saved model checkpoint to [DIR: %s] mc_deit_base_patch16_224
+
+[Validation Sparsity|Step 37545|Epoch 15]
+Parameter size: 86.30M / 86.31M = 99.99%
+Expectation FLOPs: 34.154273986816406% Real FLOPs: 33.77215576171875%
+************************************************************
+
+============================================================
+Start [Epoch 16] at Stage UVC Train
+[Initial Sparsity|Epoch 16] Parameter size: 86.30M / 86.31M = 99.99%
+[EPS update] 0.043438845422363245 =====> 0.039963737788574184
+
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 40048
+Valid Loss: 1.38221
+Valid Accuracy: 68.75200
+[EPS update] 0.039963737788574184 =====> 0.03676663876548825
+
+[Validation Sparsity|Step 40048|Epoch 16]
+Parameter size: 86.30M / 86.31M = 99.99%
+Expectation FLOPs: 50.157814025878906% Real FLOPs: 50.32912063598633%
+************************************************************
+
+============================================================
+Start [Epoch 17] at Stage UVC Train
+[Initial Sparsity|Epoch 17] Parameter size: 86.30M / 86.31M = 99.99%
+[EPS update] 0.039963737788574184 =====> 0.03676663876548825
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 42551
+Valid Loss: 1.70414
+Valid Accuracy: 62.76800
+[EPS update] 0.03676663876548825 =====> 0.033825307664249196
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s]Saved model checkpoint to [DIR: %s] mc_deit_base_patch16_224
+
+[Validation Sparsity|Step 42551|Epoch 17]
+Parameter size: 86.30M / 86.31M = 99.99%
+[EPS update] 0.03676663876548825 =====> 0.033825307664249196
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s]Expectation FLOPs: 37.5374641418457% Real FLOPs: 42.050636291503906%
+************************************************************
+
+============================================================
+Start [Epoch 18] at Stage UVC Train
+[Initial Sparsity|Epoch 18] Parameter size: 86.30M / 86.31M = 99.99%
+[EPS update] 0.03676663876548825 =====> 0.033825307664249196
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 45054
+Valid Loss: 1.52190
+Valid Accuracy: 65.89800
+Saved model checkpoint to [DIR: %s] mc_deit_base_patch16_224
+
+[Validation Sparsity|Step 45054|Epoch 18]
+Parameter size: 86.30M / 86.31M = 99.99%
+[EPS update] 0.033825307664249196 =====> 0.03111928305110926
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s]Expectation FLOPs: 39.641815185546875% Real FLOPs: 42.050636291503906%
+************************************************************
+
+============================================================
+Start [Epoch 19] at Stage UVC Train
+[Initial Sparsity|Epoch 19] Parameter size: 86.30M / 86.31M = 99.99%
+[EPS update] 0.033825307664249196 =====> 0.03111928305110926
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 47557
+Valid Loss: 1.44685
+Valid Accuracy: 67.51400
+Saved model checkpoint to [DIR: %s] mc_deit_base_patch16_224
+
+[Validation Sparsity|Step 47557|Epoch 19]
+Parameter size: 86.30M / 86.31M = 99.99%
+Expectation FLOPs: 42.42512893676758% Real FLOPs: 50.32912063598633%
+************************************************************
+
+============================================================
+Start [Epoch 20] at Stage UVC Train
+[Initial Sparsity|Epoch 20] Parameter size: 86.30M / 86.31M = 99.99%
+[EPS update] 0.03111928305110926 =====> 0.028629740407020522
+
+
+Validation Results
+Global Steps: 50060
+Valid Loss: 1.58006
+Valid Accuracy: 64.80200
+Saved model checkpoint to [DIR: %s] mc_deit_base_patch16_224
+
+[Validation Sparsity|Step 50060|Epoch 20]
+Parameter size: 86.30M / 86.31M = 99.99%
+Expectation FLOPs: 41.692344665527344% Real FLOPs: 42.050636291503906%
+************************************************************
+
+============================================================
+Start [Epoch 21] at Stage UVC Train
+[Initial Sparsity|Epoch 21] Parameter size: 86.30M / 86.31M = 99.99%
+[EPS update] 0.028629740407020522 =====> 0.02633936117445888
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s][EPS update] 0.028629740407020522 =====> 0.02633936117445888
+UVC Train [21 / 30 Epochs] [52563 / 75090 Steps] [LR: 0.000021 | Loss: 4.164]: 100%|| 2503/2503 [2:25:06<00:00,  3.48s/it]
+UVC Train [21 / 30 Epochs] [52563 / 75090 Steps] [LR: 0.000021 | Loss: 4.956]: 100%|| 2503/2503 [2:25:08<00:00,  3.48s/it]
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+UVC Train [21 / 30 Epochs] [52563 / 75090 Steps] [LR: 0.000021 | Loss: 4.770]: 100%|| 2503/2503 [2:25:15<00:00,  3.48s/it]
+UVC Train [21 / 30 Epochs] [52563 / 75090 Steps] [LR: 0.000021 | Loss: 4.731]: 100%|| 2503/2503 [2:25:12<00:00,  3.48s/it]
+Validating... [loss=2.97114] | [Acc=56.25000]: 100%|| 781/782 [01:50<00:00,  8.29it/s][EPS update] 0.02633936117445888 =====> 0.02423221228050217
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s][EPS update] 0.02633936117445888 =====> 0.02423221228050217
+Validating... [loss=2.97114] | [Acc=56.25000]: 100%|| 782/782 [01:50<00:00,  7.06it/s]s]
+
+
+Validation Results
+Global Steps: 52563
+Valid Loss: 2.12326
+Valid Accuracy: 55.09000
+Saved model checkpoint to [DIR: %s] mc_deit_base_patch16_224
+
+[Validation Sparsity|Step 52563|Epoch 21]
+Parameter size: 86.30M / 86.31M = 99.99%
+Expectation FLOPs: 33.76262664794922% Real FLOPs: 33.77215576171875%
+************************************************************
+
+============================================================
+Start [Epoch 22] at Stage UVC Train
+[Initial Sparsity|Epoch 22] Parameter size: 86.30M / 86.31M = 99.99%
+[EPS update] 0.02633936117445888 =====> 0.02423221228050217
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+
+Validation Results
+Global Steps: 55066
+Valid Loss: 1.77387
+Valid Accuracy: 61.83600
+Saved model checkpoint to [DIR: %s] mc_deit_base_patch16_224
+
+[Validation Sparsity|Step 55066|Epoch 22]
+Parameter size: 86.30M / 86.31M = 99.99%
+Expectation FLOPs: 37.438072204589844% Real FLOPs: 33.77215576171875%
+************************************************************
+
+============================================================
+Start [Epoch 23] at Stage UVC Train
+[Initial Sparsity|Epoch 23] Parameter size: 86.30M / 86.31M = 99.99%
+[EPS update] 0.02423221228050217 =====> 0.022293635298061998
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 57569
+Valid Loss: 1.46142
+Valid Accuracy: 67.17400
+Saved model checkpoint to [DIR: %s] mc_deit_base_patch16_224
+
+[Validation Sparsity|Step 57569|Epoch 23]
+Parameter size: 86.30M / 86.31M = 99.99%
+Expectation FLOPs: 40.56263732910156% Real FLOPs: 42.050636291503906%
+************************************************************
+
+============================================================
+Start [Epoch 24] at Stage UVC Train
+[Initial Sparsity|Epoch 24] Parameter size: 86.30M / 86.31M = 99.99%
+[EPS update] 0.022293635298061998 =====> 0.020510144474217038
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 60072
+Valid Loss: 1.44117
+Valid Accuracy: 67.71000
+Saved model checkpoint to [DIR: %s] mc_deit_base_patch16_224
+
+[Validation Sparsity|Step 60072|Epoch 24]
+Parameter size: 86.30M / 86.31M = 99.99%
+[EPS update] 0.020510144474217038 =====> 0.018869332916279676
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s]Expectation FLOPs: 41.642799377441406% Real FLOPs: 42.050636291503906%
+************************************************************
+
+============================================================
+Start [Epoch 25] at Stage UVC Train
+[Initial Sparsity|Epoch 25] Parameter size: 86.30M / 86.31M = 99.99%
+[EPS update] 0.020510144474217038 =====> 0.018869332916279676
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s][EPS update] 0.020510144474217038 =====> 0.018869332916279676
+UVC Train [25 / 30 Epochs] [62575 / 75090 Steps] [LR: 0.000007 | Loss: 3.650]: 100%|| 2503/2503 [2:30:08<00:00,  3.60s/it]
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 62575
+Valid Loss: 1.41977
+Valid Accuracy: 68.18000
+[EPS update] 0.018869332916279676 =====> 0.017359786282977303
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s]Saved model checkpoint to [DIR: %s] mc_deit_base_patch16_224
+
+[Validation Sparsity|Step 62575|Epoch 25]
+Parameter size: 86.30M / 86.31M = 99.99%
+[EPS update] 0.018869332916279676 =====> 0.017359786282977303
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s]Expectation FLOPs: 41.85212326049805% Real FLOPs: 42.050636291503906%
+************************************************************
+
+============================================================
+Start [Epoch 26] at Stage UVC Train
+[Initial Sparsity|Epoch 26] Parameter size: 86.30M / 86.31M = 99.99%
+[EPS update] 0.018869332916279676 =====> 0.017359786282977303
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+UVC Train [26 / 30 Epochs] [65078 / 75090 Steps] [LR: 0.000004 | Loss: 1.895]: 100%|| 2503/2503 [2:23:35<00:00,  3.44s/it]
+Validating... [loss=2.28893] | [Acc=42.18750]:  98%|| 765/782 [01:48<00:02,  8.28it/s][EPS update] 0.017359786282977303 =====> 0.01597100338033912
+Validating... [loss=4.22695] | [Acc=18.75000]: 100%|| 782/782 [01:50<00:00,  7.06it/s] ]
+
+
+Validation Results
+Global Steps: 65078
+Valid Loss: 1.50185
+Valid Accuracy: 66.99400
+Saved model checkpoint to [DIR: %s] mc_deit_base_patch16_224
+
+[Validation Sparsity|Step 65078|Epoch 26]
+Parameter size: 86.30M / 86.31M = 99.99%
+[EPS update] 0.017359786282977303 =====> 0.01597100338033912
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s][EPS update] 0.017359786282977303 =====> 0.01597100338033912
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s]Expectation FLOPs: 34.56763458251953% Real FLOPs: 42.050636291503906%
+************************************************************
+
+============================================================
+Start [Epoch 27] at Stage UVC Train
+[Initial Sparsity|Epoch 27] Parameter size: 86.30M / 86.31M = 99.99%
+[EPS update] 0.017359786282977303 =====> 0.01597100338033912
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+Validating... [loss=0.33756] | [Acc=96.87500]:  99%|| 775/782 [01:48<00:00,  8.26it/s][EPS update] 0.01597100338033912 =====> 0.01469332310991199
+Validating... [loss=3.19058] | [Acc=37.50000]: 100%|| 782/782 [01:49<00:00,  7.12it/s]s]
+
+
+Validation Results
+Global Steps: 67581
+Valid Loss: 1.43049
+Valid Accuracy: 68.09400
+Saved model checkpoint to [DIR: %s] mc_deit_base_patch16_224
+
+[Validation Sparsity|Step 67581|Epoch 27]
+Parameter size: 86.30M / 86.31M = 99.99%
+Expectation FLOPs: 43.704978942871094% Real FLOPs: 42.050636291503906%
+************************************************************
+
+============================================================
+Start [Epoch 28] at Stage UVC Train
+[Initial Sparsity|Epoch 28] Parameter size: 86.30M / 86.31M = 99.99%
+[EPS update] 0.01597100338033912 =====> 0.01469332310991199
+
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+UVC Train [28 / 30 Epochs] [70084 / 75090 Steps] [LR: 0.000001 | Loss: 2.626]: 100%|| 2503/2503 [2:32:31<00:00,  3.66s/it]
+Validating... [loss=2.90986] | [Acc=50.00000]: 100%|| 781/782 [01:50<00:00,  8.29it/s][EPS update] 0.01469332310991199 =====> 0.013517857261119032
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s][EPS update] 0.01469332310991199 =====> 0.013517857261119032
+Validating... [loss=2.90986] | [Acc=50.00000]: 100%|| 782/782 [01:50<00:00,  7.06it/s]s]
+
+
+Validation Results
+Global Steps: 70084
+Valid Loss: 1.41883
+Valid Accuracy: 68.48600
+Saved model checkpoint to [DIR: %s] mc_deit_base_patch16_224
+
+[Validation Sparsity|Step 70084|Epoch 28]
+Parameter size: 86.30M / 86.31M = 99.99%
+Expectation FLOPs: 44.17570114135742% Real FLOPs: 42.050636291503906%
+************************************************************
+
+============================================================
+Start [Epoch 29] at Stage UVC Train
+[Initial Sparsity|Epoch 29] Parameter size: 86.30M / 86.31M = 99.99%
+[EPS update] 0.01469332310991199 =====> 0.013517857261119032
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s][EPS update] 0.01469332310991199 =====> 0.013517857261119032
+UVC Train [29 / 30 Epochs] [72587 / 75090 Steps] [LR: 0.000000 | Loss: 2.573]: 100%|| 2503/2503 [2:29:34<00:00,  3.59s/it]
+UVC Train [29 / 30 Epochs] [72587 / 75090 Steps] [LR: 0.000000 | Loss: 2.581]: 100%|| 2503/2503 [2:29:40<00:00,  3.59s/it]
+UVC Train [29 / 30 Epochs] [72587 / 75090 Steps] [LR: 0.000000 | Loss: 2.551]: 100%|| 2503/2503 [2:29:40<00:00,  3.59s/it]
+UVC Train [29 / 30 Epochs] [72587 / 75090 Steps] [LR: 0.000000 | Loss: 2.168]: 100%|| 2503/2503 [2:29:36<00:00,  3.59s/it]
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+Validating... [loss=0.43935] | [Acc=92.18750]:  99%|| 777/782 [01:50<00:00,  8.22it/s][EPS update] 0.013517857261119032 =====> 0.01243642868022951
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s][EPS update] 0.013517857261119032 =====> 0.01243642868022951
+Validating... [loss=2.80708] | [Acc=62.50000]: 100%|| 782/782 [01:51<00:00,  7.03it/s]s]
+
+
+Validation Results
+Global Steps: 72587
+Valid Loss: 1.41799
+Valid Accuracy: 68.41200
+Saved model checkpoint to [DIR: %s] mc_deit_base_patch16_224
+
+[Validation Sparsity|Step 72587|Epoch 29]
+Parameter size: 86.30M / 86.31M = 99.99%
+Expectation FLOPs: 35.3758430480957% Real FLOPs: 33.77215576171875%
+************************************************************
+
+============================================================
+Start [Epoch 30] at Stage UVC Train
+[Initial Sparsity|Epoch 30] Parameter size: 86.30M / 86.31M = 99.99%
+[EPS update] 0.013517857261119032 =====> 0.01243642868022951
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s][EPS update] 0.013517857261119032 =====> 0.01243642868022951
+
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+Validating... [loss=2.98900] | [Acc=37.50000]: 100%|| 782/782 [01:49<00:00,  7.16it/s]
+
+
+Validation Results
+Global Steps: 75090
+Valid Loss: 1.43385
+Valid Accuracy: 67.97800
+[EPS update] 0.01243642868022951 =====> 0.011441514385811149
+Stage [X / X Epochs] [X / X Steps] [LR: X | Loss: X.XXX]:   0%|| 0/2503 [00:00<?, ?it/s]Saved model checkpoint to [DIR: %s] mc_deit_base_patch16_224
+
+[Validation Sparsity|Step 75090|Epoch 30]
+Parameter size: 86.30M / 86.31M = 99.99%
+Expectation FLOPs: 40.6552619934082% Real FLOPs: 50.32912063598633%

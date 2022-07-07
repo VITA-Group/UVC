@@ -15,7 +15,6 @@ import torch.distributed as dist
 import torch.nn as nn
 
 from tqdm import tqdm
-from torch.utils.tensorboard import SummaryWriter
 from apex import amp
 from apex.parallel import DistributedDataParallel as DDP
 
@@ -279,20 +278,6 @@ def post_training(args, model, mixup_fn=None, criterion=None):
     print("Starting post training")
     train_loader, test_loader = get_loader(args)
 
-
-
-
-    # # Prepare optimizer and scheduler
-    # optimizer = torch.optim.AdamW(model.parameters(), lr=args.learning_rate, weight_decay=args.weight_decay)
-
-    # # t_total = args.num_steps
-
-    # if args.decay_type == "cosine":
-    #     scheduler = WarmupCosineSchedule(optimizer, warmup_steps=args.warmup_steps, t_total=t_total)
-    # else:
-    #     scheduler = WarmupLinearSchedule(optimizer, warmup_steps=args.warmup_steps, t_total=t_total)
-
-
     t_total = len(train_loader) * args.epochs # modify
     if args.fp16:
         model, optimizer = amp.initialize(models=model,
@@ -338,7 +323,6 @@ def post_training(args, model, mixup_fn=None, criterion=None):
                   bar_format="{l_bar}{r_bar}",
                   dynamic_ncols=True)
 
-    # accuracy = valid(args, model, SummaryWriter(log_dir=os.path.join("logs_debug", args.name)), test_loader, 0)
 
     delta1_log = []
     delta2_log = []
@@ -356,8 +340,6 @@ def post_training(args, model, mixup_fn=None, criterion=None):
         print(f"Start training [Epoch {epoch}]")
 
         model.module.block_skip_gating.requires_grad = False
-        # model.module.patch_gating.requires_grad = False
-        # model.module.patch_hard = True
 
         epoch_iterator = tqdm(train_loader,
                       desc="Training [X / X Steps] [LR: X | Loss: X.XXX]",
@@ -377,11 +359,9 @@ def post_training(args, model, mixup_fn=None, criterion=None):
                     # print(name, m)
                     m.weight.data *= m.mask
 
-            # print(f"Data time: {time.time() - start_time}")
             x, y = mixup_fn(x, y)
             outputs, flops_list = model(x)
             loss = criterion(x, outputs, y)
-            # print(f"Forward time: {time.time() - start_time}")
             if args.gradient_accumulation_steps > 1:
                 loss = loss / args.gradient_accumulation_steps
             if args.fp16:
@@ -389,7 +369,6 @@ def post_training(args, model, mixup_fn=None, criterion=None):
                     scaled_loss.backward()
             else:
                 loss.backward()
-            # print(f"Backward time: {time.time() - start_time}")
             if (step + 1) % args.gradient_accumulation_steps == 0:
                 losses.update(loss.item()*args.gradient_accumulation_steps)
                 if args.fp16:
@@ -420,7 +399,6 @@ def post_training(args, model, mixup_fn=None, criterion=None):
                 save_model(args, model, None, global_step)
                 best_acc = accuracy
             model.train()
-        # print(f"step time: {time.time() - start_time}")
         start_time = time.time()
 
 
@@ -460,10 +438,9 @@ def main():
                              "Will always run one evaluation at the end of training.")
 
 
-    parser.add_argument("--learning_rate", default=1e-5, type=float,
+    parser.add_argument("--learning_rate", default=1e-4, type=float,
                         help="The initial learning rate for SGD.")
-    # parser.add_argument("--weight_decay", default=0.05, type=float,
-    #                     help="Weight deay if we apply some.")
+
     parser.add_argument("--num_steps", default=10000, type=int,
                         help="Total number of training steps to perform.")
     parser.add_argument("--epochs", default=100, type=int,
@@ -704,6 +681,8 @@ def main():
         state_dict = checkpoint
 
     model.load_state_dict(state_dict)
+
+
 
     post_training(args, model, mixup_fn, criterion)
 

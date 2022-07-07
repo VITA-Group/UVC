@@ -18,7 +18,6 @@ import torch.distributed as dist
 import torch.nn as nn
 
 from tqdm import tqdm
-from torch.utils.tensorboard import SummaryWriter
 from apex import amp
 from apex.parallel import DistributedDataParallel as DDP
 
@@ -150,7 +149,6 @@ def setup(args):
 
     else:
         model = VisionTransformer(config, args.img_size, zero_head=True, num_classes=args.num_classes)
-    # model.load_from(np.load(args.pretrained_dir))
     if args.pretrained == True:
         if args.model_path is not None: # 'need to specify teacher-path when using distillation'
             if args.local_rank in [-1, 0]:
@@ -174,11 +172,6 @@ def setup(args):
 
     args.total_param = count_mask(model)
 
-    # print("{}".format(config))
-    if args.local_rank in [-1, 0]:
-        print("Training parameters %s", args)
-        print("Total Parameter: \t%2.1fM" % args.total_param)
-    # print(num_params)
     return args, model
 
 
@@ -238,7 +231,6 @@ def valid(args, model, writer, test_loader, global_step):
             prec1 = complex_accuracy(logits.data, y)[0]
             top1.update(prec1.item(), x.size(0))
             eval_losses.update(eval_loss.item())
-
         epoch_iterator.set_description("Validating... [loss=%2.5f] | [Acc=%2.5f]" %
             (eval_losses.val, top1.val) )
         # break
@@ -249,7 +241,6 @@ def valid(args, model, writer, test_loader, global_step):
         print("Global Steps: %d" % global_step)
         print("Valid Loss: %2.5f" % eval_losses.avg)
         print("Valid Accuracy: %2.5f" % top1.avg)
-    # print("Valid Flops: %2.5f" % )
     if args.enable_writer :
         writer.add_scalar("test/accuracy", scalar_value=top1.avg, global_step=global_step)
     return top1.avg
@@ -332,8 +323,6 @@ def train(args, model, uvc_args=None, mixup_fn=None, criterion=None):
     f.close()
 
 
-    # print("Validation before UVC training")
-    # accuracy = valid(args, teacher, writer, test_loader, global_step)
 
     delta1_log = []
     delta2_log = []
@@ -453,6 +442,8 @@ def train(args, model, uvc_args=None, mixup_fn=None, criterion=None):
                             zlr_scheduler(dual_optimizer, epoch, "zlr")
                         minimax_model.update_gating()
                         cur_resource, s_data, r_data, gating_data, gating_grad_list = uvc_optimizer_func(optimizer, minimax_model, s_optimizer, r_optimizer, gating_optimizer, dual_optimizer, args, infos, save_budgets, flops_list, args.z_grad_clip, global_step, args.gating_interval, gating_grad_list)
+                        if global_step % 5000 ==0:
+                            print(gating_data)
 
 
 
@@ -510,9 +501,7 @@ def train(args, model, uvc_args=None, mixup_fn=None, criterion=None):
             remained_param = count_mask(minimax_model.model)
             save_model(args, minimax_model.model, minimax_model, epoch)
 
-            # print(minimax_model.s)
-            # print(minimax_model.r)
-            # print(minimax_model.block_skip_gating)
+
             if args.local_rank in [-1, 0]:
                 print()
                 print(f"[Validation Sparsity|Step {global_step}|Epoch {epoch}]")
@@ -529,8 +518,6 @@ def train(args, model, uvc_args=None, mixup_fn=None, criterion=None):
 
             model.train()
             losses.reset()
-            # if global_step % t_total == 0:
-            #     break
 
 
     if args.local_rank in [-1, 0] and args.enable_writer:
@@ -633,7 +620,6 @@ def post_training(args, model, mixup_fn=None, criterion=None):
 
         epoch_iterator = tqdm(train_loader,
                       desc="Training [X / X Steps] [LR: X | Loss: X.XXX]",
-                      # desc="Training [X / X Steps] [loss = X.X]",
                       bar_format="{l_bar}{r_bar}",
                       dynamic_ncols=True,
                       disable=args.local_rank not in [-1, 0])
@@ -649,11 +635,9 @@ def post_training(args, model, mixup_fn=None, criterion=None):
                     # print(name, m)
                     m.weight.data *= m.mask
 
-            # print(f"Data time: {time.time() - start_time}")
             x, y = mixup_fn(x, y)
             outputs, flops_list = model(x)
             loss = criterion(x, outputs, y)
-            # print(f"Forward time: {time.time() - start_time}")
             if args.gradient_accumulation_steps > 1:
                 loss = loss / args.gradient_accumulation_steps
             if args.fp16:
@@ -661,7 +645,6 @@ def post_training(args, model, mixup_fn=None, criterion=None):
                     scaled_loss.backward()
             else:
                 loss.backward()
-            # print(f"Backward time: {time.time() - start_time}")
             if (step + 1) % args.gradient_accumulation_steps == 0:
                 losses.update(loss.item()*args.gradient_accumulation_steps)
                 if args.fp16:
@@ -704,7 +687,6 @@ def main():
                         help="Name of this run. Used for monitoring.")
     parser.add_argument("--dataset", choices=["cifar10","cifar100","imagenet"], default="imagenet",
                         help="Which downstream task.")
-    # parser.add_argument("--data_dir", default="/home/shixing/dataset")
     parser.add_argument("--data_dir", default="/ssd1/shixing/imagenet2012",
                         help="directory of data")
 
@@ -747,7 +729,7 @@ def main():
     parser.add_argument("--max_grad_norm", default=1.0, type=float,
                         help="Max gradient norm.")
 
-    parser.add_argument("--local_rank", type=int, default=1,
+    parser.add_argument("--local_rank", type=int, default=0,
                         help="local_rank for distributed training on gpus")
     parser.add_argument('--seed', type=int, default=42,
                         help="random seed for initialization")
@@ -851,7 +833,7 @@ def main():
                         help="whether use deit structure")
     parser.add_argument("--enable_pruning", type=int, default=1,
                         help="whether use pruning within a block")
-    parser.add_argument("--enable_patch_gating", type=int, default=0,
+    parser.add_argument("--enable_patch_gating", type=int, default=2,
                         help="whether use patch slimming to reduce the dimension of patch length")
     parser.add_argument("--patch_ratio", type=float, default=0.9,
                         help="The ratio of patch chosen")

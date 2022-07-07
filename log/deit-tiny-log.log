@@ -1,0 +1,774 @@
+Loading checkpoint for model from ====> https://dl.fbaipublicfiles.com/deit/deit_tiny_patch16_224-a1311bcf.pth
+Training parameters %s Namespace(budget=0.5, cutmix=1.0, cutmix_minmax=None, data_dir='/ssd1/shixing/imagenet2012', dataset='imagenet', decay_type='cosine', device=device(type='cuda'), distillation_alpha=0.1, distillation_tau=1.0, distillation_type='soft', enable_block_gating=1, enable_deit=0, enable_jumping=0, enable_part_gating=0, enable_patch_gating=0, enable_pruning=1, enable_warmup=1, enable_writer=0, eps=0.1, eps_decay=0.92, eval_batch_size=64, eval_every=1000, flops_with_mhsa=1, fp16=False, fp16_opt_level='O2', gating_interval=50, gating_weight=0.0005, glr=0.1, gpu_num='1,2', gradient_accumulation_steps=1, head_size=64, img_size=224, learning_rate=0.0001, local_rank=0, log_interval=1000, loss_scale=0, max_grad_norm=1.0, mixup=0.8, mixup_mode='batch', mixup_prob=0.8, mixup_switch_prob=0.5, model_path='https://dl.fbaipublicfiles.com/deit/deit_tiny_patch16_224-a1311bcf.pth', model_type='deit_tiny_patch16_224', n_gpu=2, name='debug', num_classes=1000, num_epochs=30, num_heads=3, num_steps=10000, num_workers=64, output_dir='mc_deit_tiny_224', patch_l1_weight=0.01, patch_ratio=0.9, patch_weight=5.0, patchloss='l1', patchlr=0.01, plr=0.0001, post_learning_rate=0.001, post_num_epochs=100, post_weight_decay=0.05, pretrained=1, pretrained_dir='../ViT-pytorch/pretrain/ViT-B_16.npz', rlr=0.02, roptim='sgd', save_budgets='0.6, 0.5, 0.4', seed=730, sl2wd=0.0, slr=0.02, smoothing=0.1, soptim='sgd', teacher_model=None, teacher_path=None, total_param=tensor(5.6529, device='cuda:0'), train_batch_size=128, use_distribute=1, use_gumbel=1, uvc_train=True, verbose=True, warmup_epochs=5, warmup_lr=0.0001, warmup_reset=0, warmup_steps=500, weight_decay=0.05, ylr=0.0001, z_grad_clip=0.5, zlr_schedule_list='1,5,9,13,17')
+Total Parameter: 	5.7M
+mixup active: True
+** Creating teacher model: [deit_tiny_patch16_224] loading from ==> [https://dl.fbaipublicfiles.com/deit/deit_tiny_patch16_224-a1311bcf.pth]
+=================================================
+** Initial FLOP size: 2506.98M
+=================================================
+** Initial FLOP size: 2506.98M
+
+
+=> Using a preset learning rate schedule:
+{0: 1, 6: 5, 12: 9, 18: 13, 24: 17}
+
+
+Warning:  apex was installed without --cpp_ext.  Falling back to Python flatten and unflatten.
+***** [Stage 1] Training with ADMM *****
+  Total optimization steps = 10000
+  Instantaneous batch size per GPU = 128
+  Total train batch size (w. parallel, distributed & accumulation) = 256
+  Gradient Accumulation steps = 1
+
+
+=> Using a preset learning rate schedule:
+{0: 1, 6: 5, 12: 9, 18: 13, 24: 17}
+
+
+Warning:  apex was installed without --cpp_ext.  Falling back to Python flatten and unflatten.
+============================================================
+Start [Epoch 1] at Stage Warm Up
+[Initial Sparsity|Epoch 1] Parameter size: 5.65M / 5.65M = 100.00%
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 5005
+Valid Loss: 1.34699
+Valid Accuracy: 68.65600
+Saved model checkpoint to [DIR: %s] mc_deit_tiny_224
+
+[Validation Sparsity|Step 5005|Epoch 1]
+Parameter size: 5.65M / 5.65M = 100.00%
+Expectation FLOPs: 75.576416015625% Real FLOPs: 83.71760559082031%
+************************************************************
+
+============================================================
+Start [Epoch 2] at Stage Warm Up
+[Initial Sparsity|Epoch 2] Parameter size: 5.65M / 5.65M = 100.00%
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 10010
+Valid Loss: 1.33297
+Valid Accuracy: 68.88200
+Saved model checkpoint to [DIR: %s] mc_deit_tiny_224
+
+[Validation Sparsity|Step 10010|Epoch 2]
+Parameter size: 5.65M / 5.65M = 100.00%
+Expectation FLOPs: 100.0% Real FLOPs: 100.0%
+************************************************************
+
+============================================================
+Start [Epoch 3] at Stage Warm Up
+[Initial Sparsity|Epoch 3] Parameter size: 5.65M / 5.65M = 100.00%
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 15015
+Valid Loss: 1.32508
+Valid Accuracy: 69.31400
+Saved model checkpoint to [DIR: %s] mc_deit_tiny_224
+
+[Validation Sparsity|Step 15015|Epoch 3]
+Parameter size: 5.65M / 5.65M = 100.00%
+Expectation FLOPs: 91.85880279541016% Real FLOPs: 83.71760559082031%
+************************************************************
+
+============================================================
+Start [Epoch 4] at Stage Warm Up
+[Initial Sparsity|Epoch 4] Parameter size: 5.65M / 5.65M = 100.00%
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 20020
+Valid Loss: 1.33427
+Valid Accuracy: 69.31800
+Saved model checkpoint to [DIR: %s] mc_deit_tiny_224
+
+[Validation Sparsity|Step 20020|Epoch 4]
+Parameter size: 5.65M / 5.65M = 100.00%
+Expectation FLOPs: 83.71760559082031% Real FLOPs: 83.71760559082031%
+************************************************************
+
+============================================================
+Start [Epoch 5] at Stage Warm Up
+[Initial Sparsity|Epoch 5] Parameter size: 5.65M / 5.65M = 100.00%
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 25025
+Valid Loss: 1.31818
+Valid Accuracy: 69.29200
+Saved model checkpoint to [DIR: %s] mc_deit_tiny_224
+
+[Validation Sparsity|Step 25025|Epoch 5]
+Parameter size: 5.65M / 5.65M = 100.00%
+Expectation FLOPs: 91.85880279541016% Real FLOPs: 83.71760559082031%
+************************************************************
+
+============================================================
+Start [Epoch 6] at Stage UVC Train
+[Initial Sparsity|Epoch 6] Parameter size: 5.65M / 5.65M = 100.00%
+[EPS update] 0.1 =====> 0.09200000000000001 
+[EPS update] 0.1 =====> 0.09200000000000001 
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 30030
+Valid Loss: 1.85567
+Valid Accuracy: 59.01800
+Saved model checkpoint to [DIR: %s] mc_deit_tiny_224
+
+[Validation Sparsity|Step 30030|Epoch 6]
+Parameter size: 5.61M / 5.65M = 99.19%
+Expectation FLOPs: 66.13113403320312% Real FLOPs: 64.68932342529297%
+************************************************************
+
+============================================================
+Start [Epoch 7] at Stage UVC Train
+[Initial Sparsity|Epoch 7] Parameter size: 5.61M / 5.65M = 99.19%
+[EPS update] 0.09200000000000001 =====> 0.08464000000000002 
+[EPS update] 0.09200000000000001 =====> 0.08464000000000002 
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+[EPS update] 0.08464000000000002 =====> 0.07786880000000002 
+
+
+Validation Results
+Global Steps: 35035
+Valid Loss: 1.90546
+Valid Accuracy: 57.57400
+Saved model checkpoint to [DIR: %s] mc_deit_tiny_224
+
+[Validation Sparsity|Step 35035|Epoch 7]
+Parameter size: 5.62M / 5.65M = 99.42%
+Expectation FLOPs: 57.83997344970703% Real FLOPs: 65.87055969238281%
+************************************************************
+
+============================================================
+Start [Epoch 8] at Stage UVC Train
+[Initial Sparsity|Epoch 8] Parameter size: 5.62M / 5.65M = 99.42%
+[EPS update] 0.08464000000000002 =====> 0.07786880000000002 
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 40040
+Valid Loss: 1.86045
+Valid Accuracy: 58.63000
+Saved model checkpoint to [DIR: %s] mc_deit_tiny_224
+
+[Validation Sparsity|Step 40040|Epoch 8]
+Parameter size: 5.62M / 5.65M = 99.34%
+Expectation FLOPs: 57.49037170410156% Real FLOPs: 57.650047302246094%
+************************************************************
+
+============================================================
+Start [Epoch 9] at Stage UVC Train
+[Initial Sparsity|Epoch 9] Parameter size: 5.62M / 5.65M = 99.34%
+[EPS update] 0.07786880000000002 =====> 0.07163929600000002 
+[EPS update] 0.07786880000000002 =====> 0.07163929600000002 
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 45045
+Valid Loss: 2.41548
+Valid Accuracy: 48.56400
+Saved model checkpoint to [DIR: %s] mc_deit_tiny_224
+
+[Validation Sparsity|Step 45045|Epoch 9]
+Parameter size: 5.60M / 5.65M = 99.07%
+Expectation FLOPs: 44.132137298583984% Real FLOPs: 48.450042724609375%
+************************************************************
+
+============================================================
+Start [Epoch 10] at Stage UVC Train
+[Initial Sparsity|Epoch 10] Parameter size: 5.60M / 5.65M = 99.07%
+[EPS update] 0.07163929600000002 =====> 0.06590815232000002 
+[EPS update] 0.07163929600000002 =====> 0.06590815232000002 
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 50050
+Valid Loss: 2.79974
+Valid Accuracy: 41.56800
+Saved model checkpoint to [DIR: %s] mc_deit_tiny_224
+
+[Validation Sparsity|Step 50050|Epoch 10]
+Parameter size: 5.61M / 5.65M = 99.21%
+Expectation FLOPs: 41.57008361816406% Real FLOPs: 41.56917190551758%
+************************************************************
+
+============================================================
+Start [Epoch 11] at Stage UVC Train
+[Initial Sparsity|Epoch 11] Parameter size: 5.61M / 5.65M = 99.21%
+[EPS update] 0.06590815232000002 =====> 0.06063550013440003 
+[EPS update] 0.06590815232000002 =====> 0.06063550013440003 
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 55055
+Valid Loss: 2.55746
+Valid Accuracy: 45.12800
+Saved model checkpoint to [DIR: %s] mc_deit_tiny_224
+
+[Validation Sparsity|Step 55055|Epoch 11]
+Parameter size: 5.61M / 5.65M = 99.17%
+Expectation FLOPs: 41.50828552246094% Real FLOPs: 41.508033752441406%
+************************************************************
+
+============================================================
+Start [Epoch 12] at Stage UVC Train
+[Initial Sparsity|Epoch 12] Parameter size: 5.61M / 5.65M = 99.17%
+[EPS update] 0.06063550013440003 =====> 0.05578466012364803 
+[EPS update] 0.06063550013440003 =====> 0.05578466012364803 
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+[EPS update] 0.05578466012364803 =====> 0.05132188731375619 
+
+
+Validation Results
+Global Steps: 60060
+Valid Loss: 2.47324
+Valid Accuracy: 47.45800
+Saved model checkpoint to [DIR: %s] mc_deit_tiny_224
+
+[Validation Sparsity|Step 60060|Epoch 12]
+Parameter size: 5.61M / 5.65M = 99.16%
+Expectation FLOPs: 41.50237274169922% Real FLOPs: 41.50191879272461%
+************************************************************
+
+============================================================
+Start [Epoch 13] at Stage UVC Train
+[Initial Sparsity|Epoch 13] Parameter size: 5.61M / 5.65M = 99.16%
+[EPS update] 0.05578466012364803 =====> 0.05132188731375619 
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 65065
+Valid Loss: 2.38252
+Valid Accuracy: 48.89800
+Saved model checkpoint to [DIR: %s] mc_deit_tiny_224
+
+[Validation Sparsity|Step 65065|Epoch 13]
+Parameter size: 5.60M / 5.65M = 99.14%
+Expectation FLOPs: 41.45305252075195% Real FLOPs: 41.4530143737793%
+************************************************************
+
+============================================================
+Start [Epoch 14] at Stage UVC Train
+[Initial Sparsity|Epoch 14] Parameter size: 5.60M / 5.65M = 99.14%
+[EPS update] 0.05132188731375619 =====> 0.0472161363286557 
+[EPS update] 0.05132188731375619 =====> 0.0472161363286557 
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 70070
+Valid Loss: 2.29333
+Valid Accuracy: 50.24400
+Saved model checkpoint to [DIR: %s] mc_deit_tiny_224
+
+[Validation Sparsity|Step 70070|Epoch 14]
+Parameter size: 5.60M / 5.65M = 99.15%
+Expectation FLOPs: 41.54035186767578% Real FLOPs: 41.45912551879883%
+************************************************************
+
+============================================================
+Start [Epoch 15] at Stage UVC Train
+[Initial Sparsity|Epoch 15] Parameter size: 5.60M / 5.65M = 99.15%
+[EPS update] 0.0472161363286557 =====> 0.043438845422363245 
+[EPS update] 0.0472161363286557 =====> 0.043438845422363245 
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 75075
+Valid Loss: 2.25308
+Valid Accuracy: 50.82400
+Saved model checkpoint to [DIR: %s] mc_deit_tiny_224
+
+[Validation Sparsity|Step 75075|Epoch 15]
+Parameter size: 5.60M / 5.65M = 99.15%
+Expectation FLOPs: 41.4532585144043% Real FLOPs: 41.45309066772461%
+************************************************************
+
+============================================================
+Start [Epoch 16] at Stage UVC Train
+[Initial Sparsity|Epoch 16] Parameter size: 5.60M / 5.65M = 99.15%
+[EPS update] 0.043438845422363245 =====> 0.039963737788574184 
+[EPS update] 0.043438845422363245 =====> 0.039963737788574184 
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+[EPS update] 0.039963737788574184 =====> 0.03676663876548825 
+
+
+Validation Results
+Global Steps: 80080
+Valid Loss: 2.20251
+Valid Accuracy: 51.67600
+Saved model checkpoint to [DIR: %s] mc_deit_tiny_224
+
+[Validation Sparsity|Step 80080|Epoch 16]
+Parameter size: 5.61M / 5.65M = 99.18%
+Expectation FLOPs: 41.48944091796875% Real FLOPs: 41.48969268798828%
+************************************************************
+
+============================================================
+Start [Epoch 17] at Stage UVC Train
+[Initial Sparsity|Epoch 17] Parameter size: 5.61M / 5.65M = 99.18%
+[EPS update] 0.039963737788574184 =====> 0.03676663876548825 
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+[EPS update] 0.03676663876548825 =====> 0.033825307664249196 
+
+
+Validation Results
+Global Steps: 85085
+Valid Loss: 2.18429
+Valid Accuracy: 52.44000
+Saved model checkpoint to [DIR: %s] mc_deit_tiny_224
+
+[Validation Sparsity|Step 85085|Epoch 17]
+Parameter size: 5.61M / 5.65M = 99.33%
+Expectation FLOPs: 42.52425003051758% Real FLOPs: 42.505313873291016%
+************************************************************
+
+============================================================
+Start [Epoch 18] at Stage UVC Train
+[Initial Sparsity|Epoch 18] Parameter size: 5.61M / 5.65M = 99.33%
+[EPS update] 0.03676663876548825 =====> 0.033825307664249196 
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+[EPS update] 0.033825307664249196 =====> 0.03111928305110926 
+
+
+Validation Results
+Global Steps: 90090
+Valid Loss: 2.13655
+Valid Accuracy: 53.20600
+Saved model checkpoint to [DIR: %s] mc_deit_tiny_224
+
+[Validation Sparsity|Step 90090|Epoch 18]
+Parameter size: 5.62M / 5.65M = 99.37%
+Expectation FLOPs: 42.55418014526367% Real FLOPs: 42.55398941040039%
+************************************************************
+
+============================================================
+Start [Epoch 19] at Stage UVC Train
+[Initial Sparsity|Epoch 19] Parameter size: 5.62M / 5.65M = 99.37%
+[EPS update] 0.033825307664249196 =====> 0.03111928305110926 
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+[EPS update] 0.03111928305110926 =====> 0.028629740407020522 
+
+
+Validation Results
+Global Steps: 95095
+Valid Loss: 2.12302
+Valid Accuracy: 53.78600
+Saved model checkpoint to [DIR: %s] mc_deit_tiny_224
+
+[Validation Sparsity|Step 95095|Epoch 19]
+Parameter size: 5.62M / 5.65M = 99.39%
+Expectation FLOPs: 42.57867431640625% Real FLOPs: 42.578285217285156%
+************************************************************
+
+============================================================
+Start [Epoch 20] at Stage UVC Train
+[Initial Sparsity|Epoch 20] Parameter size: 5.62M / 5.65M = 99.39%
+[EPS update] 0.03111928305110926 =====> 0.028629740407020522 
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+[EPS update] 0.028629740407020522 =====> 0.02633936117445888 
+
+
+Validation Results
+Global Steps: 100100
+Valid Loss: 2.09920
+Valid Accuracy: 54.24800
+Saved model checkpoint to [DIR: %s] mc_deit_tiny_224
+
+[Validation Sparsity|Step 100100|Epoch 20]
+Parameter size: 5.62M / 5.65M = 99.41%
+Expectation FLOPs: 42.603004455566406% Real FLOPs: 42.60250473022461%
+************************************************************
+
+============================================================
+Start [Epoch 21] at Stage UVC Train
+[Initial Sparsity|Epoch 21] Parameter size: 5.62M / 5.65M = 99.41%
+[EPS update] 0.028629740407020522 =====> 0.02633936117445888 
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+[EPS update] 0.02633936117445888 =====> 0.02423221228050217 
+
+
+Validation Results
+Global Steps: 105105
+Valid Loss: 2.06965
+Valid Accuracy: 54.70400
+Saved model checkpoint to [DIR: %s] mc_deit_tiny_224
+
+[Validation Sparsity|Step 105105|Epoch 21]
+Parameter size: 5.62M / 5.65M = 99.42%
+Expectation FLOPs: 42.62223434448242% Real FLOPs: 42.620765686035156%
+************************************************************
+
+============================================================
+Start [Epoch 22] at Stage UVC Train
+[Initial Sparsity|Epoch 22] Parameter size: 5.62M / 5.65M = 99.42%
+[EPS update] 0.02633936117445888 =====> 0.02423221228050217 
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+[EPS update] 0.02423221228050217 =====> 0.022293635298061998 
+
+
+Validation Results
+Global Steps: 110110
+Valid Loss: 2.06786
+Valid Accuracy: 54.95800
+Saved model checkpoint to [DIR: %s] mc_deit_tiny_224
+
+[Validation Sparsity|Step 110110|Epoch 22]
+Parameter size: 5.62M / 5.65M = 99.44%
+Expectation FLOPs: 42.63910675048828% Real FLOPs: 42.63903045654297%
+************************************************************
+
+============================================================
+Start [Epoch 23] at Stage UVC Train
+[Initial Sparsity|Epoch 23] Parameter size: 5.62M / 5.65M = 99.44%
+[EPS update] 0.02423221228050217 =====> 0.022293635298061998 
+
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+[EPS update] 0.022293635298061998 =====> 0.020510144474217038 
+
+
+Validation Results
+Global Steps: 115115
+Valid Loss: 2.05624
+Valid Accuracy: 55.23200
+Saved model checkpoint to [DIR: %s] mc_deit_tiny_224
+
+[Validation Sparsity|Step 115115|Epoch 23]
+Parameter size: 5.62M / 5.65M = 99.46%
+Expectation FLOPs: 42.65113067626953% Real FLOPs: 42.651100158691406%
+************************************************************
+
+============================================================
+Start [Epoch 24] at Stage UVC Train
+[Initial Sparsity|Epoch 24] Parameter size: 5.62M / 5.65M = 99.46%
+[EPS update] 0.022293635298061998 =====> 0.020510144474217038 
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+[EPS update] 0.020510144474217038 =====> 0.018869332916279676 
+
+
+Validation Results
+Global Steps: 120120
+Valid Loss: 2.02561
+Valid Accuracy: 55.71200
+Saved model checkpoint to [DIR: %s] mc_deit_tiny_224
+
+[Validation Sparsity|Step 120120|Epoch 24]
+Parameter size: 5.62M / 5.65M = 99.47%
+Expectation FLOPs: 42.66323471069336% Real FLOPs: 42.66332244873047%
+************************************************************
+
+============================================================
+Start [Epoch 25] at Stage UVC Train
+[Initial Sparsity|Epoch 25] Parameter size: 5.62M / 5.65M = 99.47%
+[EPS update] 0.020510144474217038 =====> 0.018869332916279676 
+
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+[EPS update] 0.018869332916279676 =====> 0.017359786282977303 
+
+
+Validation Results
+Global Steps: 125125
+Valid Loss: 2.01641
+Valid Accuracy: 55.81200
+Saved model checkpoint to [DIR: %s] mc_deit_tiny_224
+
+[Validation Sparsity|Step 125125|Epoch 25]
+Parameter size: 5.62M / 5.65M = 99.47%
+Expectation FLOPs: 42.66956329345703% Real FLOPs: 42.66944122314453%
+************************************************************
+
+============================================================
+Start [Epoch 26] at Stage UVC Train
+[Initial Sparsity|Epoch 26] Parameter size: 5.62M / 5.65M = 99.47%
+[EPS update] 0.018869332916279676 =====> 0.017359786282977303 
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+[EPS update] 0.017359786282977303 =====> 0.01597100338033912 
+
+
+Validation Results
+Global Steps: 130130
+Valid Loss: 2.00058
+Valid Accuracy: 56.14800
+Saved model checkpoint to [DIR: %s] mc_deit_tiny_224
+
+[Validation Sparsity|Step 130130|Epoch 26]
+Parameter size: 5.62M / 5.65M = 99.48%
+Expectation FLOPs: 42.679649353027344% Real FLOPs: 42.67547607421875%
+************************************************************
+
+============================================================
+Start [Epoch 27] at Stage UVC Train
+[Initial Sparsity|Epoch 27] Parameter size: 5.62M / 5.65M = 99.48%
+[EPS update] 0.017359786282977303 =====> 0.01597100338033912 
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 135135
+Valid Loss: 1.99305
+Valid Accuracy: 56.29000
+Saved model checkpoint to [DIR: %s] mc_deit_tiny_224
+
+[Validation Sparsity|Step 135135|Epoch 27]
+Parameter size: 5.62M / 5.65M = 99.49%
+Expectation FLOPs: 42.689247131347656% Real FLOPs: 42.68770217895508%
+************************************************************
+
+============================================================
+Start [Epoch 28] at Stage UVC Train
+[Initial Sparsity|Epoch 28] Parameter size: 5.62M / 5.65M = 99.49%
+[EPS update] 0.01597100338033912 =====> 0.01469332310991199 
+[EPS update] 0.01597100338033912 =====> 0.01469332310991199 
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+[EPS update] 0.01469332310991199 =====> 0.013517857261119032 
+
+
+Validation Results
+Global Steps: 140140
+Valid Loss: 1.99242
+Valid Accuracy: 56.35200
+Saved model checkpoint to [DIR: %s] mc_deit_tiny_224
+
+[Validation Sparsity|Step 140140|Epoch 28]
+Parameter size: 5.62M / 5.65M = 99.49%
+Expectation FLOPs: 42.689205169677734% Real FLOPs: 42.68770217895508%
+************************************************************
+
+============================================================
+Start [Epoch 29] at Stage UVC Train
+[Initial Sparsity|Epoch 29] Parameter size: 5.62M / 5.65M = 99.49%
+[EPS update] 0.01469332310991199 =====> 0.013517857261119032 
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 145145
+Valid Loss: 1.99482
+Valid Accuracy: 56.28400
+Saved model checkpoint to [DIR: %s] mc_deit_tiny_224
+
+[Validation Sparsity|Step 145145|Epoch 29]
+Parameter size: 5.62M / 5.65M = 99.50%
+Expectation FLOPs: 42.70035934448242% Real FLOPs: 42.69381332397461%
+************************************************************
+
+============================================================
+Start [Epoch 30] at Stage UVC Train
+[Initial Sparsity|Epoch 30] Parameter size: 5.62M / 5.65M = 99.50%
+[EPS update] 0.013517857261119032 =====> 0.01243642868022951 
+[EPS update] 0.013517857261119032 =====> 0.01243642868022951 
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+
+
+Validation Results
+Global Steps: 150150
+Valid Loss: 1.99539
+Valid Accuracy: 56.30200
+Saved model checkpoint to [DIR: %s] mc_deit_tiny_224
+
+[Validation Sparsity|Step 150150|Epoch 30]
+Parameter size: 5.62M / 5.65M = 99.50%
+Expectation FLOPs: 42.76966857910156% Real FLOPs: 42.69984817504883%
+************************************************************
+
+============================================================
+Start [Epoch 31] at Stage UVC Train
+[Initial Sparsity|Epoch 31] Parameter size: 5.62M / 5.65M = 99.50%
+[EPS update] 0.01243642868022951 =====> 0.011441514385811149 
+[EPS update] 0.01243642868022951 =====> 0.011441514385811149 
+
+************************************************************
+Epoch finished, begin validating ...
+***** Running Validation *****
+  Num steps = %d 782
+  Batch size = %d 64
+Best Accuracy: 	0.000000
+End Training!
+
+
+Validation Results
+Global Steps: 155155
+Valid Loss: 1.99107
+Valid Accuracy: 56.28400
+Starting post training
+Saved model checkpoint to [DIR: %s] mc_deit_tiny_224
+
+[Validation Sparsity|Step 155155|Epoch 31]
+Parameter size: 5.63M / 5.65M = 99.51%
+Expectation FLOPs: 42.75395965576172% Real FLOPs: 42.71207809448242%
+************************************************************
+
+Best Accuracy: 	0.000000
+End Training!
+Starting post training
+***** [Stage 2] Post Training *****
+  Instantaneous batch size per GPU = %d 128
+============================================================
+Start training [Epoch 0]
