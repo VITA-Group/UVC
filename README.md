@@ -140,9 +140,9 @@ python -m torch.distributed.launch \
 
 ## Results
 
-Our full compression log for reported results are under file log/.
+* Our full compression log for reported results are under file log/.
 
-Checkpoint of deit-tiny-patch16-224: https://drive.google.com/drive/folders/1kjhNsppWCLuaGm-fAf4tVbVRENL14PeD?usp=sharing
+* Checkpoint of deit-tiny-patch16-224: https://drive.google.com/drive/folders/1kjhNsppWCLuaGm-fAf4tVbVRENL14PeD?usp=sharing
 
 
 
