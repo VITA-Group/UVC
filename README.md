@@ -142,7 +142,8 @@ python -m torch.distributed.launch \
 
 * Our full compression log for reported results are under file log/.
 
-* Checkpoint of deit-tiny-patch16-224: https://drive.google.com/drive/folders/1kjhNsppWCLuaGm-fAf4tVbVRENL14PeD?usp=sharing
+* Checkpoint of deit-tiny-distilled-patch16-224: https://drive.google.com/drive/folders/1kjhNsppWCLuaGm-fAf4tVbVRENL14PeD?usp=sharing (with distillation token)
+<img width="721" alt="deit-tiny-distilled-patch16-224" src="https://github.com/VITA-Group/UVC/assets/55985788/5c6d1f0d-b49d-4060-aed2-4b179e598e2a">
 
 
 
